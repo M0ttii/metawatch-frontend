@@ -1,0 +1,9 @@
+.flex-column{
+    margin-right: auto;
+    margin-left: auto;
+    width: 300px;
+}
+
+#myCanvas{
+     margin-bottom: 20px; 
+}

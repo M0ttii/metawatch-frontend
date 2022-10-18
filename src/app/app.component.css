@@ -1,3 +1,26 @@
 .border{
     border: solid;
 }
+.sidebar{
+    
+}
+
+@media (min-width: 992px){
+    .column-offset{
+        margin-left: 4%
+    }
+}
+
+.flex{
+    flex: 0 0
+}
+
+.flex-column{
+    margin-right: auto;
+    margin-left: auto;
+    width: 300;
+}
+
+.top{
+    margin-top: 130px;
+}
