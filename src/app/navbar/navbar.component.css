@@ -3,7 +3,19 @@
 }
 
 .brand{
-    font-family: 'Rubik', monospace;
+    font-family: 'Rubik', sans-serif;
     font-size: 40px;
     font-weight: 500;
+    color: white;
+}
+
+.navbar-right {
+    float: right;
+    padding-right: 15px;
+}
+.nav.navbar-nav.navbar-right li {
+    float: right;
+}
+.nav.navbar-nav.navbar-right li > a {
+    padding:8px 5px;
 }

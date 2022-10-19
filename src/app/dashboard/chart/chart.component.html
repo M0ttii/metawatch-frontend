@@ -1,4 +1,5 @@
-
-<canvas id="myCanvas" width="600" height="250" style="border:1px solid #000000;">
-</canvas>
-
+<canvas baseChart #myChart width="800" height="300"
+    [type]="'line'"
+    [data]="chartData"
+    [options]="chartOptions">
+  </canvas>
