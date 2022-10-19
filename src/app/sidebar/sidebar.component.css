@@ -6,3 +6,12 @@
 .nav-item{
     padding-top: 30px;
 }
+
+
+.svg-item{
+    stroke: white;
+}
+
+.active{
+    stroke: #448FFF !important; 
+}
