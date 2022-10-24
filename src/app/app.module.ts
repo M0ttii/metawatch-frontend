@@ -10,10 +10,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { StatsComponent } from './dashboard/stats/stats.component';
 import { ContainersComponent } from './containers/containers.component';
 import { Routes, RouterModule } from '@angular/router';
+import { ContainerComponent } from './containers/container/container.component';
 
 const appRoutes: Routes = [
   {path: '', component: DashboardComponent},
-  {path: 'containers', component: ContainersComponent}
+  {path: 'containers', component: ContainersComponent},
+  {path: 'container/:id', component: ContainerComponent}
 ]
 
 @NgModule({
@@ -24,7 +26,8 @@ const appRoutes: Routes = [
     ChartComponent,
     DashboardComponent,
     StatsComponent,
-    ContainersComponent
+    ContainersComponent,
+    ContainerComponent
   ],
   imports: [
     BrowserModule,

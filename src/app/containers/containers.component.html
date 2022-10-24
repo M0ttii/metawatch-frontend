@@ -1,1 +1,6 @@
 <p class="text-color">containers works!</p>
+<div class="row justify-content-center">
+    <div class="col-2" *ngFor="let container of containers">
+        <button class="btn btn-primary" routerLink="../container/{{container.id}}">{{container.name}}</button>
+    </div>
+</div>
