@@ -7,11 +7,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./containers.component.css']
 })
 export class ContainersComponent implements OnInit {
-  protected containers = [{name: "Container 1", id:1}, {name: "Container 2", id:2}, {name: "Container 3", id:3}]
+  protected containers = [{name: "Seafile", id:1},
+                          {name: "Blocky", id:2},
+                          {name: "Wireguard", id:3}]
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    for(let container of this.containers){
+      console.log(container.name);
+    }
   }
 
   navigateToContainer(containerID: number){

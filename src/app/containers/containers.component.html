@@ -1,6 +1,6 @@
 <div class="row justify-content-left ">
     <div class="col-3" *ngFor="let container of containers">
         <!-- <button class="btn btn-primary" routerLink="../container/{{container.id}}">{{container.name}}</button> -->
-        <app-containercanvas></app-containercanvas>
+        <app-containercanvas>{{container.name}}</app-containercanvas>
     </div>
 </div>

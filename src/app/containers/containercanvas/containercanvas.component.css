@@ -22,21 +22,19 @@
 .headingText{
     position: absolute;
     top: -10%;
-    left: 5%;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 40px;
     color: white;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 .subText{
     position: absolute;
     top: 50px;
-    left: 5%;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 20px;
     color: white;
-    font-weight: 400;
+    font-weight: 300;
 }
 
 .canvas-container{

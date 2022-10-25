@@ -71,7 +71,7 @@ export class ChartComponent implements OnInit, AfterViewInit{
 
   public chartOptions: ChartOptions<'line'> = {
     responsive: true,
-    maintainAspectRatio: false,
+    maintainAspectRatio: true,
     layout: {
       padding: 10
     },

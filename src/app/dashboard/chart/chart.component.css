@@ -7,3 +7,9 @@
 #myCanvas{
      margin-bottom: 20px; 
 }
+
+.wrapper{
+    height: auto !important;
+    position: relative;
+    height: 20vh;
+}
