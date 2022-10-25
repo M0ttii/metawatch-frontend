@@ -1,0 +1,56 @@
+.myRect{
+    width: 80%;
+    height: 170px;
+    background: rgb(64,47,191);
+    background: linear-gradient(90deg, rgba(64,47,191,1) 0%, rgba(64,47,191,0.3981793400954131) 100%);
+    border-radius: 5px;
+    position: absolute;
+    -webkit-box-shadow: 4px 4px 13px 3px rgba(0,0,0,0.5); 
+    box-shadow: 4px 4px 13px 3px rgba(0,0,0,0.5);
+    top: 0;
+    left: 0;
+}
+
+
+.canvas-container:hover{
+    -webkit-transition: all 0.3s 0s ease;
+    -moz-transition: all 0.3s 0s ease;
+    -o-transition: all 0.3s 0s ease;
+    transition: all 0.3s 0s ease;
+}
+
+.headingText{
+    position: absolute;
+    top: -10%;
+    left: 5%;
+    font-family: 'Rubik', sans-serif;
+    font-size: 40px;
+    color: white;
+    font-weight: 400;
+}
+
+.subText{
+    position: absolute;
+    top: 50px;
+    left: 5%;
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+    color: white;
+    font-weight: 400;
+}
+
+.canvas-container{
+    position: relative;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    
+}
+
+.canvas-container:hover{
+    transform: scale(1.1);
+}
+
+.top{
+    margin-top: 80px;
+}

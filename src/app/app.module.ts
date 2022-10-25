@@ -11,6 +11,7 @@ import { StatsComponent } from './dashboard/stats/stats.component';
 import { ContainersComponent } from './containers/containers.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ContainerComponent } from './containers/container/container.component';
+import { ContainercanvasComponent } from './containers/containercanvas/containercanvas.component';
 
 const appRoutes: Routes = [
   {path: '', component: DashboardComponent},
@@ -27,7 +28,8 @@ const appRoutes: Routes = [
     DashboardComponent,
     StatsComponent,
     ContainersComponent,
-    ContainerComponent
+    ContainerComponent,
+    ContainercanvasComponent
   ],
   imports: [
     BrowserModule,
