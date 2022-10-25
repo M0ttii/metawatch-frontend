@@ -11,6 +11,24 @@
     left: 0;
 }
 
+.child{
+    position: absolute;
+    top: 150px;
+}
+
+.mySubRect{
+    width: 80%;
+    height: 20px;
+    top: 150px;
+    position: absolute;
+    background: rgb(64,47,191);
+    background: linear-gradient(90deg, rgb(84, 20, 187) 0%, rgba(109, 47, 191, 0.1) 100%);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    -webkit-box-shadow: 4px 4px 13px 3px rgba(0,0,0,0.5); 
+    box-shadow: 4px 4px 13px 3px rgba(0,0,0,0.5);
+}
+
 
 .canvas-container:hover{
     -webkit-transition: all 0.3s 0s ease;
@@ -21,7 +39,8 @@
 
 .headingText{
     position: absolute;
-    top: -10%;
+    top: 20px;
+    left: 10px;
     font-family: 'Poppins', sans-serif;
     font-size: 40px;
     color: white;
@@ -30,7 +49,8 @@
 
 .subText{
     position: absolute;
-    top: 50px;
+    top: 65px;
+    left: 10px;
     font-family: 'Poppins', sans-serif;
     font-size: 20px;
     color: white;
