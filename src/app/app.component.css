@@ -1,8 +1,14 @@
 .border{
     border: solid;
 }
+
+
 .sidebar{
-    
+    background-color: #323949;
+    min-height: 100vh;
+    box-shadow: 7px 6px 20px 0px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 7px 6px 20px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 7px 6px 20px 0px rgba(0,0,0,0.2);
 }
 
 @media (min-width: 992px){
@@ -13,6 +19,11 @@
 
 .flex{
     flex: 0 0
+}
+
+.fill{
+    min-height: 100%;
+    height: 100%;
 }
 
 .flex-column{

@@ -12,6 +12,7 @@ import { ContainersComponent } from './containers/containers.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ContainerComponent } from './containers/container/container.component';
 import { ContainercanvasComponent } from './containers/containercanvas/containercanvas.component';
+import { DropdownDirective } from './directives/dropdown.directive';
 
 const appRoutes: Routes = [
   {path: '', component: DashboardComponent},
@@ -29,7 +30,8 @@ const appRoutes: Routes = [
     StatsComponent,
     ContainersComponent,
     ContainerComponent,
-    ContainercanvasComponent
+    ContainercanvasComponent,
+    DropdownDirective
   ],
   imports: [
     BrowserModule,

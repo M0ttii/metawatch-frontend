@@ -14,9 +14,9 @@ export class ContainersComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    for(let container of this.containers){
+    /* for(let container of this.containers){
       console.log(container.name);
-    }
+    } */
   }
 
   navigateToContainer(containerID: number){

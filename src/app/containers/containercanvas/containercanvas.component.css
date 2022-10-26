@@ -5,8 +5,8 @@
     background: linear-gradient(90deg, rgba(64,47,191,1) 0%, rgba(64,47,191,0.3981793400954131) 100%);
     border-radius: 5px;
     position: absolute;
-    -webkit-box-shadow: 4px 4px 13px 3px rgba(0,0,0,0.5); 
-    box-shadow: 4px 4px 13px 3px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 4px 4px 13px 3px rgba(0,0,0,0.2); 
+    box-shadow: 4px 4px 13px 3px rgba(0,0,0,0.2);
     top: 0;
     left: 0;
 }
@@ -25,8 +25,8 @@
     background: linear-gradient(90deg, rgb(84, 20, 187) 0%, rgba(109, 47, 191, 0.1) 100%);
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    -webkit-box-shadow: 4px 4px 13px 3px rgba(0,0,0,0.5); 
-    box-shadow: 4px 4px 13px 3px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 4px 4px 16px 3px rgba(0,0,0,0.2); 
+    box-shadow: 4px 4px 16px 3px rgba(0,0,0,0.2);
 }
 
 
