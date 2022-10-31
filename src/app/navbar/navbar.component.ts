@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router, Event, NavigationEnd } from '@angular/router';
+import { Router, Event, NavigationEnd } from '@angular/router';
+import { ContainerserviceService } from '../services/containerservice.service';
 import { NavtitleService } from '../services/navtitle.service';
 
 @Component({
@@ -11,8 +12,12 @@ export class NavbarComponent implements OnInit {
   sub: any;
   protected containerID: any;
   protected title: any = "Dash";
+  protected id: any;
+  protected currentID: any;
+  protected currentState: String;
+  protected currentName: String;
 
-  constructor(private router: Router, private route: ActivatedRoute, private navtitle: NavtitleService) { 
+  constructor(private router: Router, private navtitle: NavtitleService, private containerService: ContainerserviceService) { 
 
   }
 
@@ -22,11 +27,18 @@ export class NavbarComponent implements OnInit {
         this.title = this.getTitle(e.url);
       }
     })
-    /* this.sub = this.route.paramMap.subscribe((params: ParamMap) => {
-      this.containerID = +params.get('id');
+    this.navtitle.id.subscribe(id => {
+      this.currentID = id;
+    })
+  }
 
-      console.log(this.containerID);
-    }) */
+  public getContainerNameAndState(){
+    /* let container = this.containerService.containers.find(i => i.id.toString() === this.currentID);
+    this.currentState = container.state.toString();
+    this.currentName = container.name; */
+    console.log(this.currentID);
+    return new Array(this.currentName, this.currentState);
+    /* return new Array(container.name); */
   }
 
   getTitle(url: String): String{
@@ -37,7 +49,8 @@ export class NavbarComponent implements OnInit {
       return "Containers"
     }
     if(url.includes('/container')){
-      return "Containers"
+      let containerName = this.getContainerNameAndState();
+      return "containerName[1]";
     }
   }
 
