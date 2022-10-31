@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ContainerserviceService } from '../services/containerservice.service';
 
 @Component({
   selector: 'app-containers',
@@ -7,11 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./containers.component.css']
 })
 export class ContainersComponent implements OnInit {
-  protected containers = [{name: "Seafile", id:1},
-                          {name: "Blocky", id:2},
-                          {name: "Wireguard", id:3}]
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, public containerService: ContainerserviceService) { }
 
   ngOnInit(): void {
     /* for(let container of this.containers){

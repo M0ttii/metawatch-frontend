@@ -1,6 +1,6 @@
 .myRect{
-    width: 80%;
-    height: 170px;
+    width: 100%;
+    height: 100px;
     background: rgb(64,47,191);
     background: linear-gradient(90deg, rgba(64,47,191,1) 0%, rgba(64,47,191,0.3981793400954131) 100%);
     border-radius: 5px;
@@ -16,7 +16,7 @@
     top: 150px;
 }
 
-.mySubRect{
+/* .mySubRect{
     width: 80%;
     height: 20px;
     top: 150px;
@@ -27,7 +27,7 @@
     border-bottom-right-radius: 5px;
     -webkit-box-shadow: 4px 4px 16px 3px rgba(0,0,0,0.2); 
     box-shadow: 4px 4px 16px 3px rgba(0,0,0,0.2);
-}
+} */
 
 
 .canvas-container:hover{
@@ -39,21 +39,40 @@
 
 .headingText{
     position: absolute;
-    top: 20px;
-    left: 10px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 40px;
-    color: white;
-    font-weight: 500;
-}
-
-.subText{
-    position: absolute;
-    top: 65px;
+    top: 30px;
     left: 10px;
     font-family: 'Poppins', sans-serif;
     font-size: 20px;
     color: white;
+    font-weight: 500;
+}
+
+.imageText{
+    position: absolute;
+    top: 37px;
+    left: 220px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    color: white;
+    font-weight: 300;
+}
+
+.stateText{
+    position: absolute;
+    top: 37px;
+    left: 665px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.subText{
+    position: absolute;
+    top: 55px;
+    left: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.719);
     font-weight: 300;
 }
 
@@ -62,6 +81,7 @@
     box-sizing: border-box;
     cursor: pointer;
     transition: all .2s ease-in-out;
+    padding-bottom: 120px;
     
 }
 

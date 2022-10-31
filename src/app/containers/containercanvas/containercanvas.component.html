@@ -1,6 +1,13 @@
-<div class="row canvas-container top " routerLink="../container/1">
+<div class="canvas-container" routerLink="../container/1">
     <div class="myRect"></div>
-    <div class="mySubRect"></div>
-    <p class="headingText text-start"><ng-content></ng-content></p>
-    <p class="subText text-start">3dfh5rvx</p>
+    <div class="col-2">
+        <p class="headingText text-start">{{name}}</p>
+        <p class="subText text-start">{{id}}</p>
+    </div>
+    <div class="col-2">
+        <p class="imageText">{{image}}</p>
+    </div>
+    <div class="col-2">
+        <p class="stateText" [ngStyle]="{'color': stateColor}">{{state}}</p>
+    </div>
 </div>
