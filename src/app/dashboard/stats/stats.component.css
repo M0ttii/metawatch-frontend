@@ -8,7 +8,7 @@
 .stat-variable{
     /* color: #448FFF !important; */
     background: rgb(68,143,255);
-    background: linear-gradient(90deg, rgb(81, 48, 226) 0%, rgb(80, 150, 255) 100%);
+    background: linear-gradient(90deg, rgb(81, 48, 226) 0%, rgb(80, 100, 255) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-family: 'Rubik', sans-serif;
