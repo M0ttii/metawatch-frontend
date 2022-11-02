@@ -10,7 +10,8 @@
 
 .wrapper{
     margin-bottom: 30px;
-    height: auto !important;
+    height: 270px !important;
+    flex: 0 0 auto;
     position: relative;
     background-color: #272D3B;
     border-radius: 20px;
