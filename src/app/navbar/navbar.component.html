@@ -1,7 +1,14 @@
 
 <nav class="navbar loc">
     <div class="container-fluid">
-        <a href="#" class="navbar-brand brand">{{title}}</a>     
+        <a href="#" class="navbar-brand brand" *ngIf="isContainerSite; else elseBlock">
+            <span class="brandContainerName" >{{title}}</span>
+             > 
+             <span class="brandContainerState" [ngStyle]="{'color': color}">{{state}}</span>
+        </a>
+        <ng-template #elseBlock>
+            <a href="#" class="navbar-brand brand">{{title}}</a>  
+        </ng-template>     
             <ul class="navbar-nav navbar-right">
                 <li class="nav-item dropdown dropdown-toggle" data-bs-toggle="dropdown" appDropdown>
                     <!-- <button class="btn btn-primary nav-link" data-bs-toggle="dropdown">

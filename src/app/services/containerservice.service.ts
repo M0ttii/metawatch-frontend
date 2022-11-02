@@ -15,22 +15,37 @@ export class ContainerserviceService {
   constructor() { }
 
 
-  public getStateNameAndColor(stateEnum: ContainerState): string[]{
+  public getStatePathAndColor(stateEnum: ContainerState): string[]{
     switch (stateEnum){
       case ContainerState.Running:
-        return new Array("Running", "#14e86c");
+        return new Array(".././assets/check.svg", "Running");
       case ContainerState.Restarting:
-        return new Array("Restarting", "#f08426");
+        return new Array(".././assets/warning.svg", "Restarting");
       case ContainerState.Exited:
-        return new Array("Exited", "#f02634");
+        return new Array(".././assets/warning.svg", "Exited");
       case ContainerState.Paused:
-        return new Array("Paused", "#f08426");
+        return new Array(".././assets/warning.svg", "Paused");
       case ContainerState.Dead:
-        return new Array("Dead", "#f02634");
+        return new Array(".././assets/warning.svg", "Dead");
       case ContainerState.Created:
-        return new Array("Created", "#14e86c")
+        return new Array(".././assets/warning.svg", "Created")
     }
-    
+  }
 
+  public getColor(stateEnum: ContainerState): String{
+    switch (stateEnum){
+      case ContainerState.Running:
+        return "#14e86c";
+      case ContainerState.Restarting:
+        return "#14e86c"
+      case ContainerState.Exited:
+        return "#f02634"
+      case ContainerState.Paused:
+        return "#f02634"
+      case ContainerState.Dead:
+        return "#f02634"
+      case ContainerState.Created:
+        return "#14e86c"
+    }
   }
 }

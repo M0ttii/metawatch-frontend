@@ -10,6 +10,21 @@
     margin-left: -1.2% !important;
 }
 
+.brandContainerName{
+    font-family: 'Rubik', sans-serif;
+    font-size: 40px;
+    font-weight: 400;
+    color: white;
+    margin-left: -1.2% !important;
+}
+
+.brandContainerState{
+    font-family: 'Rubik', sans-serif;
+    font-size: 40px;
+    font-weight: 300;
+    margin-left: -1.2% !important;
+}
+
 .navbar-right {
     float: right;
     padding-right: 15px;

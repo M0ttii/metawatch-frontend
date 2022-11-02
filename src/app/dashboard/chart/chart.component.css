@@ -9,7 +9,18 @@
 }
 
 .wrapper{
+    margin-bottom: 30px;
     height: auto !important;
     position: relative;
-    height: 20vh;
+    background-color: #272D3B;
+    border-radius: 20px;
+}
+
+.chart-heading{
+    color: white !important;
+    margin-left: 2%;
+    margin-bottom: 0px !important;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
 }

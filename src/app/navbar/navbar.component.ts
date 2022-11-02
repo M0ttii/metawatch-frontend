@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Event, NavigationEnd } from '@angular/router';
 import { ContainerserviceService } from '../services/containerservice.service';
+import { ContainerState } from '../services/containerstate.enum';
 import { NavtitleService } from '../services/navtitle.service';
 
 @Component({
@@ -12,12 +13,18 @@ export class NavbarComponent implements OnInit {
   sub: any;
   protected containerID: any;
   protected title: any = "Dash";
+  protected state: any;
+  protected color: any;
   protected id: any;
   protected currentID: any;
-  protected currentState: String;
+  protected currentState: ContainerState;
   protected currentName: String;
+  protected isContainerSite: Boolean = false;
 
-  constructor(private router: Router, private navtitle: NavtitleService, private containerService: ContainerserviceService) { 
+  constructor(private router: Router, private navtitle: NavtitleService, private containerService: ContainerserviceService) {
+    this.navtitle.id.subscribe(id => {
+      this.currentID = id;
+    })
 
   }
 
@@ -25,17 +32,16 @@ export class NavbarComponent implements OnInit {
     this.router.events.subscribe((e: Event) => {
       if (e instanceof NavigationEnd){
         this.title = this.getTitle(e.url);
+        this.state = this.getState(e.url);
       }
-    })
-    this.navtitle.id.subscribe(id => {
-      this.currentID = id;
     })
   }
 
   public getContainerNameAndState(){
-    /* let container = this.containerService.containers.find(i => i.id.toString() === this.currentID);
-    this.currentState = container.state.toString();
-    this.currentName = container.name; */
+    let container = this.containerService.containers.find(i => i.id.toString() === this.currentID);
+    this.currentState = container.state;
+    this.currentName = container.name;
+    this.color = this.containerService.getColor(container.state);
     console.log(this.currentID);
     return new Array(this.currentName, this.currentState);
     /* return new Array(container.name); */
@@ -49,10 +55,21 @@ export class NavbarComponent implements OnInit {
       return "Containers"
     }
     if(url.includes('/container')){
-      let containerName = this.getContainerNameAndState();
-      return "containerName[1]";
+      let container = this.getContainerNameAndState();
+      return container[0];
     }
   }
+
+  getState(url: String): String{
+    if(!url.includes("/container") || url.includes("/containers")){
+      this.isContainerSite = false;
+      return;
+    }
+    this.isContainerSite = true;
+    let container = this.getContainerNameAndState();
+    return container[1];
+  }
+
 
 
 }

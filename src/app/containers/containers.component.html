@@ -19,8 +19,8 @@
             <app-containercanvas [name]="container.name"
                                  [id]="container.id" 
                                  [image]="container.image" 
-                                 [state]="containerService.getStateNameAndColor(container.state)[0]"
-                                 [stateColor]="containerService.getStateNameAndColor(container.state)[1]"></app-containercanvas>
+                                 [state]="containerService.getStatePathAndColor(container.state)[0]"
+                                 [stateName]="containerService.getStatePathAndColor(container.state)[1]"></app-containercanvas>
         </div>
     </div>
 </div>

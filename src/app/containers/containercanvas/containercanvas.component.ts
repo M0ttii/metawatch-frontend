@@ -12,7 +12,7 @@ export class ContainercanvasComponent implements OnInit, AfterViewInit {
   @Input() image = '';
   @Input() state = '';
   @Input() port = '';
-  @Input() stateColor = '';
+  @Input() stateName = '';
 
   constructor(public containerService: ContainerserviceService) { 
   }
