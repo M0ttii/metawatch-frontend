@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+    metawatch_frontend:
+        container_name: metawatch_frontend
+        build: .
+        image: m0ttii/metawatch_frontend:v0.1-beta
+        ports:
+            - 127.0.0.1:8080:80 
