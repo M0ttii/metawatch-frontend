@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Containers } from '../models/containers.model';
 import { ContainerserviceService } from '../services/containerservice.service';
+import { HttpserviceService } from '../services/httpservice.service';
 
 @Component({
   selector: 'app-containers',
@@ -9,13 +11,15 @@ import { ContainerserviceService } from '../services/containerservice.service';
 })
 export class ContainersComponent implements OnInit {
 
-  constructor(private router: Router, public containerService: ContainerserviceService) { }
+
+  constructor(private router: Router, public containerService: ContainerserviceService) {
+
+   }
 
   ngOnInit(): void {
-    /* for(let container of this.containers){
-      console.log(container.name);
-    } */
+  
   }
+
 
   navigateToContainer(containerID: number){
     this.router.navigate(['/container/' + containerID])

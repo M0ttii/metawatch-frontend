@@ -38,10 +38,11 @@ export class NavbarComponent implements OnInit {
   }
 
   public getContainerNameAndState(){
-    let container = this.containerService.containers.find(i => i.id.toString() === this.currentID);
-    this.currentState = container.state;
-    this.currentName = container.name;
-    this.color = this.containerService.getColor(container.state);
+    let container = this.containerService.containers.containers.find(i => i.id.substring(0,12) === this.currentID); 
+    console.log(container)
+    this.currentState = container.stateEnum;
+    this.currentName = container.names[0];
+    this.color = this.containerService.getColor(container.stateEnum);
     console.log(this.currentID);
     return new Array(this.currentName, this.currentState);
     /* return new Array(container.name); */

@@ -1,8 +1,8 @@
 export enum ContainerState{
-    Running = "Running",
-    Restarting = "Restarting",
-    Exited = "Exited",
-    Paused = "Paused",
-    Dead = "Dead",
-    Created = "Created"
+    Running = "running",
+    Restarting = "restarting",
+    Exited = "exited",
+    Paused = "paused",
+    Dead = "dead",
+    Created = "created"
 }
