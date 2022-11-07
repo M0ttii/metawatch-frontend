@@ -9,7 +9,7 @@
 
 .image{
     color: white;
-    margin-left: 10%;
+    margin-left: 27%;
 }
 
 .state{
@@ -23,4 +23,8 @@
 
 .top{
     margin-top: 100px;
+}
+
+.rowTop{
+    margin-top: 10px;
 }

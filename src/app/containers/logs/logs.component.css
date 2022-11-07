@@ -7,7 +7,7 @@
 .logText{
     /* bottom: 0; */
     font-family: 'Rubik', sans-serif;
-    margin-top: 300px;
+    margin-top: 260px;
     font-size: 20px;
     color: white;
     font-weight: 400;
@@ -21,7 +21,25 @@
     text-align: center;
     display: inline-block;
     vertical-align: top;
-  }
+}
+
+.logBlock{
+  margin-top: var(--textheight);
+  /* margin-bottom: 30px; */
+  text-align: center !important;
+  margin-bottom: 0%;
+  height: calc(var(--unitheight) * 2 + var(--unitmargin));
+  width: 100%;
+  position: relative;
+  background: var(--widgetColor);
+  background: linear-gradient(90deg, rgba(39,41,54,1) 0%, rgb(30, 31, 41) 100%);
+  -webkit-box-shadow: 7px 5px 17px 3px rgba(0,0,0,0.6); 
+  box-shadow: 7px 5px 17px 3px rgba(0,0,0,0.6);
+  border-radius: 20px;
+  overflow:hidden;
+}
+
+
   
   /*
     Set the color of the icon

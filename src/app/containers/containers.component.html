@@ -1,10 +1,10 @@
-<div class="top">
+<div class="top"></div>
     <div class="row justify-content-left">
         <div class="col-1">
-            <p class="name text-start" >Name</p>
-        </div> 
+            <p class="name text-start">Name</p>
+        </div>
         <div class="col-3">
-            <p class="image text-start" >Image</p>
+            <p class="image text-start">Image</p>
         </div>
         <div class="col-1">
             <p class="state text-start ">State</p>
@@ -14,20 +14,17 @@
         </div>
     </div>
     <ng-container *ngIf="this.containerService.getContainers() != null">
-        <div class="row justify-content-left" *ngFor="let container of this.containerService.getContainers()">
+        <div class="row justify-content-left h-10 rowTop" *ngFor="let container of this.containerService.getContainers()">
             <div class="col-6">
                 <!-- <button class="btn btn-primary" routerLink="../container/{{container.id}}">{{container.name}}</button> -->
                 <!-- <app-containercanvas [name]="container.name"
-                                     [id]="container.id" 
-                                     [image]="container.image" 
-                                     [state]="containerService.getStatePathAndColor(container.state)[0]"
-                                     [stateName]="containerService.getStatePathAndColor(container.state)[1]"></app-containercanvas> -->
-                                     <app-containercanvas [name]="container.names[0]"
-                                     [id]="container.id.substring(0,12)" 
-                                     [image]="container.image"
-                                     [state]="containerService.getStatePathAndColor(container.stateEnum)[0]"
-                                     [stateName]="containerService.getStatePathAndColor(container.stateEnum)[1]"></app-containercanvas>
+                                         [id]="container.id" 
+                                         [image]="container.image" 
+                                         [state]="containerService.getStatePathAndColor(container.state)[0]"
+                                         [stateName]="containerService.getStatePathAndColor(container.state)[1]"></app-containercanvas> -->
+                <app-containercanvas [name]="container.names[0]" [id]="container.id.substring(0,12)"
+                    [image]="container.image" [state]="containerService.getStatePathAndColor(container.stateEnum)[0]"
+                    [stateName]="containerService.getStatePathAndColor(container.stateEnum)[1]"></app-containercanvas>
             </div>
         </div>
     </ng-container>
-</div>

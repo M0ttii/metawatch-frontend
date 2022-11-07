@@ -2,7 +2,7 @@
     color: white !important;
     font-family: 'Rubik', sans-serif;
     font-weight: 500;
-    font-size: 40px;
+    font-size: 30px;
 }
 
 .stat-variable{
@@ -13,6 +13,6 @@
     -webkit-text-fill-color: transparent;
     font-family: 'Rubik', sans-serif;
     font-weight: 500;
-    font-size: 80px;
+    font-size: 65px;
     margin-top: 1px !important;
 }

@@ -1,11 +1,12 @@
 .loc{
     margin-top: 100px;
-    background-color: #222733;
+    background-color: #111219;
+    margin-bottom: 80px;
 }
 
 .brand{
     font-family: 'Rubik', sans-serif;
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 500;
     color: white;
     margin-left: -1.2% !important;
@@ -13,7 +14,7 @@
 
 .brandContainerName{
     font-family: 'Rubik', sans-serif;
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 400;
     color: white;
     margin-left: -1.2% !important;
@@ -21,7 +22,7 @@
 
 .brandContainerState{
     font-family: 'Rubik', sans-serif;
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 300;
     margin-left: -1.2% !important;
 }

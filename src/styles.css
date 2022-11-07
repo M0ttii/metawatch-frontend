@@ -1,5 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 html,body{
-    background-color: #222733 !important;
+    background-color: #111219 !important;
     height: 100%;
+}
+
+:root{
+    --unitheight: 20vh !important;
+    --unitmargin: 4vh !important;
+    --textheight: 30px;
+    --widgetColor: rgb(39,41,54);
 }
