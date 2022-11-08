@@ -31,10 +31,10 @@
   height: calc(var(--unitheight) * 2 + var(--unitmargin));
   width: 100%;
   position: relative;
-  background: var(--widgetColor);
-  background: linear-gradient(90deg, rgba(39,41,54,1) 0%, rgb(30, 31, 41) 100%);
-  -webkit-box-shadow: 7px 5px 17px 3px rgba(0,0,0,0.6); 
-  box-shadow: 7px 5px 17px 3px rgba(0,0,0,0.6);
+  background: #24263a;
+  /* background: linear-gradient(90deg, rgba(39,41,54,1) 0%, rgb(30, 31, 41) 100%); */
+  -webkit-box-shadow: 0 .125rem .875rem 0 rgba(0,0,0,.16); 
+  box-shadow: 0 .125rem .875rem 0 rgba(0,0,0,.16);
   border-radius: 20px;
   overflow:hidden;
 }

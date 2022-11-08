@@ -1,4 +1,36 @@
 
+    [
+      {
+        "metrics": {
+          "when": "2022-11-06T11:48:15.4832759Z",
+          "cpu": {
+            "perc": 0.12126525529265256,
+            "online": 8
+          },
+          "memory": {
+            "perc": 0.07580877780358256,
+            "usage_bytes": 10121216,
+            "available_bytes": 13350981632
+          },
+          "disk": {
+            "read": 0,
+            "write": 0
+          },
+          "net": {
+            "in": 1522,
+            "out": 0
+          }
+        },
+        "id": "57d8baae2a6043f67789fedf1ba71efce9f2bc8f9964b438ca951c21bad67c9a",
+        "names": [
+          "/redis-I8G3"
+        ],
+        "image": "redis:latest",
+        "state": {
+          "status": "running",
+          "since": "2022-11-06T11:21:26.8303881Z"
+        }
+      },
       {
         "metrics": {
           "when": "2022-11-06T11:48:15.4832759Z",
@@ -30,3 +62,4 @@
           "since": "2022-11-06T11:21:26.8303881Z"
         }
       }
+    ]
