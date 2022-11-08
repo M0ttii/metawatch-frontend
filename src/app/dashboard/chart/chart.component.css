@@ -23,6 +23,11 @@
 .globalWrapper{
     height: var(--unitheight) !important;
     margin-bottom: var(--unitmargin);
+    transition: all .2s ease-in-out;
+}
+
+.globalWrapper:hover{
+    transform: scale(1.01);
 }
 
 .chart-heading{

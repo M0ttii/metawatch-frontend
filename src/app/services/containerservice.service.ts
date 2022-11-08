@@ -1,54 +1,53 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable} from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 import { Container } from '../models/container.model';
 import { Containers } from '../models/containers.model';
 import { ContainerState } from './containerstate.enum';
 import { HttpserviceService } from './httpservice.service';
 
+
 @Injectable({
   providedIn: 'root'
 })
-export class ContainerserviceService implements OnInit{
+export class ContainerserviceService{
 
-  public containers: Containers;
+  public containers: Subject<Containers> = new Subject<Containers>;
+  public containerList: Container[] = new Array<Container>;
   public isFetched: Boolean = false;
 
-  /* public containers = [{name: "seafile", id:"f3f22sg4", image:"lscr.io/linuxserver/syncthing", state: ContainerState.Exited, port:"80"},
-                          {name: "wireguard", id:"kgsu32fbv", image:"lscr.io/linuxserver/wireguard", state: ContainerState.Exited, port:"443"},
-                          {name: "gotify", id:"k4jhcs8", image:"ghcr.io/gotify/server", state: ContainerState.Restarting, port:"81"},
-                          {name: "seafile", id:"hgn744g", image:"lscr.io/linuxserver/seafile", state: ContainerState.Running, port:"81"},
-                          {name: "mongodb", id:"xd83vb3", image:"lscr.io/linuxserver/mongodb", state: ContainerState.Running, port:"81"},
-                          {name: "redis", id:"l92cb33", image:"lscr.io/linuxserver/redis", state: ContainerState.Running, port:"81"}]; */
-
-
   constructor(private httpservice: HttpserviceService) {
+    console.log("CS const")
     this.httpservice.getAllContainers().subscribe({
       next: (data) => {
-        this.containers = data;
-        this.containers.containers.forEach(containers => {
-          switch (containers.state.status){
+        data.containers.forEach(c => {
+          this.containerList.push(c);
+          switch (c.state.status){
             case "running":
-              containers.stateEnum = ContainerState.Running;
+              c.stateEnum = ContainerState.Running;
           }
         })
+        this.containers.next(data);
+        console.log("Fetching completed")
         this.isFetched = true;
       },
       error: (e) => console.error(e)
     });
-
   }
 
-  ngOnInit(): void {
-  
+  public getContainerById(id: string): Container{
+    let containers = this.getContainers();
+    let container = containers.find(i => i.id.substring(0,12) === id.substring(0, 12))
+    console.log(container.id);
+    return container;
   }
 
-  public getContainers(): Container[]{
+  public getContainers(): Array<Container>{
     if(this.isFetched == true){
-      console.log(this.containers.containers[0].stateEnum);
-      return this.containers.containers;
+      console.log(this.containerList)
+      return this.containerList;
     }
     return null;
   }
-
 
   public getStatePathAndColor(stateEnum: ContainerState): string[]{
     switch (stateEnum){

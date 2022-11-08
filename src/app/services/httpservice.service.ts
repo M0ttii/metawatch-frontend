@@ -13,7 +13,7 @@ export class HttpserviceService {
 
   }
 
-  public getAllContainers(){
+  public getAllContainers(): Observable<Containers>{
     return this.http.get<Containers>(this.url);
   }
 

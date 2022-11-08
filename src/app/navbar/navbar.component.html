@@ -1,9 +1,9 @@
 <nav class="navbar loc sticky-top w-100">
     <div class="container-fluid">
         <a href="#" class="navbar-brand brand" *ngIf="isContainerSite; else elseBlock">
-            <span class="brandContainerName" >{{title}}</span>
-             > 
-             <span class="brandContainerState" [ngStyle]="{'color': color}">{{state}}</span>
+            <span class="brandContainerName">{{title}}</span>
+            >
+            <span class="brandContainerState" [ngStyle]="{'color': color}">{{state}}</span>
         </a>
         <ng-template #elseBlock>
             <a href="#" class="navbar-brand brand">{{title}}</a>  
