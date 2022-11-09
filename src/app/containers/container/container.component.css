@@ -2,6 +2,10 @@
     margin-top: 50px;
 }
 
+.blur{
+    filter: blur(4px);
+}
+
 .topStats{
     margin-top: 126px;
 }

@@ -15,6 +15,7 @@ import { ContainerComponent } from './containers/container/container.component';
 import { ContainercanvasComponent } from './containers/containercanvas/containercanvas.component';
 import { DropdownDirective } from './directives/dropdown.directive';
 import { LogsComponent } from './containers/logs/logs.component';
+import { SinglelogComponent } from './containers/logs/singlelog/singlelog.component';
 
 const appRoutes: Routes = [
   {path: '', component: DashboardComponent},
@@ -34,7 +35,8 @@ const appRoutes: Routes = [
     ContainerComponent,
     ContainercanvasComponent,
     DropdownDirective,
-    LogsComponent
+    LogsComponent,
+    SinglelogComponent
   ],
   imports: [
     HttpClientModule,

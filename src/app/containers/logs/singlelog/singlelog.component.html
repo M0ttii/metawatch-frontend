@@ -1,0 +1,20 @@
+<span class="log-text text-start">
+    <span class="when">
+        {{when}} 
+    </span>
+    <ng-container *ngIf="type == 'err'; then thenBlock; else elseBlock"></ng-container>
+    <ng-template #thenBlock>
+        <span class="error">
+            {{type}}
+        </span>
+    </ng-template>
+    >
+    <ng-template #elseBlock>
+        <span class="out">
+            {{type}}
+        </span>
+    </ng-template>
+    <span class="data">
+        {{data}}
+    </span>
+</span>

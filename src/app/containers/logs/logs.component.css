@@ -1,3 +1,44 @@
+.logContent{
+  bottom: 0;
+  left: 0;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  position: absolute;
+  text-align: start;
+}
+
+.header{
+  background: rgb(81, 48, 226);
+  width: 100%;
+  height: 9%;
+  position: absolute;
+  top: 0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 0 .125rem .875rem 0 rgba(0,0,0,.16);
+}
+
+.headingText {
+  position: absolute;
+  color: white !important;
+  margin-bottom: 0px !important;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  left: 1.5%;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.expandIcon{
+  width: 5%;
+  height: 5%;
+  margin-right: 2%;
+  margin-top: 1%;
+  position: absolute;
+  right: 0;
+}
+
 .logs{
     width: 100%;
     position: absolute;
@@ -35,9 +76,39 @@
   /* background: linear-gradient(90deg, rgba(39,41,54,1) 0%, rgb(30, 31, 41) 100%); */
   -webkit-box-shadow: 0 .125rem .875rem 0 rgba(0,0,0,.16); 
   box-shadow: 0 .125rem .875rem 0 rgba(0,0,0,.16);
-  border-radius: 20px;
-  overflow:hidden;
+  border-radius: 10px;
+  transition: transform .2s;
 }
+
+
+.expand{
+  transform: translate(-50%, -50%); 
+  transform-origin: bottom right;
+  width: 50%;
+  height: 60%;
+  position: absolute;
+}
+
+.expandBackground{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backdrop-filter: blur(3px); 
+  left: 0;
+  top: 0;
+}
+
+.noExpand{
+
+}
+
+/* .logBlock:hover{
+  transform: translate(-50%, -50%); 
+  transform-origin: bottom right;
+  width: 50%;
+  height: 70%;
+  position: absolute;
+} */
 
 
   

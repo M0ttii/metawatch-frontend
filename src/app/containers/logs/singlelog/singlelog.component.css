@@ -1,0 +1,23 @@
+.log-text{
+    color: white;
+    font-family: monospace;
+    font-size: 14px;
+
+}
+
+.when{
+    color: rgb(255, 255, 255, 0.6);
+}
+
+.error{
+    color: rgb(206, 67, 67);;
+}
+
+.out{
+    color: cyan;
+}
+
+.data{
+    font-weight: 500;
+    color: rgb(255, 255, 255, 0.8);
+}
