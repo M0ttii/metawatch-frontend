@@ -135,3 +135,21 @@
     margin-top: 20px;
 }
 
+
+/* body {
+    background-color: #0f152c;
+    background-image: 
+        radial-gradient(at 47% 33%, hsl(255.23, 92%, 28.000000000000004%) 0, transparent 59%), 
+        radial-gradient(at 82% 65%, hsl(263.01, 100%, 27%) 0, transparent 55%);
+}
+
+
+.card {
+    backdrop-filter: blur(11px) saturate(134%);
+    -webkit-backdrop-filter: blur(11px) saturate(134%);
+    background-color: rgba(17, 25, 40, 0.64);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+ */
