@@ -9,11 +9,13 @@
 
 .buttonBackground{
     margin: 40px auto;
+    margin-top: 80px;
     width: 300px;
     height: 50px;
     background: #121220;
     border-radius: 10px;
 }
+
 
 
 .activeBtn{
@@ -95,7 +97,7 @@
 }
 
 .mtop{
-    margin-top: 60px;
+    margin-top: 40px;
 }
 
 .topSecond{
