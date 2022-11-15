@@ -1,15 +1,18 @@
 <div class="container-fluid h-100 text-center">
-  <div class="header">
+  <div class="header" *ngIf="authGuard.isAuthenticated()">
   </div>
-  <div id="">
-    <div class="row h-100">
-      <div class="col-md-1 sidebar h-100 sticky-top">
-        <app-sidebar></app-sidebar>
-      </div>
-      <div class="col-10 column-offset">
-        <app-navbar></app-navbar>
+  <div class="row h-100">
+    <div class="col-md-1 sidebar h-100 sticky-top" *ngIf="authGuard.isAuthenticated()">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-10 column-offset" *ngIf="authGuard.isAuthenticated(); else elseBlock">
+      <app-navbar></app-navbar>
+      <router-outlet></router-outlet>
+    </div>
+    <ng-template #elseBlock>
+      <div class="col-12 nopadding">
         <router-outlet></router-outlet>
       </div>
-    </div>
+    </ng-template>
   </div>
-</div>
+  </div>

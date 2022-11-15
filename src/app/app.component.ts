@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { AuthGuardService } from './auth/auth-guard.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'grid-test';
+
+  constructor(protected authGuard: AuthGuardService){
+
+  }
 }

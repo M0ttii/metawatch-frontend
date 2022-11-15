@@ -16,9 +16,12 @@ import { ContainercanvasComponent } from './containers/containercanvas/container
 import { DropdownDirective } from './directives/dropdown.directive';
 import { LogsComponent } from './containers/logs/logs.component';
 import { SinglelogComponent } from './containers/logs/singlelog/singlelog.component';
+import { LoginComponent } from './login/login/login.component';
+import { AuthGuardService } from './auth/auth-guard.service';
 
 const appRoutes: Routes = [
-  {path: '', component: DashboardComponent},
+  {path: 'login', component: LoginComponent},
+  {path: '', component: DashboardComponent, canActivate: [AuthGuardService]},
   {path: 'containers', component: ContainersComponent},
   {path: 'container/:id', component: ContainerComponent}
 ]
@@ -36,7 +39,8 @@ const appRoutes: Routes = [
     ContainercanvasComponent,
     DropdownDirective,
     LogsComponent,
-    SinglelogComponent
+    SinglelogComponent,
+    LoginComponent
   ],
   imports: [
     HttpClientModule,
