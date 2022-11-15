@@ -5,6 +5,9 @@
     height: 500px;
     width: 500px;
     position: relative;
+    /* border-style: solid;
+    border-width: 4px;
+    border-color: #24253f; */
 }
 
 .logo{
@@ -96,6 +99,7 @@
 .box input[type="text"]{
     display: block;
     width: 100%;
+    color: #9696b1;
     border-radius: 10px;
     padding: 8px;
     background: #24273F;
@@ -107,6 +111,7 @@
 .box input[type="password"]{
     display: block;
     width: 100%;
+    color: #9696b1;
     border-radius: 10px;
     padding: 8px;
     background: #24273F;
