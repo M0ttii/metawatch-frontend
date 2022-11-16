@@ -11,6 +11,9 @@ export class AppComponent {
   title = 'grid-test';
 
   constructor(protected authGuard: AuthGuardService){
+    if(!localStorage.getItem('currentUser')){
+      authGuard.redirect('/login')
+    }
 
   }
 }

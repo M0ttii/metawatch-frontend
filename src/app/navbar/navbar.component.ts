@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Event, NavigationEnd } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AuthGuardService } from '../auth/auth-guard.service';
 import { Container } from '../models/container.model';
 import { Containers } from '../models/containers.model';
 import { ContainerserviceService } from '../services/containerservice.service';
@@ -23,7 +24,7 @@ export class NavbarComponent implements OnInit {
   protected currentName: String;
   protected isContainerSite: Boolean = false;
 
-  constructor(private router: Router, private navtitle: NavtitleService, private containerService: ContainerserviceService) {
+  constructor(private router: Router, private navtitle: NavtitleService, private containerService: ContainerserviceService, private authGuard: AuthGuardService) {
     console.log("Navbar const")
     this.navtitle.id.subscribe(id => {
       this.currentID = id;
@@ -86,6 +87,11 @@ export class NavbarComponent implements OnInit {
     this.isContainerSite = true;
   }
 
+  logout(){
+    this.authGuard.redirect('/login')
+    localStorage.removeItem('currentUser');
+
+  }
 
 
 }

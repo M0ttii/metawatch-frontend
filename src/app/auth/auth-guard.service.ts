@@ -23,4 +23,10 @@ export class AuthGuardService implements CanActivate{
     }
     return false;
   }
+
+  redirect(route: string){
+    if (localStorage.getItem('currentUser')){
+      this.router.navigate([route])
+    }
+  }
 }

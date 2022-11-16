@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   }
 
   redirect(){
-    /* localStorage.setItem('currentUser', 'admin'); */
+    localStorage.setItem('currentUser', 'admin');
     this.router.navigate([''])
   }
 

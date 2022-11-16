@@ -2,6 +2,7 @@
     margin-top: 55px;
     background-color: var(--background-color);
     margin-bottom: 80px;
+    position: relative;
 }
 
 .brand{
@@ -9,6 +10,10 @@
     font-size: 30px;
     font-weight: 500;
     color: white;
+}
+
+.dropdown{
+    position: relative;
 }
 
 .brandContainerName{
@@ -26,9 +31,70 @@
     margin-left: -1.2% !important;
 }
 
+.pos{
+    position: absolute;
+    background-color: #24263a;
+}
+
+.themeText{
+    margin-left: var(--bs-dropdown-item-padding-x);
+    margin-bottom: 0;
+    color: rgb(145, 141, 141);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    margin-top: 5%;
+}
+
+.activeBtn{
+    background-color: rgb(81, 48, 226);
+}
+
+.btnTheme{
+    position: relative;
+    border-radius: 5px !important;
+    width: 100%!important;
+    vertical-align: middle !important;
+    --bs-btn-color: rgba(255, 255, 255, 0.623) !important;
+    --bs-btn-active-border-color: rgba(255, 255, 255, 0) !important;
+    padding: 0 !important;
+    --bs-btn-padding-y: 0 !important;
+    font-size: 15px;
+}
+
+
+.dropdown-item:hover{
+    background-color: rgb(81, 48, 226);
+    border-radius: 5px;
+}
+
+.dropdown-item{
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+
+.themechangerBackground{
+    width: 200px;
+    height: 40px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    background: #121220;
+    border-radius: 5px;
+    padding: 3%;
+    margin-left: var(--bs-dropdown-item-padding-x);
+    margin-right: var(--bs-dropdown-item-padding-x);
+}
+
+.dropdown-item{
+    color: white;
+}
+
 .navbar-right {
     float: right;
     padding-right: 15px;
+    margin-right: 50px;
 }
 .nav.navbar-nav.navbar-right li {
     float: right;

@@ -1,10 +1,14 @@
 .loginBox{
-    background-color: #1B1C30; /* #1B1C30 */
+    /* background-color: #1B1C30; */ /* #1B1C30 */
     border-radius: 10px;
     box-shadow: 0 .5rem 1rem 0 rgba(0,0,0,.3);
     height: 500px;
     width: 500px;
     position: relative;
+    backdrop-filter: blur(11px) saturate(134%);
+    -webkit-backdrop-filter: blur(11px) saturate(134%);
+    background-color: rgba(17, 25, 40, 0.774);
+    border: 1px solid rgba(255, 255, 255, 0.125);
     /* border-style: solid;
     border-width: 4px;
     border-color: #24253f; */
@@ -16,7 +20,7 @@
 
 .buttonBackground{
     margin: 40px auto;
-    margin-top: 40px;
+    margin-top: 25px;
     width: 300px;
     height: 50px;
     background: #121220;
@@ -48,7 +52,7 @@
 }
 
 .activeBtn{
-    background-color: #2F2F4A;
+    background-color: rgb(81, 48, 226);
     color: white;
     --bs-btn-color: white !important;
 }
@@ -66,8 +70,11 @@
     width: 100%;
     height: 100%;
     top: 0;
-    background: rgb(74,78,110);
-    background: linear-gradient(121deg, rgba(74,78,110,1) 0%, rgba(41,44,66,1) 100%);
+    background-color: #0f152c;
+    background-image: 
+        radial-gradient(at 50% 50%, hsl(255.23, 92%, 28.000000000000004%) 0, transparent 59%),
+        radial-gradient(at 82% 65%, hsl(263.01, 100%, 27%) 0, transparent 55%),
+        radial-gradient(at 16% 65%, hsl(263.01, 100%, 27%) 0, transparent 55%);
 }
 
 .btnSwitch:hover{
@@ -102,9 +109,19 @@
     color: #9696b1;
     border-radius: 10px;
     padding: 8px;
-    background: #24273F;
-    outline: none;
+    background: #121220;
     border: none;
+    outline: 1px solid rgba(255, 255, 255, 0.125);
+
+}
+
+.box input[type="password"]:focus{
+    outline: 2px solid rgb(81, 48, 226);
+
+}
+
+.box input[type="text"]:focus{
+    outline: 2px solid rgb(81, 48, 226);
 
 }
 
@@ -114,21 +131,21 @@
     color: #9696b1;
     border-radius: 10px;
     padding: 8px;
-    background: #24273F;
-    outline: none;
+    background: #121220;
     border: none;
+    outline: 1px solid rgba(255, 255, 255, 0.125);
 
 }
 
 .box label{
     font-size: 15px;
-    margin-bottom: 5px;
+    margin-bottom: 3px;
     display: block;
     color: #8686aa;
 }
 
 .mtop{
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
 .topSecond{
