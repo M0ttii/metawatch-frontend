@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   public register = false;
+  private mail: string;
+  private wrongDetails: boolean = false;
 
   constructor(private router: Router) { }
 
@@ -20,6 +22,19 @@ export class LoginComponent implements OnInit {
 
   switchToLogin(){
     this.register = false;
+  }
+
+  login(value){
+    if(!(value.mail == "admin")){
+      this.wrongDetails = true;
+      return;
+    } 
+    if(!(value.mail == "admin")){
+      this.wrongDetails = true;
+      return;
+    }
+    this.wrongDetails = false;
+    this.redirect()
   }
 
   redirect(){

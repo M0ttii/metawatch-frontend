@@ -12,12 +12,12 @@
                             <button type="button" class="btn btnSwitch" (click)="switchToRegister()" [ngClass]="register ? 'activeBtn' : 'noactiveBtn'">Register</button>
                         </div>
                         <ng-container *ngIf="!register; else elseBlock">
-                            <form class="box">
+                            <form class="box" #userlogin = "ngForm" (submit)="login(userlogin.value)">
                                 <label for="mail" class="text-start mtop">Mail</label>
-                                <input type="text" id="mail">
+                                <input [ngClass]="{'wrong' : wrongDetails}" type="text" name="mail" id="mail" ngModel>
                                 <label for="pass" class="text-start topSecond">Password</label>
-                                <input type="password" id="pass">
-                                <button class="btn btnSubmit" (click)="redirect()">Login</button>
+                                <input [ngClass]="{'wrong' : wrongDetails}" type="password" name="pass" id="pass" ngModel>
+                                <button class="btn btnSubmit" type="submit">Login</button>
                             </form>
                         </ng-container>
                         <ng-template #elseBlock>

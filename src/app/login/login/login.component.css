@@ -27,6 +27,7 @@
     border-radius: 10px;
 }
 
+
 .forbidden{
     margin-top: 60px !important;
     width: 90px;
@@ -123,6 +124,10 @@
 .box input[type="text"]:focus{
     outline: 2px solid rgb(81, 48, 226);
 
+}
+
+.wrong{
+    outline: 2px solid rgb(214, 72, 72) !important;
 }
 
 .box input[type="password"]{
