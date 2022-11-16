@@ -67,15 +67,25 @@
     font-size: 20px;
 }
 
+.beta{
+    height: 30px;
+    width: 100px;
+    border-radius: 5px;
+    border: 1px solid white;
+    margin-top: 180px;
+    top: 0;
+    position: absolute;
+}
+
 .background{
     width: 100%;
     height: 100%;
     top: 0;
     background-color: #0f152c;
     background-image: 
-        radial-gradient(at 50% 50%, hsl(255.23, 92%, 28.000000000000004%) 0, transparent 59%),
-        radial-gradient(at 82% 65%, hsl(263.01, 100%, 27%) 0, transparent 55%),
-        radial-gradient(at 16% 65%, hsl(263.01, 100%, 27%) 0, transparent 55%);
+        radial-gradient(at 50% 50%, rgb(22, 19, 66) 0, transparent 59%), /* hsl(255.23, 92%, 28.000000000000004%) */
+        radial-gradient(at 80% 65%, hsl(263.01, 100%, 27%) 0, transparent 55%),
+        radial-gradient(at 20% 65%, hsl(263.01, 100%, 27%) 0, transparent 55%);
 }
 
 .btnSwitch:hover{
