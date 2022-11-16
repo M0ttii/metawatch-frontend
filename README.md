@@ -1,6 +1,19 @@
-## MetaWatch
+# Features
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.5.
+ - Monitoring of general server metrics
+	 - CPU
+	 - Memory
+	 - Network Traffic
+	 - Disk I/O
+- Monitoring of docker container Metrics
+	- CPU
+	- Memory
+	- Network Traffic
+	- Disk I/O
+	- Logs
+	- Uptime
+- Alerting
+	- Optional alerts on certain metric events
 
 ## Development server
 
