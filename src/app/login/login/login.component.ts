@@ -11,7 +11,12 @@ export class LoginComponent implements OnInit {
   private mail: string;
   private wrongDetails: boolean = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+    if(localStorage.getItem('currentUser')){
+      console.log("Already authenticated")
+      this.router.navigate([''])
+    }
+  }
 
   ngOnInit(): void {
   }
