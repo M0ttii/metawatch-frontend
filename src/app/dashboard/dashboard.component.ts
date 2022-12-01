@@ -10,7 +10,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   constructor(private socketService: SocketService) { }
   ngOnDestroy(): void {
-    this.socketService.unSubscribe();
+    
   }
 
   ngOnInit(): void {

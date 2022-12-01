@@ -23,7 +23,7 @@
                                          [state]="containerService.getStatePathAndColor(container.state)[0]"
                                          [stateName]="containerService.getStatePathAndColor(container.state)[1]"></app-containercanvas> -->
                 <app-containercanvas [name]="container.names[0]" [id]="container.id.substring(0,12)"
-                    [image]="container.image" [state]="containerService.getStatePathAndColor(container.stateEnum)[0]"
+                    [image]="container.image" [redirectID]="container.id" [state]="containerService.getStatePathAndColor(container.stateEnum)[0]"
                     [stateName]="containerService.getStatePathAndColor(container.stateEnum)[1]"></app-containercanvas>
             </div>
         </div>

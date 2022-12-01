@@ -11,7 +11,8 @@ import { HttpserviceService } from './httpservice.service';
 })
 export class ContainerserviceService{
 
-  public containers: Subject<Containers> = new Subject<Containers>;
+  public activeContainer: Container;
+  public containers: Subject<Container[]> = new Subject<Container[]>;
   public containerList: Container[] = new Array<Container>;
   public isFetched: Boolean = false;
 
@@ -19,14 +20,15 @@ export class ContainerserviceService{
     console.log("CS const")
     this.httpservice.getAllContainers().subscribe({
       next: (data) => {
-        data.containers.forEach(c => {
+        console.log(data[0].id);
+        data.forEach(c => {
           this.containerList.push(c);
+          this.containers.next(data);
           switch (c.state.status){
             case "running":
               c.stateEnum = ContainerState.Running;
           }
         })
-        this.containers.next(data);
         console.log("Fetching completed")
         this.isFetched = true;
       },
@@ -39,6 +41,16 @@ export class ContainerserviceService{
     let container = containers.find(i => i.id.substring(0,12) === id.substring(0, 12))
     console.log(container.id);
     return container;
+  }
+
+  public setActiveContainer(container_ID: string){
+    let container = this.getContainerById(container_ID)
+    if (container == undefined){
+      console.log("Container with ID " + container_ID + " does not exist.")
+      return false;
+    }
+    this.activeContainer = container;
+    return this.activeContainer;
   }
 
   public getContainers(): Array<Container>{

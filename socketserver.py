@@ -18,7 +18,7 @@ async def handler(websocket):
         CONNECTIONS[user_id] = websocket #Hier musst du deine eigene Logik implementieren wie du den User eindeutig identifizierst
         data = json.loads(message) #Converts string into json
         print(str(data))
-        if "subscribe" in data: 
+        """ if "subscribe" in data: 
             subscribedType = data['subscribe']
             containerID = data['containerid']
             if subscribedType == "metrics":
@@ -33,13 +33,13 @@ async def handler(websocket):
             unsubscribedType = data['unsubscribe']
             if unsubscribedType == "metrics":
                 print("Metrics unsubscribed by Client with id " + str(websocket.id))
-                metricspool.remove(websocket)
+                metricspool.remove(websocket) """
 
 
 #Called when new metric arrives that has to be sent to the clients
-async def metricEvent(metric):
+""" async def metricEvent(metric):
     for websocket in metricspool:
-        await websocket.send(metric)
+        await websocket.send(metric) """
 
 async def main():
     async with websockets.serve(handler, "localhost", 8001):

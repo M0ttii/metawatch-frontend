@@ -13,6 +13,7 @@ export class ContainercanvasComponent implements OnInit, AfterViewInit {
   @Input() state = '';
   @Input() port = '';
   @Input() stateName = '';
+  @Input() redirectID = '';
 
   constructor(public containerService: ContainerserviceService) { 
   }

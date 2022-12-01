@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, Event, NavigationEnd } from '@angular/router';
+import { Router, Event, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthGuardService } from '../auth/auth-guard.service';
 import { Container } from '../models/container.model';
@@ -24,11 +24,14 @@ export class NavbarComponent implements OnInit {
   protected currentName: String;
   protected isContainerSite: Boolean = false;
 
-  constructor(private router: Router, private navtitle: NavtitleService, private containerService: ContainerserviceService, private authGuard: AuthGuardService) {
+  constructor(private router: Router, private route: ActivatedRoute, private navtitle: NavtitleService, private containerService: ContainerserviceService, private authGuard: AuthGuardService) {
     console.log("Navbar const")
-    this.navtitle.id.subscribe(id => {
-      this.currentID = id;
+    this.route.paramMap.subscribe( paramMap => {
+      this.currentID = paramMap.get('id');
     })
+    /* this.navtitle.id.subscribe(id => {
+      this.currentID = id;
+    }) */
 
   }
 
@@ -40,6 +43,7 @@ export class NavbarComponent implements OnInit {
         this.state = this.getState(e.url);
         this.containerService.containers.subscribe({
           next: (data) => {
+            console.log("Data: " + data[0].id)
             if(this.isContainerSite){
               let containerByID = this.getContainerListByID(data, this.currentID)
               this.title = containerByID.names[0];
@@ -62,8 +66,8 @@ export class NavbarComponent implements OnInit {
     })
   }
 
-  public getContainerListByID(containerList: Containers, id: string){
-    return containerList.containers.find(i => i.id.substring(0, 12) === id.substring(0,12))
+  public getContainerListByID(containerList: Container[], id: string){
+    return containerList.find(i => i.id.substring(0, 12) === id.substring(0,12))
   }
 
   public getContainerByID(container: Container[], id: string){

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Container } from '../models/container.model';
 import { Containers } from '../models/containers.model';
 import { Log } from '../models/log.model';
 
@@ -15,8 +16,8 @@ export class HttpserviceService {
 
   }
 
-  public getAllContainers(): Observable<Containers>{
-    return this.http.get<Containers>(this.url);
+  public getAllContainers(): Observable<Container[]>{
+    return this.http.get<Container[]>(this.url);
   }
 
   public getLogs(): Observable<Log[]>{
