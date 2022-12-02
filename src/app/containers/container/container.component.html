@@ -1,13 +1,13 @@
 <div class="row mh-100">
     <div class="col-md-5 ms-1">  
         <div class="row text-start">
-          <app-chart></app-chart>
+          <app-chart [chartType]="'cpu'"></app-chart>
         </div>
         <div class="row text-start">
-          <app-chart></app-chart>
+          <app-chart [chartType]="'memory'"></app-chart>
         </div>
         <div class="row text-start">
-          <app-chart></app-chart>
+          <app-chart [chartType]="'disk'"></app-chart>
         </div>
     </div>
     <div class="col-md-5 mx-auto">

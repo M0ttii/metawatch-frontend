@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild, AfterViewInit} from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, AfterViewInit, Input} from '@angular/core';
 import { ChartConfiguration, ChartOptions, } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
@@ -11,6 +11,7 @@ export class ChartComponent implements OnInit, AfterViewInit{
 
   @ViewChild('myChart', {static: false}) myChart: ElementRef<HTMLCanvasElement>;
   @ViewChild(BaseChartDirective) chart: BaseChartDirective;
+  @Input() chartType: string = '';
   private context: CanvasRenderingContext2D;
   private endGradient: CanvasGradient = null;
   colors = {

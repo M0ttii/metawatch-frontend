@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {webSocket, WebSocketSubject} from 'rxjs/webSocket'
+import { SocketMessage } from '../models/socketmessage.model';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class SocketService {
-  public socket: WebSocketSubject<{type: string, message: string}>;/* webSocket<{type: string, message: string}>('ws://localhost:8001') */
+  public socket: WebSocketSubject<SocketMessage>;/* webSocket<{type: string, message: string}>('ws://localhost:8001') */
 
   constructor() {
     //Sends {"subscribe":"metrics"} to server
@@ -17,15 +18,15 @@ export class SocketService {
       console.log(messageForB)); */
   }
 
-  public connectToSocketServer(uri: string): WebSocketSubject<{type: string, message: string}>{
+  public connectToSocketServer(uri: string): WebSocketSubject<SocketMessage>{
     if (this.socket == undefined){
-      this.socket = webSocket<{type: string, message: string}>(uri);
+      this.socket = webSocket<SocketMessage>(uri);
       return this.socket
     }
     return this.socket;
   }
 
-  public createStream(container_ID: string, type: string): Observable<{type: string, message: string}>{
+  public createStream(container_ID: string, type: string): Observable<SocketMessage>{
     if (this.socket == null) return;
     return this.socket.multiplex(
       () => ({container_id: container_ID, event: 'subscribe', type: type}),
