@@ -5,7 +5,8 @@ html,body{
 }
 
 :root{
-    --background-color: #1c1e2c !important;
+    --background-color-backup: #1c1e2c;
+    --background-color: #171825 !important;
     --unitheight: 20vh !important;
     --unitmargin: 4vh !important;
     --textheight: 30px;

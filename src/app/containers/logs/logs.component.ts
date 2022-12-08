@@ -1,5 +1,7 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Log } from 'src/app/models/log.model';
+import { SocketMessage } from 'src/app/models/socketmessage.model';
 import { HttpserviceService } from 'src/app/services/httpservice.service';
 import { LogService } from 'src/app/services/log.service';
 
@@ -11,12 +13,23 @@ import { LogService } from 'src/app/services/log.service';
 export class LogsComponent implements OnInit {
   public logList: Log[] = [];
   public expand = false;
+  @Input() logSubj: Subject<SocketMessage<Log>>;
 
   constructor(public logService: LogService) {
   }
 
   ngOnInit(): void {
     this.logList = this.logService.getLogs();
+
+    this.logSubj.subscribe(message => {
+      let logObject = {} as Log;
+      logObject.when = message.message.when;
+      logObject.type = message.message.type;
+      logObject.data = message.message.data;
+      this.logList.push(logObject);
+
+
+    })
   }
 
   public expandLogBlock(){

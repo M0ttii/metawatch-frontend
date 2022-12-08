@@ -18,15 +18,15 @@
 
 .brandContainerName{
     font-family: 'Rubik', sans-serif;
-    font-size: 30px;
-    font-weight: 400;
+    font-size: 25px;
+    font-weight: 300;
     color: white;
     margin-left: -1.2% !important;
 }
 
 .brandContainerState{
     font-family: 'Rubik', sans-serif;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 300;
     margin-left: -1.2% !important;
 }

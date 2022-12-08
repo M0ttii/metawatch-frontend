@@ -3,7 +3,7 @@
         <a href="#" class="navbar-brand brand" *ngIf="isContainerSite; else elseBlock">
             <span class="brandContainerName">{{title}}</span>
             >
-            <span class="brandContainerState" [ngStyle]="{'color': color}">{{state}}</span>
+            <span class="brandContainerState" [ngStyle]="{'color': color}"> {{state}}</span>
         </a>
         <ng-template #elseBlock>
             <a href="#" class="navbar-brand brand">{{title}}</a>  

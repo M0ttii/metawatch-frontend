@@ -27,6 +27,7 @@ export class NavbarComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private navtitle: NavtitleService, private containerService: ContainerserviceService, private authGuard: AuthGuardService) {
     console.log("Navbar const")
     this.route.paramMap.subscribe( paramMap => {
+      console.log("ALLAH U AKBAR")
       this.currentID = paramMap.get('id');
     })
     /* this.navtitle.id.subscribe(id => {
@@ -55,11 +56,12 @@ export class NavbarComponent implements OnInit {
         if(this.isContainerSite){
           if(this.containerService.containerList.length != 0){
             let containerList = this.containerService.containerList;
-            let containerByID = this.getContainerByID(containerList, this.currentID);
-            this.title = containerByID.names[0];
-            this.state = containerByID.stateEnum;
+            /* let containerByID = this.getContainerByID(containerList, this.currentID); */
+            let container = this.containerService.activeContainer;
+            this.title = container.names[0];
+            this.state = container.stateEnum;
             this.color = this.containerService.getColor(this.state);
-            console.log(containerByID.names[0]);
+            console.log(container.names[0]);
           }
         }
       }
@@ -67,11 +69,11 @@ export class NavbarComponent implements OnInit {
   }
 
   public getContainerListByID(containerList: Container[], id: string){
-    return containerList.find(i => i.id.substring(0, 12) === id.substring(0,12))
+    return containerList.find(i => i.id === id)
   }
 
   public getContainerByID(container: Container[], id: string){
-    return container.find(i => i.id.substring(0, 12) === id.substring(0,12))
+    return container.find(i => i.id === id)
   }
 
   getTitle(url: String): String{

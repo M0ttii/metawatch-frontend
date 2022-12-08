@@ -5,6 +5,8 @@ import { ContainerserviceService } from 'src/app/services/containerservice.servi
 import { NavtitleService } from 'src/app/services/navtitle.service';
 import { SocketService } from 'src/app/services/socket.service';
 import { SocketMessage } from 'src/app/models/socketmessage.model';
+import { Message } from 'src/app/models/message.model';
+import { Log } from 'src/app/models/log.model';
 
 @Component({
   selector: 'app-container',
@@ -14,8 +16,12 @@ import { SocketMessage } from 'src/app/models/socketmessage.model';
 export class ContainerComponent implements OnInit, OnDestroy {
   private sub: any;
   public containerID: any;
-  private metricsObs: Observable<SocketMessage>;
+  protected metricsObs: Observable<SocketMessage<Message>>;
+  protected logsObs: Observable<SocketMessage<Log>>;
+  protected chartSubj: Subject<SocketMessage<Message>>;
+  protected logSubj: Subject<SocketMessage<Log>>;
   private metricsSub: Subscription;
+  private logsSub: Subscription;
   private metricsList: [] = [];
 
 
@@ -29,15 +35,22 @@ export class ContainerComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.socketService.connectToSocketServer("ws://localhost:8080/stream");
     this.metricsObs = this.socketService.createStream(this.containerService.activeContainer.id, "metrics");
-    this.metricsSub = this.metricsObs.subscribe((message: SocketMessage) => {
-      let date = new Date(message.message.when);
-      console.log(date.getHours());
+    this.logsObs = this.socketService.createLogStream(this.containerService.activeContainer.id, "logs");
+    this.chartSubj = new Subject<SocketMessage<Message>>();
+    this.logSubj = new Subject<SocketMessage<Log>>();
+    this.metricsSub = this.metricsObs.subscribe((message: SocketMessage<Message>) => {
+      console.log(message);
+      this.chartSubj.next(message);
+    });
+    this.logsSub = this.logsObs.subscribe((message: SocketMessage<Log>) => {
+      this.logSubj.next(message);
     });
   }
 
   ngOnDestroy(): void {
     console.log("Container leave")
     this.metricsSub.unsubscribe();
+    this.logsSub.unsubscribe();
   }
 
 }
