@@ -34,17 +34,19 @@ export class ContainerComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.socketService.connectToSocketServer("ws://localhost:8080/stream");
-    this.metricsObs = this.socketService.createStream(this.containerService.activeContainer.id, "metrics");
-    this.logsObs = this.socketService.createLogStream(this.containerService.activeContainer.id, "logs");
+    this.metricsObs = this.socketService.createStream("2eec60abdd0c4e1f3fdc397208d466450cf142b961e9263a12609d5e61966c69", "metrics");
+    /* this.logsObs = this.socketService.createLogStream(this.containerService.activeContainer.id, "logs"); */
     this.chartSubj = new Subject<SocketMessage<Message>>();
     this.logSubj = new Subject<SocketMessage<Log>>();
-    this.metricsSub = this.metricsObs.subscribe((message: SocketMessage<Message>) => {
+    console.log("Debug 1")
+    this.metricsObs.subscribe((message: SocketMessage<Message>) => {
+      console.log("metricmessage");
       console.log(message);
-      this.chartSubj.next(message);
+      /* this.chartSubj.next(message); */
     });
-    this.logsSub = this.logsObs.subscribe((message: SocketMessage<Log>) => {
+    /* this.logsSub = this.logsObs.subscribe((message: SocketMessage<Log>) => {
       this.logSubj.next(message);
-    });
+    }); */
   }
 
   ngOnDestroy(): void {

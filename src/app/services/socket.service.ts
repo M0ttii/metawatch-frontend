@@ -10,7 +10,7 @@ import { SocketMessage } from '../models/socketmessage.model';
 })
 
 export class SocketService {
-  public socket: WebSocketSubject<SocketMessage<any>>;/* webSocket<{type: string, message: string}>('ws://localhost:8001') */
+  public socket: WebSocketSubject<SocketMessage<Message>>;/* webSocket<{type: string, message: string}>('ws://localhost:8001') */
   private metricsObs: Observable<SocketMessage<Message>>;
   private logsObs: Observable<SocketMessage<Log>>;
 
@@ -22,9 +22,10 @@ export class SocketService {
       console.log(messageForB)); */
   }
 
-  public connectToSocketServer(uri: string): WebSocketSubject<SocketMessage<any>>{
+  public connectToSocketServer(uri: string): WebSocketSubject<SocketMessage<Message>>{
+    console.log("Connected to WS")
     if (this.socket == undefined){
-      this.socket = webSocket<SocketMessage<any>>(uri);
+      this.socket = webSocket<SocketMessage<Message>>(uri);
       return this.socket
     }
     return this.socket;
@@ -32,22 +33,22 @@ export class SocketService {
 
   public createStream(container_ID: string, type: string): Observable<SocketMessage<Message>> {
     if (this.socket == null) return;
-    this.metricsObs = this.socket.multiplex(
+    console.log("Metrics subscribed")
+    return this.socket.multiplex(
       () => ({ container_id: container_ID, event: 'subscribe', type: type }),
       () => ({ container_id: container_ID, event: 'unsubscribe', type: type }),
       message => message.type === type);
-    return this.metricsObs;
-
+    /* return this.metricsObs; */
   }
 
-  public createLogStream(container_ID: string, type: string): Observable<SocketMessage<Log>>{
+  /* public createLogStream(container_ID: string, type: string): Observable<SocketMessage<Log>>{
     if (this.socket == null) return;
     this.logsObs = this.socket.multiplex(
       () => ({ container_id: container_ID, event: 'subscribe', type: type }),
       () => ({ container_id: container_ID, event: 'unsubscribe', type: type }),
       message => message.type === type);
     return this.logsObs;
-  }
+  } */
 
   public getSocket(): WebSocketSubject<SocketMessage<any>>{
     return this.socket;
