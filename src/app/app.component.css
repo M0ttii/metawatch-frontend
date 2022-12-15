@@ -1,10 +1,10 @@
-.border{
+.border {
     border: solid;
 }
 
 
 
-.sidebar{
+.sidebar {
     /* background: var(--widgetColor);
     min-height: 100vh;
     box-shadow: 7px 6px 20px 0px rgba(0,0,0,0.2);
@@ -12,28 +12,28 @@
     -moz-box-shadow: 7px 6px 20px 0px rgba(0,0,0,0.4); */
 }
 
-@media (min-width: 992px){
-    .column-offset{
-        margin-left: 6%;
-    }
+
+.column-offset {
+    margin-left: 6%;
 }
 
-.flex{
+
+.flex {
     flex: 0 0
 }
 
-.fill{
+.fill {
     min-height: 100%;
     height: 100%;
 }
 
-.flex-column{
+.flex-column {
     margin-right: auto;
     margin-left: auto;
     width: 300;
 }
 
-.top{
+.top {
     margin-top: 130px;
 }
 
@@ -41,4 +41,4 @@
     height: 100%;
     padding: 0 !important;
     margin: 0 !important;
- }
+}

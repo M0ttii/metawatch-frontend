@@ -3,11 +3,11 @@
   </div>
   <ng-container *ngIf="authGuard.isAuthenticated(); else elseBlock">
     <div class="row h-100">
-      <div class="col-md-1 sidebar h-100 sticky-top nopadding">
+      <div class="col-md-1 col-xxl-1 col-xl-1 col-sm-1 sidebar h-100 sticky-top nopadding">
         <app-sidebar></app-sidebar>
       </div>
       <div class="col-10 column-offset">
-        <app-navbar></app-navbar>
+        <app-title></app-title>
         <router-outlet></router-outlet>
       </div>
     </div>

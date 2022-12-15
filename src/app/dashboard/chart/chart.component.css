@@ -21,7 +21,7 @@
 .globalWrapper{
     height: calc(var(--unitheight) + 10px) !important;
     margin-bottom: var(--unitmargin);
-    width: 700px;
+    width: 100%;
     transition: all .2s ease-in-out;
     background: #151622;
     border-radius: 5px;

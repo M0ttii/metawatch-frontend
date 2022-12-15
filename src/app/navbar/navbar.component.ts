@@ -25,9 +25,7 @@ export class NavbarComponent implements OnInit {
   protected isContainerSite: Boolean = false;
 
   constructor(private router: Router, private route: ActivatedRoute, private navtitle: NavtitleService, private containerService: ContainerserviceService, private authGuard: AuthGuardService) {
-    console.log("Navbar const")
     this.route.paramMap.subscribe( paramMap => {
-      console.log("ALLAH U AKBAR")
       this.currentID = paramMap.get('id');
     })
     /* this.navtitle.id.subscribe(id => {
@@ -39,12 +37,10 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.router.events.subscribe((e: Event) => {
       if (e instanceof NavigationEnd){
-        console.log("IsFetched: " + this.containerService.isFetched)
         this.title = this.getTitle(e.url);
         this.state = this.getState(e.url);
         this.containerService.containers.subscribe({
           next: (data) => {
-            console.log("Data: " + data[0].id)
             if(this.isContainerSite){
               let containerByID = this.getContainerListByID(data, this.currentID)
               this.title = containerByID.names[0];
@@ -61,7 +57,6 @@ export class NavbarComponent implements OnInit {
             this.title = container.names[0];
             this.state = container.stateEnum;
             this.color = this.containerService.getColor(this.state);
-            console.log(container.names[0]);
           }
         }
       }

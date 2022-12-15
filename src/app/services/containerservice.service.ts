@@ -1,26 +1,28 @@
 import { Injectable} from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { Container } from '../models/container.model';
 import { Containers } from '../models/containers.model';
 import { ContainerState } from './containerstate.enum';
 import { HttpserviceService } from './httpservice.service';
+import { LoadingService } from './loading.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContainerserviceService{
-
   public activeContainer: Container;
+  public activeContainerID: string;
+
   public containers: Subject<Container[]> = new Subject<Container[]>;
   public containerList: Container[] = new Array<Container>;
   public isFetched: Boolean = false;
 
-  constructor(private httpservice: HttpserviceService) {
+  constructor(private httpservice: HttpserviceService, private route: ActivatedRoute, private loadingService: LoadingService) {
     console.log("CS const")
     this.httpservice.getAllContainers().subscribe({
       next: (data) => {
-        console.log(data[0].id);
         data.forEach(c => {
           this.containerList.push(c);
           this.containers.next(data);
@@ -39,7 +41,6 @@ export class ContainerserviceService{
   public getContainerById(id: string): Container{
     let containers = this.getContainers();
     let container = containers.find(i => i.id.substring(0,12) === id.substring(0, 12))
-    console.log(container.id);
     return container;
   }
 
@@ -55,7 +56,6 @@ export class ContainerserviceService{
 
   public getContainers(): Array<Container>{
     if(this.isFetched == true){
-      console.log(this.containerList)
       return this.containerList;
     }
     return null;

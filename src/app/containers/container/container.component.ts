@@ -7,6 +7,7 @@ import { SocketService } from 'src/app/services/socket.service';
 import { SocketMessage } from 'src/app/models/socketmessage.model';
 import { Message } from 'src/app/models/message.model';
 import { Log } from 'src/app/models/log.model';
+import { isThisQuarter } from 'date-fns';
 
 @Component({
   selector: 'app-container',
@@ -25,24 +26,19 @@ export class ContainerComponent implements OnInit, OnDestroy {
   private metricsList: [] = [];
 
 
-  constructor(private route: ActivatedRoute, private navtitle: NavtitleService, private containerService: ContainerserviceService, private socketService: SocketService) {
-    this.route.paramMap.subscribe( paramMap => {
-      console.log("ID: " + paramMap.get('id'));
-      containerService.setActiveContainer(paramMap.get('id'));
-    })
+  constructor(private route: ActivatedRoute, private containerService: ContainerserviceService, private socketService: SocketService) {
    }
 
   ngOnInit(): void {
-    this.socketService.connectToSocketServer("ws://localhost:8080/stream");
-    this.metricsObs = this.socketService.createStream("2eec60abdd0c4e1f3fdc397208d466450cf142b961e9263a12609d5e61966c69", "metrics");
-    /* this.logsObs = this.socketService.createLogStream(this.containerService.activeContainer.id, "logs"); */
+	this.route.params.subscribe(param => {
+		this.containerService.activeContainerID = param['id'];
+	})
+    this.metricsObs = this.socketService.createStream(this.containerService.activeContainerID, "metrics");
     this.chartSubj = new Subject<SocketMessage<Message>>();
-    this.logSubj = new Subject<SocketMessage<Log>>();
-    console.log("Debug 1")
-    this.metricsObs.subscribe((message: SocketMessage<Message>) => {
+    this.metricsSub = this.metricsObs.subscribe((message: SocketMessage<Message>) => {
       console.log("metricmessage");
       console.log(message);
-      /* this.chartSubj.next(message); */
+      this.chartSubj.next(message);
     });
     /* this.logsSub = this.logsObs.subscribe((message: SocketMessage<Log>) => {
       this.logSubj.next(message);
@@ -51,8 +47,9 @@ export class ContainerComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     console.log("Container leave")
-    this.metricsSub.unsubscribe();
-    this.logsSub.unsubscribe();
+	this.metricsSub.unsubscribe();
+    /* this.metricsSub.unsubscribe();
+    this.logsSub.unsubscribe(); */
   }
 
 }

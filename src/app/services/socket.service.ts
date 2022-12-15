@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
 import {webSocket, WebSocketSubject} from 'rxjs/webSocket'
 import { Log } from '../models/log.model';
@@ -9,26 +9,23 @@ import { SocketMessage } from '../models/socketmessage.model';
   providedIn: 'root'
 })
 
-export class SocketService {
-  public socket: WebSocketSubject<SocketMessage<Message>>;/* webSocket<{type: string, message: string}>('ws://localhost:8001') */
+export class SocketService implements OnDestroy{
+  public socket: WebSocketSubject<SocketMessage<any>>;/* webSocket<{type: string, message: string}>('ws://localhost:8001') */
   private metricsObs: Observable<SocketMessage<Message>>;
   private logsObs: Observable<SocketMessage<Log>>;
 
   constructor() {
-    //Sends {"subscribe":"metrics"} to server
-    //Server knows that client want to get metrics
-    /* this.subMetrics = this.metricsObservable.subscribe(
-      messageForB => 
-      console.log(messageForB)); */
+    this.connectToSocketServer('ws://localhost:8080/stream')
   }
 
-  public connectToSocketServer(uri: string): WebSocketSubject<SocketMessage<Message>>{
-    console.log("Connected to WS")
-    if (this.socket == undefined){
-      this.socket = webSocket<SocketMessage<Message>>(uri);
-      return this.socket
-    }
-    return this.socket;
+  ngOnDestroy(): void {
+    console.log('SocketService destroyed')
+    this.socket.complete();
+  }
+
+  public connectToSocketServer(uri: string){
+    this.socket = webSocket<SocketMessage<any>>(uri);
+    console.log('Connected to SocketServer')
   }
 
   public createStream(container_ID: string, type: string): Observable<SocketMessage<Message>> {
@@ -38,7 +35,6 @@ export class SocketService {
       () => ({ container_id: container_ID, event: 'subscribe', type: type }),
       () => ({ container_id: container_ID, event: 'unsubscribe', type: type }),
       message => message.type === type);
-    /* return this.metricsObs; */
   }
 
   /* public createLogStream(container_ID: string, type: string): Observable<SocketMessage<Log>>{

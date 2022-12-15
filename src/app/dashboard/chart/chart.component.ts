@@ -52,6 +52,9 @@ export class ChartComponent implements OnInit, AfterViewInit{
     if(this.chartType == "CPU"){
       this.chartData.datasets[0].data = [];
       this.chartSubj.subscribe(message => {
+        if (this.chartData.datasets[0].data.length >= 100){
+          this.chartData.datasets[0].data.shift();
+        }
         let data = message.message.cpu.perc;
         console.log(data)
         let dateString = message.message.when;
@@ -68,6 +71,9 @@ export class ChartComponent implements OnInit, AfterViewInit{
       this.chartData.datasets[0].data = [];
       this.chartData.datasets[0].label = "MEMORY";
       this.chartSubj.subscribe(message => {
+        if (this.chartData.datasets[0].data.length >= 100){
+          this.chartData.datasets[0].data.shift();
+        }
         let data = message.message.memory.perc;
         let dateString = message.message.when;
         let date = new Date(dateString);
@@ -92,6 +98,9 @@ export class ChartComponent implements OnInit, AfterViewInit{
         pointRadius: 0
       })
       this.chartSubj.subscribe(message => {
+        if (this.chartData.datasets[0].data.length >= 100){
+          this.chartData.datasets[0].data.shift();
+        }
         let dataRead = message.message.disk.read;
         let dataWrite = message.message.disk.write;
         let dateString = message.message.when;

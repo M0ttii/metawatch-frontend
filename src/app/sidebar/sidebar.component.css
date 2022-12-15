@@ -8,9 +8,9 @@
     transition: all .2s ease-in-out;
 }
 
-.nav-item:hover{
+/* .nav-item:hover{
     transform: scale(1.1); 
-}
+} */
 
 
 .svg-item{
@@ -63,7 +63,7 @@
 }
 
 .activeBoxLeft{
-    position: absolute;
+        position: absolute;
     left: 0;
     height: 50px;
     width: 5px;

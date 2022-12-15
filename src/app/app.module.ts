@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -19,6 +19,8 @@ import { LogsComponent } from './containers/logs/logs.component';
 import { SinglelogComponent } from './containers/logs/singlelog/singlelog.component';
 import { LoginComponent } from './login/login/login.component';
 import { AuthGuardService } from './auth/auth-guard.service';
+import { TitleComponent } from './title/title.component';
+import { ApiInterceptor } from './interceptor/api.interceptor';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -41,7 +43,8 @@ const appRoutes: Routes = [
     DropdownDirective,
     LogsComponent,
     SinglelogComponent,
-    LoginComponent
+    LoginComponent,
+    TitleComponent
   ],
   imports: [
     FormsModule,
@@ -50,7 +53,11 @@ const appRoutes: Routes = [
     NgChartsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: ApiInterceptor,
+    multi: true,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
