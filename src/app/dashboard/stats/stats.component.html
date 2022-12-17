@@ -1,4 +1,19 @@
-<div class="wrapper">
-    <p class="stat-heading">Uptime</p>
-    <p class="stat-variable lh-1">37 h</p>
+<div class="wrapper text-start">
+    <ng-container *ngIf="this.type == 'cpu'">
+        <div class="iconWrapper justify-content-center d-flex align-items-center">
+            <i class="bi-cpu icon"></i>
+        </div>
+        <div class="textContainer">
+            <p class="stat-heading">CPU</p>
+            <p class="stat-variable">4 %</p>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="this.type == 'memory'">
+        <i class="bi-memory icon"></i>
+    </ng-container>
+    <ng-container *ngIf="this.type == 'disk'">
+        <i class="bi-hdd icon"></i>
+    </ng-container>
+    <!-- <p class="stat-heading">Uptime</p>
+    <p class="stat-variable lh-1">37 h</p> -->
 </div>

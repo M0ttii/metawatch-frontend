@@ -1,8 +1,9 @@
 .stat-heading{
     color: white !important;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 500;
-    font-size: 30px;
+    font-size: 20px;
+    margin-bottom: 0%;
 }
 
 .stat-variable{
@@ -13,10 +14,40 @@
     -webkit-text-fill-color: transparent;
     font-family: 'Rubik', sans-serif;
     font-weight: 500;
-    font-size: 65px;
-    margin-top: 1px !important;
+    font-size: 35px;
+}
+
+.textContainer{
+    margin-top: 100px;
+    left: 20px;
+    position: relative;
+}
+
+.iconWrapper{
+    position: relative;
+    top: 20px;
+    left: 20px;
+    border-radius: 5px;
+    background-color: rgb(81, 48, 226);
+    height: 60px;
+    width: 60px;
+}
+
+.icon{
+    vertical-align: middle;
+    color: rgba(255, 255, 255, 0.562);
+    font-size: 2rem;
+    stroke-width: 1px;
+    line-height: 0%;
 }
 
 .wrapper{
+    position: relative;
     width: 100% !important;
+    background-color: #191b29;
+    border: solid 1px;
+    border-color: #202022;
+    height: 250px;
+    border-radius: 5px;
+    margin-bottom: var(--unitmargin);
 }

@@ -14,7 +14,12 @@
 
 
 .column-offset {
-    margin-left: 6%;
+    margin-left: 150px;
+}
+
+.sticky{
+    position: sticky;
+    top: 0;
 }
 
 

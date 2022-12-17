@@ -1,14 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 html,
 body {
-    /* background-color: var(--background-color); */
-    background-color: #0f152c;
+    background-color: var(--background-color);
+    /* background-color: #0f152c;
     background-image:
         radial-gradient(at 50% 50%, rgb(22, 19, 66) 0, transparent 59%),
-        /* hsl(255.23, 92%, 28.000000000000004%) */
         radial-gradient(at 80% 65%, hsl(263.01, 100%, 10%) 0, transparent 55%),
-        radial-gradient(at 20% 65%, hsl(263.01, 100%, 10%) 0, transparent 55%);
-    /* backdrop-filter: blur(16px) saturate(180%); */
+        radial-gradient(at 20% 65%, hsl(263.01, 100%, 10%) 0, transparent 55%); */
     height: 100%;
 }
 
@@ -16,7 +14,7 @@ body {
     --background-color-backup: #1c1e2c;
     --background-color: #171825 !important;
     --unitheight: 20vh !important;
-    --unitmargin: 4vh !important;
+    --unitmargin: 20px !important;
     --textheight: 30px;
     --widgetColor: rgb(39, 41, 54);
 }

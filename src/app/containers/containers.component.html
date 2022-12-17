@@ -14,16 +14,15 @@
     </div>
 </div>
 
-<p *ngIf="this.loadingService.loading.getValue()">Loading</p>
+
+<div class="row justify-content-center" *ngIf="this.loadingService.loading.getValue()">
+    <div class="col-6 mt-5">
+        <app-loader></app-loader>
+    </div>
+</div>
 <ng-container *ngIf="this.containerService.getContainers() != null">
     <div class="row justify-content-left h-10 rowTop" *ngFor="let container of this.containerService.getContainers()">
         <div class="col-6">
-            <!-- <button class="btn btn-primary" routerLink="../container/{{container.id}}">{{container.name}}</button> -->
-            <!-- <app-containercanvas [name]="container.name"
-                                         [id]="container.id" 
-                                         [image]="container.image" 
-                                         [state]="containerService.getStatePathAndColor(container.state)[0]"
-                                         [stateName]="containerService.getStatePathAndColor(container.state)[1]"></app-containercanvas> -->
             <app-containercanvas [name]="container.names[0]" [id]="container.id.substring(0,12)"
                 [image]="container.image" [redirectID]="container.id"
                 [state]="containerService.getStatePathAndColor(container.stateEnum)[0]"

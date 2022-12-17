@@ -13,8 +13,8 @@
   height: 9%;
   position: absolute;
   top: 0;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   box-shadow: 0 .125rem .875rem 0 rgba(0,0,0,.16);
 }
 
@@ -65,18 +65,17 @@
 }
 
 .logBlock{
-  margin-top: var(--textheight);
   /* margin-bottom: 30px; */
   text-align: center !important;
   margin-bottom: 0%;
-  height: calc(var(--unitheight) * 2 + var(--unitmargin));
+  height: calc(250px * 2 + var(--unitmargin));
   width: 100%;
   position: relative;
   background: #191b29; /* #24263a; */
   /* background: linear-gradient(90deg, rgba(39,41,54,1) 0%, rgb(30, 31, 41) 100%); */
   -webkit-box-shadow: 0 .125rem .875rem 0 rgba(0,0,0,.16); 
   box-shadow: 0 .125rem .875rem 0 rgba(0,0,0,.16);
-  border-radius: 10px;
+  border-radius: 5px;
   border: solid 1px;
   border-color: #202022;
   transition: transform .2s;

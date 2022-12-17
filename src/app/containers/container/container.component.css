@@ -11,7 +11,7 @@
 }
 
 .heightContainer{
-    height: calc(var(--unitheight) + var(--unitmargin)) !important;
+    height: calc(250px + var(--unitmargin)) !important;
 }
 
 .logBlock{

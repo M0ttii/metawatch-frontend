@@ -38,6 +38,7 @@ export class ContainerserviceService{
     });
   }
 
+
   public getContainerById(id: string): Container{
     let containers = this.getContainers();
     let container = containers.find(i => i.id.substring(0,12) === id.substring(0, 12))

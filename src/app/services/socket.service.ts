@@ -15,6 +15,7 @@ export class SocketService implements OnDestroy{
   private logsObs: Observable<SocketMessage<Log>>;
 
   constructor() {
+    console.log('SocketService created')
     this.connectToSocketServer('ws://localhost:8080/stream')
   }
 

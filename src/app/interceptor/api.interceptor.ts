@@ -14,9 +14,11 @@ export class ApiInterceptor implements HttpInterceptor {
   constructor(private loader: LoadingService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    console.log('intercept')
     this.loader.show();
     return next.handle(request).pipe(
       finalize(() => {
+        console.log('interception finished')
         this.loader.hide();
       })
     );

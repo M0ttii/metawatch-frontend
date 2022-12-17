@@ -2,12 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { ContainerserviceService } from 'src/app/services/containerservice.service';
-import { NavtitleService } from 'src/app/services/navtitle.service';
 import { SocketService } from 'src/app/services/socket.service';
 import { SocketMessage } from 'src/app/models/socketmessage.model';
 import { Message } from 'src/app/models/message.model';
 import { Log } from 'src/app/models/log.model';
-import { isThisQuarter } from 'date-fns';
 
 @Component({
   selector: 'app-container',
@@ -35,11 +33,13 @@ export class ContainerComponent implements OnInit, OnDestroy {
 	})
     this.metricsObs = this.socketService.createStream(this.containerService.activeContainerID, "metrics");
     this.chartSubj = new Subject<SocketMessage<Message>>();
-    this.metricsSub = this.metricsObs.subscribe((message: SocketMessage<Message>) => {
-      console.log("metricmessage");
-      console.log(message);
-      this.chartSubj.next(message);
-    });
+	  this.metricsSub = this.metricsObs.subscribe({
+		  next: (message: SocketMessage<Message>) => {
+			  this.chartSubj.next(message);
+		  },
+		  error: error => console.log('WS Error: ', error),
+		  complete: () => console.log("WS complete")
+	  });
     /* this.logsSub = this.logsObs.subscribe((message: SocketMessage<Log>) => {
       this.logSubj.next(message);
     }); */
