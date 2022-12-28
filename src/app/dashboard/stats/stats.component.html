@@ -5,14 +5,26 @@
         </div>
         <div class="textContainer">
             <p class="stat-heading">CPU</p>
-            <p class="stat-variable">4 %</p>
+            <p class="stat-variable">{{this.cpu}} %</p>
         </div>
     </ng-container>
     <ng-container *ngIf="this.type == 'memory'">
-        <i class="bi-memory icon"></i>
+        <div class="iconWrapper justify-content-center d-flex align-items-center">
+            <i class="bi-memory icon"></i>
+        </div>
+        <div class="textContainer">
+            <p class="stat-heading">MEMORY</p>
+            <p class="stat-variable">{{this.memory}} %</p>
+        </div>
     </ng-container>
     <ng-container *ngIf="this.type == 'disk'">
-        <i class="bi-hdd icon"></i>
+        <div class="iconWrapper justify-content-center d-flex align-items-center">
+            <i class="bi-hdd icon"></i>
+        </div>
+        <div class="textContainer">
+            <p class="stat-heading">DISK</p>
+            <p class="stat-variable">{{this.disk}} %</p>
+        </div>
     </ng-container>
     <!-- <p class="stat-heading">Uptime</p>
     <p class="stat-variable lh-1">37 h</p> -->
