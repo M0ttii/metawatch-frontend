@@ -1,29 +1,163 @@
-<div class="wrapper text-start">
-    <div class="container">
-        <div class="iconWrapper"></div>
-        <div class="textWrapper">
-            <p class="headingText">State</p>
-            <div class="state d-flex justify-content-center align-middle">
-                <span class="stateText">RUNNING</span>
+<ng-container *ngIf="this.type == 'state'">
+    <div class="wrapper text-start">
+        <div class="container">
+            <div class="iconWrapper"></div>
+            <div class="textWrapper">
+                <p class="headingText">State</p>
+                <div class="state d-flex justify-content-center align-middle">
+                    <span class="stateText">RUNNING</span>
+                </div>
             </div>
+            <table>
+                <tr>
+                    <td>
+                        <span class="firstText">Since</span>
+                    </td>
+                    <td class="second">
+                        <span class="secondText">2 days ago</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="firstText">Restart Policy</span>
+                    </td>
+                    <td class="second">
+                        <span class="secondText">Always Restart</span>
+                    </td>
+                </tr>
+            </table>
         </div>
-        <table>
-            <tr>
-                <td>
-                    <span class="firstText">Since</span>
-                </td>
-                <td class="second">
-                    <span class="secondText">2 days ago</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="firstText">Restart Policy</span>
-                </td>
-                <td class="second">
-                    <span class="secondText">Always Restart</span>
-                </td>
-            </tr>
-        </table>
     </div>
-</div>
+</ng-container>
+<ng-container *ngIf="this.type == 'network'">
+    <div class="wrapper text-start">
+        <div class="container">
+            <div class="iconWrapper"></div>
+            <div class="textWrapper">
+                <p class="headingText">Network</p>
+                <div class="state d-flex justify-content-center align-middle">
+                    <span class="stateText">HEALTHY</span>
+                </div>
+            </div>
+            <table>
+                <tr>
+                    <td>
+                        <span class="firstText">Driver</span>
+                    </td>
+                    <td class="second">
+                        <span class="secondText">bridge</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="firstText">Gateway</span>
+                    </td>
+                    <td class="second">
+                        <span class="secondText">172.17.0.1</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="firstText">Network ID</span>
+                    </td>
+                    <td class="second">
+                        <span class="secondText">234fsdf245g...</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</ng-container>
+<ng-container *ngIf="this.type == 'images'">
+    <div class="wrapper text-start">
+        <div class="container">
+            <div class="iconWrapper"></div>
+            <div class="textWrapper">
+                <p class="headingText">State</p>
+                <div class="state d-flex justify-content-center align-middle">
+                    <span class="stateText">HEALTHY</span>
+                </div>
+            </div>
+            <table>
+                <tr>
+                    <td> 
+                        <span class="firstText">Since</span>
+                    </td>
+                    <td class="second">
+                        <span class="secondText">2 days ago</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="firstText">Restart Policy</span>
+                    </td>
+                    <td class="second">
+                        <span class="secondText">Always Restart</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</ng-container>
+<ng-container *ngIf="this.type == 'exposure'">
+    <div class="wrapper text-start">
+        <div class="container">
+            <div class="iconWrapper"></div>
+            <div class="textWrapper">
+                <p class="headingText">Exposure</p>
+                <div class="state d-flex justify-content-center align-middle">
+                    <span class="stateText">RUNNING</span>
+                </div>
+            </div>
+            <table>
+                <tr>
+                    <td>
+                        <span class="firstText">127.0.0.1</span>
+                    </td>
+                    <td class="second">
+                        <span class="secondText">2 days ago</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="firstText">Restart Policy</span>
+                    </td>
+                    <td class="second">
+                        <span class="secondText">Always Restart</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</ng-container>
+<ng-container *ngIf="this.type == 'volumes'">
+    <div class="wrapper text-start">
+        <div class="container">
+            <div class="iconWrapper"></div>
+            <div class="textWrapper">
+                <p class="headingText">Volumes</p>
+                <div class="state d-flex justify-content-center align-middle">
+                    <span class="stateText">RUNNING</span>
+                </div>
+            </div>
+            <table>
+                <tr>
+                    <td>
+                        <span class="firstText">Since</span>
+                    </td>
+                    <td class="second">
+                        <span class="secondText">2 days ago</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="firstText">Restart Policy</span>
+                    </td>
+                    <td class="second">
+                        <span class="secondText">Always Restart</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</ng-container>

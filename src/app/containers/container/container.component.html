@@ -1,59 +1,36 @@
 <div class="row mh-100">
-    <div class="col-md-5 col-lg-5 col-xl-5 col-xxl-4">  
-        <div class="row text-start offset-padding">
-          <app-chart [chartType]="'CPU'" [chartSubj]="chartSubj"></app-chart>
-        </div>
-        <div class="row text-start offset-padding">
-          <app-chart [chartType]="'MEMORY'" [chartSubj]="chartSubj"></app-chart>
-        </div>
-       <!--  <div class="row text-start">
-          <app-chart [chartType]="'DISK'" [chartSubj]="chartSubj"></app-chart>
-        </div> -->
+    <div class="col-md-5 col-lg-5 col-xl-5 col-xxl-4 flex-column">
+        <app-chart [chartType]="'CPU'" [chartSubj]="chartSubj"></app-chart>
+        <app-chart [chartType]="'MEMORY'" [chartSubj]="chartSubj"></app-chart>
     </div>
     <div class="col-8">
-      <div class="row">
-        <div class="col-3">
-          <div class="row offset-padding">
-            <app-smallwidget></app-smallwidget>
-          </div>
-          <div class="row offset-padding">
-            <app-smallwidget></app-smallwidget>
-          </div>
-          <div class="row offset-padding">
-            <app-smallwidget></app-smallwidget>
-          </div>
+        <div class="row gx-0">
+            <div class="col-3 me-4">
+                <app-smallwidget [type]="'state'"></app-smallwidget>
+            </div>
+            <div class="col-3 me-4">
+                <app-smallwidget [type]="'exposure'"></app-smallwidget>
+            </div>
+            <div class="col-3 me-4">
+                <app-smallwidget [type]="'volumes'"></app-smallwidget>
+            </div>
         </div>
-        <div class="col-6">
-          <div class="row">
-            <div class="col-6">
-              <div class="row offset-padding">
-                <app-smallwidget></app-smallwidget>
-              </div>
+        <div class="row gx-0">
+            <div class="col-3 flex-column me-4">
+                <app-smallwidget [type]="'network'"></app-smallwidget>
+                <app-smallwidget [type]="'images'"></app-smallwidget>
             </div>
             <div class="col-6">
-              <div class="row offset-padding">
-                <app-smallwidget></app-smallwidget>
-              </div>
+                <app-logs></app-logs>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-12">
-              <app-logs></app-logs>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-</div>
-<div class="row mh-100">
-  <div class="col-6">
-    <div class="row offset-padding">
-      <app-chart [chartType]="'NETWORK'" [chartSubj]="chartSubj"></app-chart>
-    </div>
-  </div>
-  <div class="col-4">
     <div class="row">
-      <app-chart [chartType]="'DISK'" [chartSubj]="chartSubj"></app-chart>
+        <div class="col-6 me-4">
+            <app-chart [chartType]="'NETWORK'" [chartSubj]="chartSubj"></app-chart>
+        </div>
+        <div class="col-4">
+            <app-chart [chartType]="'DISK'" [chartSubj]="chartSubj"></app-chart>
+        </div>
     </div>
-  </div>
 </div>

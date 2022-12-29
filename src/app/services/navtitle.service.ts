@@ -6,6 +6,7 @@ import { ContainerserviceService } from './containerservice.service';
   providedIn: 'root'
 })
 export class NavtitleService implements OnInit{
+  public title = new Subject<String>();
   public id = new Subject<String>();
   public currentState: String;
   public currentName: String;
@@ -15,6 +16,10 @@ export class NavtitleService implements OnInit{
 
   ngOnInit(){
 
+  }
+
+  set(title: string){
+    this.title.next(title)
   }
 
 }

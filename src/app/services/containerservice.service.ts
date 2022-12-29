@@ -38,6 +38,10 @@ export class ContainerserviceService{
     });
   }
 
+  public getContainer(): Container{
+    return this.getContainers().find(i => i.id === this.activeContainerID);
+  }
+
 
   public getContainerById(id: string): Container{
     let containers = this.getContainers();

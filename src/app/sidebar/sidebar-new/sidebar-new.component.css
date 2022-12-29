@@ -1,6 +1,6 @@
 .sidebar{
     position: relative;
-    background: #11121b;
+    background: #1E202D;
     left: 0;
     width: 100px;
     height: 100vh;
@@ -17,7 +17,7 @@
 
 .nav-item{
     padding: 10px;
-    background: #11121b;
+    background: #1E202D;
 }
 
 .active{

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-smallwidget',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./smallwidget.component.css']
 })
 export class SmallwidgetComponent implements OnInit {
+  @Input() public type: string;
 
   constructor() { }
 
