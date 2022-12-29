@@ -14,6 +14,17 @@
     height: calc(250px + var(--unitmargin)) !important;
 }
 
+
+.offset-padding{
+    padding-right: 10px !important;
+}
+
+.offset-margin{
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+}
+
+
 .logBlock{
     /* margin-bottom: 30px; */
     margin-top: 35px;

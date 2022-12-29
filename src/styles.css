@@ -17,4 +17,5 @@ body {
     --unitmargin: 20px !important;
     --textheight: 30px;
     --widgetColor: rgb(39, 41, 54);
+    --widgetHeight: 180px !important;
 }

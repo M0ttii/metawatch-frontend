@@ -22,6 +22,8 @@ import { AuthGuardService } from './auth/auth-guard.service';
 import { TitleComponent } from './title/title.component';
 import { ApiInterceptor } from './interceptor/api.interceptor';
 import { LoaderComponent } from './util/loader/loader.component';
+import { SmallwidgetComponent } from './widgets/smallwidget/smallwidget.component';
+import { SidebarNewComponent } from './sidebar/sidebar-new/sidebar-new.component';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -46,7 +48,9 @@ const appRoutes: Routes = [
     SinglelogComponent,
     LoginComponent,
     TitleComponent,
-    LoaderComponent
+    LoaderComponent,
+    SmallwidgetComponent,
+    SidebarNewComponent
   ],
   imports: [
     FormsModule,

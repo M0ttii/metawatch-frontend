@@ -20,14 +20,12 @@
 
 .globalWrapper{
     /* height: calc(var(--unitheight) + 10px) !important; */
-    height: 250px;
+    height: calc((var(--widgetHeight) * 1.5) + calc(var(--unitmargin) / 2));
     margin-bottom: var(--unitmargin);
     width: 100%;
     transition: all .2s ease-in-out;
-    background: #151622;
-    border-radius: 5px;
-    border: solid 1px;
-    border-color: #202022;
+    background: #1E202D;
+    border-radius: 20px;
 }
 
 .globalWrapper:hover{
@@ -49,7 +47,8 @@
     top: 0;
     width: 100%;
     height: 40px;
-    background: #151622;
+    border-radius: 20px;
+    background: #1E202D;
     vertical-align: middle;
 }
 

@@ -1,0 +1,29 @@
+.sidebar{
+    position: relative;
+    background: #11121b;
+    left: 0;
+    width: 100px;
+    height: 100vh;
+}
+
+.sidebar.fixed-left{
+    position: fixed;
+    top: 0;
+}
+
+.svg-item{
+    stroke: white;
+}
+
+.nav-item{
+    padding: 10px;
+    background: #11121b;
+}
+
+.active{
+    background: #171825 !important;
+    width: 100% !important;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+

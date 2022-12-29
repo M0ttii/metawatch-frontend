@@ -3,7 +3,9 @@
   </div>
   <ng-container *ngIf="authGuard.isAuthenticated(); else elseBlock">
     <div class="row">
-      <app-sidebar></app-sidebar>
+      <div class="col-1">
+        <app-sidebar-new></app-sidebar-new>
+      </div>
       <div class="col-11 column-offset">
         <app-title></app-title>
         <router-outlet></router-outlet>
