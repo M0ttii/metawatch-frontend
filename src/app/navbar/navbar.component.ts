@@ -43,7 +43,7 @@ export class NavbarComponent implements OnInit {
           next: (data) => {
             if(this.isContainerSite){
               let containerByID = this.getContainerListByID(data, this.currentID)
-              this.title = containerByID.names[0];
+              this.title = containerByID.name;
               this.state = containerByID.stateEnum;
               this.color = this.containerService.getColor(this.state);
             }
@@ -54,7 +54,7 @@ export class NavbarComponent implements OnInit {
             let containerList = this.containerService.containerList;
             /* let containerByID = this.getContainerByID(containerList, this.currentID); */
             let container = this.containerService.activeContainer;
-            this.title = container.names[0];
+            this.title = container.name;
             this.state = container.stateEnum;
             this.color = this.containerService.getColor(this.state);
           }

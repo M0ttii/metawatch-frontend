@@ -1,32 +1,29 @@
 <div class="top"></div>
-<div class="row justify-content-left">
-    <div class="col-1">
-        <p class="name text-start">Name</p>
-    </div>
-    <div class="col-3">
-        <p class="image text-start">Image</p>
-    </div>
-    <div class="col-1">
-        <p class="state text-start ">State</p>
-    </div>
-    <div class="col-2">
-        <p class="port text-start">Port</p>
-    </div>
-</div>
-
-
-<div class="row justify-content-center" *ngIf="this.loadingService.loading.getValue()">
-    <div class="col-6 mt-5">
-        <app-loader></app-loader>
-    </div>
-</div>
-<ng-container *ngIf="this.containerService.getContainers() != null">
-    <div class="row justify-content-left h-10 rowTop" *ngFor="let container of this.containerService.getContainers()">
-        <div class="col-6">
-            <app-containercanvas [name]="container.names[0]" [id]="container.id.substring(0,12)"
-                [image]="container.image" [redirectID]="container.id"
-                [state]="containerService.getStatePathAndColor(container.stateEnum)[0]"
-                [stateName]="containerService.getStatePathAndColor(container.stateEnum)[1]"></app-containercanvas>
+<div class="row">
+    <div class="row justify-content-center" *ngIf="this.loadingService.loading.getValue()">
+        <div class="col-6 mt-5">
+            <app-loader></app-loader>
         </div>
     </div>
-</ng-container>
+    <ng-container *ngIf="this.containers != undefined">
+        <div class="col-6">
+            <table>
+                <thead>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>Name</td>
+                        <td>Image</td>
+                        <td>Ports</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let container of this.containers">
+                        <tr app-canvas [name]="container.name.substring(1)" [image]="container.image.tag"
+                            [port]="container.ports[0]" [state]="container.state.status.toUpperCase()" [id]="container.id" (click)="this.navigateToContainer(container.id)"></tr>
+                    </ng-container>
+                    <!-- <tr app-canvas [name]="'monitoring_agent-mongo-1'" [image]="'mongooooooooooofgffffffffffffffff'" [port]="'N/A'"></tr> -->
+                </tbody>
+            </table>
+        </div>
+    </ng-container>
+</div>

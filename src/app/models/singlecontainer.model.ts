@@ -1,22 +1,21 @@
 import { ContainerState } from "../services/containerstate.enum";
 
-export interface Container {
+export interface SingleContainer {
     id: string;
     name: string;
-    image: Image;
+    image: string;
     state: State;
-    stateEnum: ContainerState;
+    networks: Network[];
 }
 
 export interface State {
     status: string;
     since: Date;
-    restart_policy: string;
+    restartpolicy: string;
 }
 
-export interface Image {
-    created: Date;
+export interface Network{
+    name: string;
     id: string;
-    size: number;
-    tag:  string;
+    ip: string;
 }

@@ -1,0 +1,35 @@
+<!-- <div class="widget d-flex">
+    <div class="row">
+        <div class="col d-flex text-center">
+            <div class="iconWrapper"></div>
+            <div class="textWrapper my-auto">
+                <p class="headingText">mongodb-1</p>
+                <div class="state d-flex">
+                    <span class="stateText mx-auto">RUNNING</span>
+                </div>
+            </div>
+            <span class="imageText my-auto">
+                mongodb:latest
+            </span>
+            <span class="portText my-auto">
+                127.0.0.1:9090->80/tcp
+            </span>
+        </div>
+    </div>
+</div> -->
+<td><div class="iconWrapper">
+    <img src="../../../../assets/server-solid.svg" alt="" class="svg">
+</div></td>
+<ng-container *ngIf="this.state == 'RUNNING';else elseState">
+    <td class="heading">{{name}}<br><span class="label" style="background: #399F8D;">{{state}}</span></td>
+</ng-container>
+<ng-template #elseState>
+    <td class="heading">{{name}}<br><span class="label" style="background: #b45050;">{{state}}</span></td>
+</ng-template>
+<td class="right font">{{image}}</td>
+<ng-container *ngIf="this.port == undefined; else elseBlock">
+    <td class="font">N/A</td>
+</ng-container>
+<ng-template #elseBlock>
+    <td class="font">{{port}}</td>
+</ng-template>

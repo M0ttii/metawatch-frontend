@@ -24,6 +24,7 @@ import { ApiInterceptor } from './interceptor/api.interceptor';
 import { LoaderComponent } from './util/loader/loader.component';
 import { SmallwidgetComponent } from './widgets/smallwidget/smallwidget.component';
 import { SidebarNewComponent } from './sidebar/sidebar-new/sidebar-new.component';
+import { CanvasComponent } from './containers/new/canvas/canvas.component';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -50,7 +51,8 @@ const appRoutes: Routes = [
     TitleComponent,
     LoaderComponent,
     SmallwidgetComponent,
-    SidebarNewComponent
+    SidebarNewComponent,
+    CanvasComponent
   ],
   imports: [
     FormsModule,

@@ -8,6 +8,7 @@ import { Message } from 'src/app/models/message.model';
 import { Log } from 'src/app/models/log.model';
 import { Container } from 'src/app/models/container.model';
 import { NavtitleService } from 'src/app/services/navtitle.service';
+import { SingleContainer } from 'src/app/models/singlecontainer.model';
 
 @Component({
     selector: 'app-container',
@@ -17,7 +18,7 @@ import { NavtitleService } from 'src/app/services/navtitle.service';
 export class ContainerComponent implements OnInit, OnDestroy {
     private sub: any;
     public containerID: any;
-    protected container: Container;
+    protected container: SingleContainer;
     protected metricsObs: Observable<SocketMessage<Message>>;
     protected logsObs: Observable<SocketMessage<Log>>;
     protected chartSubj: Subject<SocketMessage<Message>>;
@@ -31,9 +32,16 @@ export class ContainerComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this.route.params.subscribe(param => {
-            this.containerService.activeContainerID = param['id'];
-        })
+        this.containerService.isContainerSite = true;
+        if(this.containerService.activeContainerID == undefined){
+            this.containerService.activeContainerID = localStorage.getItem("currentID");
+        }
+        this.containerService.getContainerFromAPI(this.containerService.activeContainerID).then(
+            (data: SingleContainer) => {
+                this.container = data;
+                this.titleService.set(this.container.name.substring(1))
+            }
+        );
         this.metricsObs = this.socketService.createStream(this.containerService.activeContainerID, "metrics");
         this.chartSubj = new Subject<SocketMessage<Message>>();
         this.metricsSub = this.metricsObs.subscribe({
@@ -43,15 +51,11 @@ export class ContainerComponent implements OnInit, OnDestroy {
             error: error => console.log('WS Error: ', error),
             complete: () => console.log("WS complete")
         });
-        this.container = this.containerService.getContainer();
-        this.titleService.set(this.container.names[0].substring(1))
-        /* this.logsSub = this.logsObs.subscribe((message: SocketMessage<Log>) => {
-          this.logSubj.next(message);
-        }); */
     }
 
     ngOnDestroy(): void {
         console.log("Container leave")
+        this.containerService.isContainerSite = false;
         this.metricsSub.unsubscribe();
         /* this.metricsSub.unsubscribe();
         this.logsSub.unsubscribe(); */

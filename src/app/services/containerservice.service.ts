@@ -1,8 +1,10 @@
 import { Injectable} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
+import { resolve } from 'path';
+import { Observable, Subject, Subscription, take } from 'rxjs';
 import { Container } from '../models/container.model';
 import { Containers } from '../models/containers.model';
+import { SingleContainer } from '../models/singlecontainer.model';
 import { ContainerState } from './containerstate.enum';
 import { HttpserviceService } from './httpservice.service';
 import { LoadingService } from './loading.service';
@@ -14,28 +16,38 @@ import { LoadingService } from './loading.service';
 export class ContainerserviceService{
   public activeContainer: Container;
   public activeContainerID: string;
+  public isContainerSite: boolean = false;
 
   public containers: Subject<Container[]> = new Subject<Container[]>;
   public containerList: Container[] = new Array<Container>;
   public isFetched: Boolean = false;
 
-  constructor(private httpservice: HttpserviceService, private route: ActivatedRoute, private loadingService: LoadingService) {
+  constructor(private httpservice: HttpserviceService) {
     console.log("CS const")
-    this.httpservice.getAllContainers().subscribe({
-      next: (data) => {
-        data.forEach(c => {
-          this.containerList.push(c);
-          this.containers.next(data);
-          switch (c.state.status){
-            case "running":
-              c.stateEnum = ContainerState.Running;
-          }
-        })
-        console.log("Fetching completed")
-        this.isFetched = true;
-      },
-      error: (e) => console.error(e)
-    });
+  }
+
+  getContainersFromAPI(){
+    return new Promise(resolve => {
+      this.httpservice.getAllContainers().pipe(
+        take(1)
+      ).subscribe(
+        (data: Container[]) => {
+          resolve(data)
+        }
+      )
+    })
+  }
+
+  getContainerFromAPI(id: string){
+    return new Promise(resolve => {
+      this.httpservice.getContainer(id).pipe(
+        take(1)
+      ).subscribe(
+        (data: SingleContainer) => {
+          resolve(data)
+        }
+      )
+    })
   }
 
   public getContainer(): Container{

@@ -56,7 +56,6 @@ export class ChartComponent implements OnInit, AfterViewInit{
           this.chartData.datasets[0].data.shift();
         }
         let data = message.message.cpu.perc;
-        console.log(data)
         let dateString = message.message.when;
         let date = new Date(dateString);
         let dateFormat = format(date, 'HH:mm:ss')
