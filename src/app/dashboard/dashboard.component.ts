@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavtitleService } from '../services/navtitle.service';
-import { SocketService } from '../services/socket.service';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +9,7 @@ import { SocketService } from '../services/socket.service';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 
-  constructor(private socketService: SocketService, private titleService: NavtitleService) { }
+  constructor(private titleService: NavtitleService) { }
   ngOnDestroy(): void {
     
   }

@@ -10,7 +10,7 @@ export class CanvasComponent implements OnInit {
   @Input() public id: String;
   @Input() public state: String;
   @Input() public image: String;
-  @Input() public port: [];
+  @Input() public ports: [];
 
   constructor() { }
 

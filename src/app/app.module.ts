@@ -25,6 +25,7 @@ import { LoaderComponent } from './util/loader/loader.component';
 import { SmallwidgetComponent } from './widgets/smallwidget/smallwidget.component';
 import { SidebarNewComponent } from './sidebar/sidebar-new/sidebar-new.component';
 import { CanvasComponent } from './containers/new/canvas/canvas.component';
+import { SocketService } from './services/socket.service';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -65,7 +66,7 @@ const appRoutes: Routes = [
     provide: HTTP_INTERCEPTORS,
     useClass: ApiInterceptor,
     multi: true,
-  }],
+  }, SocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

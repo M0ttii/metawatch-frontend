@@ -46,6 +46,7 @@ export class ContainerComponent implements OnInit, OnDestroy {
         this.chartSubj = new Subject<SocketMessage<Message>>();
         this.metricsSub = this.metricsObs.subscribe({
             next: (message: SocketMessage<Message>) => {
+                console.log("Metric message incoming")
                 this.chartSubj.next(message);
             },
             error: error => console.log('WS Error: ', error),

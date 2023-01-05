@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable, OnDestroy, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import {webSocket, WebSocketSubject} from 'rxjs/webSocket'
 import { Log } from '../models/log.model';
@@ -9,14 +9,16 @@ import { SocketMessage } from '../models/socketmessage.model';
   providedIn: 'root'
 })
 
-export class SocketService implements OnDestroy{
+export class SocketService implements OnDestroy, OnInit{
   public socket: WebSocketSubject<SocketMessage<any>>;/* webSocket<{type: string, message: string}>('ws://localhost:8001') */
   private metricsObs: Observable<SocketMessage<Message>>;
   private logsObs: Observable<SocketMessage<Log>>;
 
   constructor() {
-    console.log('SocketService created')
     this.connectToSocketServer('ws://localhost:8080/stream')
+  }
+  ngOnInit(): void {
+    console.log('SocketService created')
   }
 
   ngOnDestroy(): void {
