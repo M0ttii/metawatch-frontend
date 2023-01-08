@@ -1,10 +1,19 @@
-<div class="globalWrapper">
+<div class="globalWrapper" [ngStyle]="{'width': width}">
   <div class="header">
     <p class="headerText">{{chartType}}</p>
     <img class="settings" src="../../../assets/gear.svg" alt="">
   </div>
   <div class="wrapper">
-    <canvas baseChart #myChart width="100%" height="180px" [type]="'line'" [data]="chartData" [options]="chartOptions">
-    </canvas>
+    <ng-container *ngIf="this.dataLoading; else elseBlock">
+      <div class="row h-100">
+        <div class="col-12">
+          <app-loader></app-loader>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #elseBlock>
+      <canvas baseChart #myChart width="100%" height="180px" [type]="'line'" [data]="chartData" [options]="chartOptions">
+      </canvas>
+    </ng-template>
   </div>
 </div>

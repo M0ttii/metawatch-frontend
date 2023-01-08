@@ -9,21 +9,13 @@ import { SocketMessage } from '../models/socketmessage.model';
   providedIn: 'root'
 })
 
-export class SocketService implements OnDestroy, OnInit{
+export class SocketService{
   public socket: WebSocketSubject<SocketMessage<any>>;/* webSocket<{type: string, message: string}>('ws://localhost:8001') */
-  private metricsObs: Observable<SocketMessage<Message>>;
-  private logsObs: Observable<SocketMessage<Log>>;
+  public metricsObs: Observable<SocketMessage<any>>;
+  public eventObs: Observable<SocketMessage<any>>;
 
   constructor() {
     this.connectToSocketServer('ws://localhost:8080/stream')
-  }
-  ngOnInit(): void {
-    console.log('SocketService created')
-  }
-
-  ngOnDestroy(): void {
-    console.log('SocketService destroyed')
-    this.socket.complete();
   }
 
   public connectToSocketServer(uri: string){
@@ -31,13 +23,32 @@ export class SocketService implements OnDestroy, OnInit{
     console.log('Connected to SocketServer')
   }
 
+  createEventStream(): Observable<SocketMessage<Message>>{
+    if (this.socket == undefined || null){
+      console.log("No socket found")
+      return;
+    }
+    if (this.eventObs == undefined){
+      this.eventObs = this.socket.multiplex(
+        () => ({event: 'subscribe', type: 'event' }),
+        () => ({event: 'unsubscribe', type: 'event' }),
+        message => message.type === 'event');
+      return this.eventObs
+    }
+    return this.eventObs
+  }
+
   public createStream(container_ID: string, type: string): Observable<SocketMessage<Message>> {
     if (this.socket == null) return;
     console.log("Metrics subscribed")
-    return this.socket.multiplex(
-      () => ({ container_id: container_ID, event: 'subscribe', type: type }),
-      () => ({ container_id: container_ID, event: 'unsubscribe', type: type }),
-      message => message.type === type);
+    if(this.metricsObs == undefined){
+      this.metricsObs = this.socket.multiplex(
+        () => ({ container_id: container_ID, event: 'subscribe', type: type }),
+        () => ({ container_id: container_ID, event: 'unsubscribe', type: type }),
+        message => message.type === type);
+      return this.metricsObs;
+    }
+    return this.metricsObs;
   }
 
   /* public createLogStream(container_ID: string, type: string): Observable<SocketMessage<Log>>{

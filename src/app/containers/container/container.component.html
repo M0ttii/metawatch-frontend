@@ -1,36 +1,56 @@
-<div class="row mh-100">
-    <div class="col-md-5 col-lg-5 col-xl-5 col-xxl-4 flex-column">
-        <app-chart [chartType]="'CPU'" [chartSubj]="chartSubj"></app-chart>
-        <app-chart [chartType]="'MEMORY'" [chartSubj]="chartSubj"></app-chart>
-    </div>
-    <div class="col-8">
-        <div class="row gx-0">
-            <div class="col-3 me-4">
-                <app-smallwidget [type]="'state'"></app-smallwidget>
-            </div>
-            <div class="col-3 me-4">
-                <app-smallwidget [type]="'exposure'"></app-smallwidget>
-            </div>
-            <div class="col-3 me-4">
-                <app-smallwidget [type]="'volumes'"></app-smallwidget>
+
+<ng-container *ngIf="this.loadingService.loading.getValue(); else elseBlock">
+    <div class="container-fluid h-100">
+        <div class="row h-75 align-items-center">
+            <div class="col-12 d-flex justify-content-center">
+                <app-loader></app-loader>
             </div>
         </div>
-        <div class="row gx-0">
-            <div class="col-3 flex-column me-4">
-                <app-smallwidget [type]="'network'"></app-smallwidget>
-                <app-smallwidget [type]="'images'"></app-smallwidget>
+    </div>
+</ng-container>
+<ng-template #elseBlock>
+    <div class="row mh-100">
+        <div class="col-4 flex-column">
+            <app-chart [chartType]="'CPU'" [chartSubj]="chartSubj" [width]="'100%'"></app-chart>
+            <app-chart [chartType]="'MEMORY'" [chartSubj]="chartSubj" [width]="'100%'"></app-chart>
+        </div>
+        <div class="col-8">
+            <div class="row">
+                <div class="col-10">
+                    <div class="row gx-4">
+                        <div class="col-4">
+                            <app-smallwidget [type]="'state'" [container]="this.container" [dataFetched]="this.dataFetched"></app-smallwidget>
+                        </div>
+                        <div class="col-4">
+                            <app-smallwidget [type]="'exposure'" [container]="this.container" [dataFetched]="this.dataFetched"></app-smallwidget>
+                        </div>
+                        <div class="col-4">
+                            <app-smallwidget [type]="'volumes'" [container]="this.container" [dataFetched]="this.dataFetched"></app-smallwidget>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-6">
-                <app-logs></app-logs>
+            <div class="row gx-0">
+                <div class="col-10">
+                    <div class="row">
+                        <div class="col-4 flex-column me-4">
+                            <app-smallwidget [type]="'network'" [container]="this.container" [dataFetched]="this.dataFetched"></app-smallwidget>
+                            <app-smallwidget [type]="'images'" [container]="this.container" [dataFetched]="this.dataFetched"></app-smallwidget>
+                        </div>
+                        <div class="col-6">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-6 me-4">
-            <app-chart [chartType]="'NETWORK'" [chartSubj]="chartSubj"></app-chart>
+        <div class="col-6">
+            <app-chart [chartType]="'NETWORK'" [chartSubj]="chartSubj" [width]="'calc(100% + 1.5rem)'"></app-chart>
         </div>
         <div class="col-4">
-            <app-chart [chartType]="'DISK'" [chartSubj]="chartSubj"></app-chart>
+            <app-chart [chartType]="'DISK'" [chartSubj]="chartSubj" [width]="'100%'"></app-chart>
         </div>
+        .
     </div>
-</div>
+</ng-template>

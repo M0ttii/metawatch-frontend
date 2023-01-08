@@ -2,11 +2,11 @@
   <div class="header" *ngIf="authGuard.isAuthenticated()">
   </div>
   <ng-container *ngIf="authGuard.isAuthenticated(); else elseBlock">
-    <div class="row">
+    <div class="row h-100">
       <div class="col-1">
         <app-sidebar-new></app-sidebar-new>
       </div>
-      <div class="col-11 column-offset">
+      <div class="col-11">
         <app-title></app-title>
         <router-outlet></router-outlet>
       </div>

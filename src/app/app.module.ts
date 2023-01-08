@@ -26,11 +26,12 @@ import { SmallwidgetComponent } from './widgets/smallwidget/smallwidget.componen
 import { SidebarNewComponent } from './sidebar/sidebar-new/sidebar-new.component';
 import { CanvasComponent } from './containers/new/canvas/canvas.component';
 import { SocketService } from './services/socket.service';
+import { DateFnsModule } from 'ngx-date-fns';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
-  {path: '', component: DashboardComponent, canActivate: [AuthGuardService]},
   {path: 'containers', component: ContainersComponent, canActivate: [AuthGuardService]},
+  {path: '', component: DashboardComponent, canActivate: [AuthGuardService]},
   {path: 'container/:id', component: ContainerComponent, canActivate: [AuthGuardService]}
 ]
 
@@ -60,6 +61,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     BrowserModule,
     NgChartsModule,
+    DateFnsModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
   providers: [{

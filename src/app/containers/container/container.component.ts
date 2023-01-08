@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable, Subject, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { ContainerserviceService } from 'src/app/services/containerservice.service';
 import { SocketService } from 'src/app/services/socket.service';
 import { SocketMessage } from 'src/app/models/socketmessage.model';
@@ -9,6 +9,9 @@ import { Log } from 'src/app/models/log.model';
 import { Container } from 'src/app/models/container.model';
 import { NavtitleService } from 'src/app/services/navtitle.service';
 import { SingleContainer } from 'src/app/models/singlecontainer.model';
+import { formatDistance } from 'date-fns';
+import format from 'date-fns/format';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
     selector: 'app-container',
@@ -16,7 +19,6 @@ import { SingleContainer } from 'src/app/models/singlecontainer.model';
     styleUrls: ['./container.component.css']
 })
 export class ContainerComponent implements OnInit, OnDestroy {
-    private sub: any;
     public containerID: any;
     protected container: SingleContainer;
     protected metricsObs: Observable<SocketMessage<Message>>;
@@ -24,11 +26,12 @@ export class ContainerComponent implements OnInit, OnDestroy {
     protected chartSubj: Subject<SocketMessage<Message>>;
     protected logSubj: Subject<SocketMessage<Log>>;
     private metricsSub: Subscription;
-    private logsSub: Subscription;
-    private metricsList: [] = [];
+
+    public dataFetched: BehaviorSubject<Boolean> = new BehaviorSubject(false);
+    
 
 
-    constructor(private route: ActivatedRoute, private containerService: ContainerserviceService, private socketService: SocketService, private titleService: NavtitleService) {
+    constructor(private route: ActivatedRoute, private containerService: ContainerserviceService, private socketService: SocketService, private titleService: NavtitleService, public loadingService: LoadingService) {
     }
 
     ngOnInit(): void {
@@ -38,28 +41,56 @@ export class ContainerComponent implements OnInit, OnDestroy {
         }
         this.containerService.getContainerFromAPI(this.containerService.activeContainerID).then(
             (data: SingleContainer) => {
-                this.container = data;
+                this.container = this.makeFormatWork(data);
+                console.log("Container fetched")
+                this.dataFetched.next(true)
                 this.titleService.set(this.container.name.substring(1))
             }
         );
-        this.metricsObs = this.socketService.createStream(this.containerService.activeContainerID, "metrics");
         this.chartSubj = new Subject<SocketMessage<Message>>();
-        this.metricsSub = this.metricsObs.subscribe({
+        this.metricsSub = this.socketService.createStream(this.containerService.activeContainerID, "metrics").subscribe({
             next: (message: SocketMessage<Message>) => {
-                console.log("Metric message incoming")
                 this.chartSubj.next(message);
             },
             error: error => console.log('WS Error: ', error),
             complete: () => console.log("WS complete")
-        });
+        })
+    }
+
+    makeFormatWork(container: SingleContainer): SingleContainer{
+        container.state.status = container.state.status.toUpperCase();
+        container.state.restart_policy = container.state.restart_policy.charAt(0).toUpperCase() + container.state.restart_policy.slice(1);
+
+        let date = new Date(container.state.since);
+        container.state.date_distance = formatDistance(date, new Date(), {addSuffix: true})
+
+        let imageCreated = new Date(container.image.created);
+        container.image.created = format(imageCreated, 'dd.MM.yyyy');
+
+        let bytes = container.image.size;
+        container.image.size_string = this.formatBytes(bytes);
+        return container;
     }
 
     ngOnDestroy(): void {
         console.log("Container leave")
         this.containerService.isContainerSite = false;
+        this.chartSubj.unsubscribe();
         this.metricsSub.unsubscribe();
         /* this.metricsSub.unsubscribe();
         this.logsSub.unsubscribe(); */
+    }
+
+    formatBytes(bytes, decimals = 2) {
+        if (!+bytes) return '0 Bytes'
+    
+        const k = 1024
+        const dm = decimals < 0 ? 0 : decimals
+        const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+    
+        const i = Math.floor(Math.log(bytes) / Math.log(k))
+    
+        return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`
     }
 
 }

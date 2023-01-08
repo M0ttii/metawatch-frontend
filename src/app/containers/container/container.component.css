@@ -2,12 +2,23 @@
     margin-top: 50px;
 }
 
+#height{
+    height: 100vh;
+}
+
 .blur{
     filter: blur(4px);
 }
 
 .topStats{
     margin-top: 126px;
+}
+
+.wrapper{
+    padding: 0px !important;
+    margin: 0px !important;
+    top: 0;
+    height: 100vh;
 }
 
 .heightContainer{

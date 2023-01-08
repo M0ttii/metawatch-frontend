@@ -17,9 +17,12 @@ export class ChartComponent implements OnInit, AfterViewInit{
   @ViewChild(BaseChartDirective) chart: BaseChartDirective;
   @Input() chartType: string = '';
   @Input() chartSubj: Subject<SocketMessage<Message>>;
+  @Input() width: string;
 
   private context: CanvasRenderingContext2D;
   private endGradient: CanvasGradient = null;
+
+  public dataLoading: Boolean = true;
 
   colors = {
     purple: {
@@ -52,6 +55,7 @@ export class ChartComponent implements OnInit, AfterViewInit{
     if(this.chartType == "CPU"){
       this.chartData.datasets[0].data = [];
       this.chartSubj.subscribe(message => {
+        this.dataLoading = false;
         if (this.chartData.datasets[0].data.length >= 100){
           this.chartData.datasets[0].data.shift();
         }
@@ -62,7 +66,6 @@ export class ChartComponent implements OnInit, AfterViewInit{
 
 
         this.chartData.datasets[0].data.push({x: dateFormat, y: data});
-        console.log(this.chartData.datasets[0].data);
         this.chart.update()
       })
     }
@@ -80,7 +83,6 @@ export class ChartComponent implements OnInit, AfterViewInit{
 
 
         this.chartData.datasets[0].data.push({x: dateFormat, y: data});
-        console.log(this.chartData.datasets[0].data);
         this.chart.update()
       })
     }
@@ -109,7 +111,6 @@ export class ChartComponent implements OnInit, AfterViewInit{
 
         this.chartData.datasets[0].data.push({x: dateFormat, y: dataRead});
         this.chartData.datasets[1].data.push({x: dateFormat, y: dataWrite});
-        console.log(this.chartData.datasets[0].data);
         this.chart.update()
       })
     }
@@ -152,6 +153,9 @@ export class ChartComponent implements OnInit, AfterViewInit{
     },
     scales: {
       x: {
+        grid: {
+          display: false
+        },
         type: 'time',
         time: {
           unit: 'minute',
@@ -170,6 +174,9 @@ export class ChartComponent implements OnInit, AfterViewInit{
         }, */
       },
       y: {
+        grid: {
+          display: false
+        },
         beginAtZero: true,
         ticks: {
           padding: 1,
