@@ -1,4 +1,4 @@
 <div class="wrapper sticky-top">
-    <p class="title text-start">{{title}}</p>
-    
+    <p class="title text-start">{{title.toUpperCase()}}</p><br>
+    <p class="sub text-start" *ngIf="this.sub != undefined">{{this.sub}}...</p>
 </div>

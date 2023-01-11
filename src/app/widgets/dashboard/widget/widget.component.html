@@ -1,0 +1,111 @@
+<ng-container *ngIf="this.dataFetched == true">
+    <ng-container *ngIf="this.type == 'resources'">
+        <div class="wrapper text-start">
+            <div class="container">
+                <div class="iconWrapper"></div>
+                <div class="textWrapper">
+                    <p class="headingText">State</p>
+                    <div class="state d-flex justify-content-center align-middle">
+                        <span class="stateText">Resources</span>
+                    </div>
+                </div>
+                <table>
+                    <tr>
+                        <td>
+                            <span class="firstText">Since</span>
+                        </td>
+                        <td class="second">
+                            <span class="secondText">Since</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="firstText">Restart Policy</span>
+                        </td>
+                        <td class="second">
+                            <span class="secondText">Restart</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="this.type == 'global'">
+        <div class="wrapper text-start">
+            <div class="container">
+                <div class="iconWrapper"></div>
+                <div class="textWrapper">
+                    <p class="headingText">Global</p>
+                    <div class="state d-flex justify-content-center align-middle">
+                        <span class="stateText">Global</span>
+                    </div>
+                </div>
+                <table>
+                    <tr>
+                        <td>
+                            <span class="firstText">Name</span>
+                        </td>
+                        <td class="second">
+                            <span class="secondText">Name</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="firstText">ID</span>
+                        </td>
+                        <td class="second">
+                            <span class="secondText">ID</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="firstText">IP</span>
+                        </td>
+                        <td class="second">
+                            <span class="secondText">IP</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="this.type == 'docker'">
+        <div class="wrapper text-start">
+            <div class="container">
+                <div class="iconWrapper"></div>
+                <div class="textWrapper">
+                    <p class="headingText">Docker</p>
+                    <div class="state d-flex justify-content-center align-middle">
+                        <span class="stateText">Docker</span>
+                    </div>
+                </div>
+                <table>
+                    <tr>
+                        <td> 
+                            <span class="firstText">Name</span>
+                        </td>
+                        <td class="second">
+                            <span class="secondText">Name</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="firstText">Size</span>
+                        </td>
+                        <td class="second">
+                            <span class="secondText">Size</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="firstText">Created</span>
+                        </td>
+                        <td class="second">
+                            <span class="secondText">Created</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </ng-container>
+</ng-container>

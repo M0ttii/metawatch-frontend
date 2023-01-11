@@ -4,16 +4,16 @@
     <img class="settings" src="../../../assets/gear.svg" alt="">
   </div>
   <div class="wrapper">
-    <ng-container *ngIf="this.dataLoading; else elseBlock">
-      <div class="row h-100">
-        <div class="col-12">
-          <app-loader></app-loader>
-        </div>
+    <div class="row" *ngIf="this.dataLoading && this.offline == false">
+      <div class="col-12">
+        <app-loader></app-loader>
       </div>
-    </ng-container>
-    <ng-template #elseBlock>
-      <canvas baseChart #myChart width="100%" height="180px" [type]="'line'" [data]="chartData" [options]="chartOptions">
-      </canvas>
-    </ng-template>
+    </div>
+    <canvas baseChart #myChart width="100%" height="180px" [type]="'line'" [data]="chartData"
+      [hidden]="this.dataLoading" [options]="chartOptions" *ngIf="this.offline == false">
+    </canvas>
+    <div class="noDataWrapper" *ngIf="this.offline == true">
+      <img src="../../../assets/triangle.svg" alt="">
+    </div>
   </div>
 </div>

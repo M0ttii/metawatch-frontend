@@ -1,21 +1,32 @@
 .title{
-    font-family: 'Poppins', sans-serif;
-    font-size: 35px;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.884);
-    margin-top: 60px;
-    margin-bottom: 90px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 0px;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 5px;
 }
 
-.id{
-    font-family: 'Poppins', sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.884);
+.svgWrapper{
+    width: 20px;
+    height: 20px;
+    display: inline-block;
 }
+
+.sub{
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 0px;
+    color: rgba(255, 255, 255, 0.75);
+}
+
 
 
 .wrapper{
-    height: 100px;
+    height: auto;
     background-color: #171825;
+    margin-top: 70px;
+    margin-bottom: 80px;
+    margin-left: 1rem;
 }

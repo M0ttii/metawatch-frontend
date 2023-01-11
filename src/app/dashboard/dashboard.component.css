@@ -1,3 +1,16 @@
-.top{
-    margin-top: 4%;
+.custom-gutter > [class*='col-'] {
+    padding-right: 2.2rem;
+}
+
+.custom-gutter > [class*="col-"]:first-child {
+  /* padding-left: 1rem; */
+}
+  
+.custom-gutter > [class*="col-"]:last-child {
+  /* padding-right: 1rem; */
+}
+
+.custom-gutter2 > [class*='col-'] {
+    padding-right: 1rem;
+    padding-left: 1rem;
 }

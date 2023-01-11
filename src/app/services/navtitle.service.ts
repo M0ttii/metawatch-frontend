@@ -6,7 +6,7 @@ import { ContainerserviceService } from './containerservice.service';
   providedIn: 'root'
 })
 export class NavtitleService implements OnInit{
-  public title = new Subject<String>();
+  public title = new Subject<Array<String>>();
   public id = new Subject<String>();
   public currentState: String;
   public currentName: String;
@@ -18,8 +18,16 @@ export class NavtitleService implements OnInit{
 
   }
 
-  set(title: string){
-    this.title.next(title)
+  set(title: string, sub?: string){
+    let titleA = [];
+    if(sub == undefined){
+      titleA.push(title)
+      this.title.next(titleA)
+      return;
+    }
+    titleA.push(title)
+    titleA.push(sub);
+    this.title.next(titleA)
   }
 
 }

@@ -1,20 +1,54 @@
-<div class="row">
-    <div class="col-md-7 col-lg-7 col-xl-7 col-xxl-6 d-flex flex-column justify-content-around">
-        <div class="row">
-            <app-chart></app-chart>
-            <app-chart></app-chart>
-            <app-chart></app-chart>
+<ng-container *ngIf="this.loadingService.loading.getValue(); else elseBlock">
+    <div class="container-fluid h-100">
+        <div class="row h-75 align-items-center">
+            <div class="col-12 d-flex justify-content-center">
+                <app-loader></app-loader>
+            </div>
         </div>
     </div>
-    <div class="col-md-5 col-lg-5 col-xl-5 col-xxl-6 d-flex flex-column justify-content-around">
-        <div class="row">
-            <app-stats></app-stats>
+</ng-container>
+<ng-template #elseBlock>
+    <div class="row mh-100 gx-0 custom-gutter">
+        <div class="col-4 flex-column">
+            <app-chart [chartType]="'CPU'" [chartSubj]="chartSubj" [width]="'100%'"></app-chart>
+            <app-chart [chartType]="'MEMORY'" [chartSubj]="chartSubj" [width]="'100%'"></app-chart>
         </div>
-        <div class="row">
-            <app-stats></app-stats>
-        </div>
-        <div class="row">
-            <app-stats></app-stats>
+        <div class="col-8">
+            <div class="row">
+                <div class="col-11">
+                    <div class="row gx-0 custom-gutter">
+                        <div class="col-4">
+                            <app-widget [type]="'resources'"></app-widget>
+                        </div>
+                        <div class="col-4">
+                            <app-widget [type]="'global'"></app-widget>
+                        </div>
+                        <div class="col-4">
+                            <app-widget [type]="'docker'"></app-widget>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-11">
+                    <div class="row gx-0 custom-gutter">
+                        <div class="col-6"> <!-- <div class="col-4 flex-column me-4"> -->
+                            <app-bigwidget [type]="'images'" [images]="this.images" [imagesFetched]="this.imagesFetched"></app-bigwidget>
+                        </div>
+                        <div class="col-6">
+                            <app-bigwidget [type]="'volumes'" [volumes]="this.volumes" [volumesFetched]="this.volumesFetched"></app-bigwidget>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+    <div class="row gx-0 custom-gutter">
+        <div class="col-7">
+            <app-chart [chartType]="'NETWORK'" [chartSubj]="chartSubj"></app-chart>
+        </div>
+        <div class="col-4">
+            <app-chart [chartType]="'DISK'" [chartSubj]="chartSubj" [width]="'100%'"></app-chart>
+        </div>
+    </div>
+</ng-template>

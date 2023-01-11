@@ -35,21 +35,25 @@ export class ContainerComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
+        this.titleService.set("");
+        console.log(this.containerService.activeContainerID)
         this.containerService.isContainerSite = true;
-        if(this.containerService.activeContainerID == undefined){
-            this.containerService.activeContainerID = localStorage.getItem("currentID");
+        let CID = this.containerService.activeContainerID;
+        if(CID == undefined){
+            CID = localStorage.getItem("currentID");
         }
-        this.containerService.getContainerFromAPI(this.containerService.activeContainerID).then(
+        this.containerService.getContainerFromAPI(CID).then(
             (data: SingleContainer) => {
                 this.container = this.makeFormatWork(data);
                 console.log("Container fetched")
                 this.dataFetched.next(true)
-                this.titleService.set(this.container.name.substring(1))
+                this.titleService.set(this.container.name.substring(1), this.container.id.substring(0, 30))
             }
         );
         this.chartSubj = new Subject<SocketMessage<Message>>();
-        this.metricsSub = this.socketService.createStream(this.containerService.activeContainerID, "metrics").subscribe({
+        this.metricsSub = this.socketService.createStream(CID, "metrics").subscribe({
             next: (message: SocketMessage<Message>) => {
+                console.log("RECSV")
                 this.chartSubj.next(message);
             },
             error: error => console.log('WS Error: ', error),

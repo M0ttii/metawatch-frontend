@@ -18,6 +18,7 @@ export class ChartComponent implements OnInit, AfterViewInit{
   @Input() chartType: string = '';
   @Input() chartSubj: Subject<SocketMessage<Message>>;
   @Input() width: string;
+  @Input() offline: Boolean = false;
 
   private context: CanvasRenderingContext2D;
   private endGradient: CanvasGradient = null;
@@ -47,72 +48,76 @@ export class ChartComponent implements OnInit, AfterViewInit{
   }
 
   ngAfterViewInit(): void {
-    this.context = this.myChart.nativeElement.getContext('2d'); 
-    this.endGradient = this.getGradient();
-    this.chartData.datasets[0]['backgroundColor'] = this.endGradient;
-    this.chart.update();
-
-    if(this.chartType == "CPU"){
-      this.chartData.datasets[0].data = [];
-      this.chartSubj.subscribe(message => {
-        this.dataLoading = false;
-        if (this.chartData.datasets[0].data.length >= 100){
-          this.chartData.datasets[0].data.shift();
-        }
-        let data = message.message.cpu.perc;
-        let dateString = message.message.when;
-        let date = new Date(dateString);
-        let dateFormat = format(date, 'HH:mm:ss')
-
-
-        this.chartData.datasets[0].data.push({x: dateFormat, y: data});
-        this.chart.update()
-      })
-    }
-    if(this.chartType == "MEMORY"){
-      this.chartData.datasets[0].data = [];
-      this.chartData.datasets[0].label = "MEMORY";
-      this.chartSubj.subscribe(message => {
-        if (this.chartData.datasets[0].data.length >= 100){
-          this.chartData.datasets[0].data.shift();
-        }
-        let data = message.message.memory.perc;
-        let dateString = message.message.when;
-        let date = new Date(dateString);
-        let dateFormat = format(date, 'HH:mm:ss')
-
-
-        this.chartData.datasets[0].data.push({x: dateFormat, y: data});
-        this.chart.update()
-      })
-    }
-    if(this.chartType == "DISK"){
-      this.chartData.datasets[0].data = [];
-      this.chartData.datasets[0].label = "READ";
-      this.chartData.datasets.push({
-        data: [],
-        fill: true,
-        label: "WRITE",
-        borderColor: this.colors.blue.default,
-        tension: 0.2,
-        borderWidth: 2,
-        pointRadius: 0
-      })
-      this.chartSubj.subscribe(message => {
-        if (this.chartData.datasets[0].data.length >= 100){
-          this.chartData.datasets[0].data.shift();
-        }
-        let dataRead = message.message.disk.read;
-        let dataWrite = message.message.disk.write;
-        let dateString = message.message.when;
-        let date = new Date(dateString);
-        let dateFormat = format(date, 'HH:mm:ss')
-
-
-        this.chartData.datasets[0].data.push({x: dateFormat, y: dataRead});
-        this.chartData.datasets[1].data.push({x: dateFormat, y: dataWrite});
-        this.chart.update()
-      })
+    if(this.offline == false){
+      this.context = this.myChart.nativeElement.getContext('2d'); 
+      this.endGradient = this.getGradient();
+      this.chartData.datasets[0]['backgroundColor'] = this.endGradient;
+      this.chart.update();
+  
+      if(this.chartType == "CPU"){
+        this.chartData.datasets[0].data = [];
+        this.chartSubj.subscribe(message => {
+          if (this.chartData.datasets[0].data.length >= 100){
+            this.chartData.datasets[0].data.shift();
+          }
+          let data = message.message.cpu.perc;
+          let dateString = message.message.when;
+          let date = new Date(dateString);
+          let dateFormat = format(date, 'HH:mm:ss')
+  
+  
+          this.chartData.datasets[0].data.push({x: dateFormat, y: data});
+          this.chart.update()
+          this.dataLoading = false;
+        })
+      }
+      if(this.chartType == "MEMORY"){
+        this.chartData.datasets[0].data = [];
+        this.chartData.datasets[0].label = "MEMORY";
+        this.chartSubj.subscribe(message => {
+          if (this.chartData.datasets[0].data.length >= 100){
+            this.chartData.datasets[0].data.shift();
+          }
+          let data = message.message.memory.perc;
+          let dateString = message.message.when;
+          let date = new Date(dateString);
+          let dateFormat = format(date, 'HH:mm:ss')
+  
+  
+          this.chartData.datasets[0].data.push({x: dateFormat, y: data});
+          this.chart.update()
+          this.dataLoading = false;
+        })
+      }
+      if(this.chartType == "DISK"){
+        this.chartData.datasets[0].data = [];
+        this.chartData.datasets[0].label = "READ";
+        this.chartData.datasets.push({
+          data: [],
+          fill: true,
+          label: "WRITE",
+          borderColor: this.colors.blue.default,
+          tension: 0.2,
+          borderWidth: 2,
+          pointRadius: 0
+        })
+        this.chartSubj.subscribe(message => {
+          if (this.chartData.datasets[0].data.length >= 100){
+            this.chartData.datasets[0].data.shift();
+          }
+          let dataRead = message.message.disk.read;
+          let dataWrite = message.message.disk.write;
+          let dateString = message.message.when;
+          let date = new Date(dateString);
+          let dateFormat = format(date, 'HH:mm:ss')
+  
+  
+          this.chartData.datasets[0].data.push({x: dateFormat, y: dataRead});
+          this.chartData.datasets[1].data.push({x: dateFormat, y: dataWrite});
+          this.chart.update()
+          this.dataLoading = false;
+        })
+      }
     }
   }
 

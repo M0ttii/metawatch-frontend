@@ -14,6 +14,27 @@
     margin-top: 126px;
 }
 
+.margin{
+    margin-right: 2rem !important;
+}
+
+.custom-gutter > [class*='col-'] {
+    padding-right: 2.2rem;
+}
+
+.custom-gutter > [class*="col-"]:first-child {
+  /* padding-left: 1rem; */
+}
+  
+.custom-gutter > [class*="col-"]:last-child {
+  /* padding-right: 1rem; */
+}
+
+.custom-gutter2 > [class*='col-'] {
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+
 .wrapper{
     padding: 0px !important;
     margin: 0px !important;

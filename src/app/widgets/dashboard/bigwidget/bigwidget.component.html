@@ -1,0 +1,84 @@
+<div class="globalWrapper" *ngIf="this.type == 'images'">
+    <ng-container *ngIf="this.imagesFetched.getValue() == true">
+        <div class="wrapper text-start">
+            <div class="container">
+                <div class="iconWrapper"></div>
+                <div class="textWrapper">
+                    <p class="headingText">Images</p>
+                    <div class="state d-flex justify-content-center align-middle">
+                        <span class="stateText">{{images.length}} IMAGES</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tableWrapper">
+            <table class="text-start">
+                <thead>
+                    <tr>
+                        <td>Name</td>
+                        <td>ID</td>
+                        <td>Created</td>
+                        <td>Size</td>
+                    </tr>
+                </thead>
+                <tbody class="text-start">
+                    <tr *ngFor="let image of images">
+                        <td>
+                            <span>{{image.tag}}</span>
+                        </td>
+                        <td>
+                            <span>{{image.id.substring(7, 20)}}</span>
+                        </td>
+                        <td>
+                            <span>{{image.created}}</span>
+                        </td>
+                        <td>
+                            <span>{{image.size_string}}</span>
+                        </td>
+                    </tr>
+                    <!-- <tr app-canvas [name]="'monitoring_agent-mongo-1'" [image]="'mongooooooooooofgffffffffffffffff'" [port]="'N/A'"></tr> -->
+                </tbody>
+            </table>
+        </div>
+    </ng-container>
+</div>
+<div class="globalWrapper" *ngIf="this.type == 'volumes'">
+    <ng-container *ngIf="this.volumesFetched.getValue() == true">
+        <div class="wrapper text-start">
+            <div class="container">
+                <div class="iconWrapper"></div>
+                <div class="textWrapper">
+                    <p class="headingText">Volumes</p>
+                    <div class="state d-flex justify-content-center align-middle">
+                        <span class="stateText">Status</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tableWrapper">
+            <table class="text-start">
+                <thead>
+                    <tr>
+                        <td>Name</td>
+                        <td>Driver</td>
+                        <td>Data Usage</td>
+                    </tr>
+                </thead>
+                <tbody class="text-start">
+                    <tr *ngFor="let volume of this.volumes">
+                        <td>
+                            <span>{{volume.name.substring(0, 12)}}</span>
+                        </td>
+                        <td>
+                            <span>{{volume.driver}}</span>
+                        </td>
+                        <td>
+                            <span>21.10.2022</span>
+                        </td>
+                    </tr>
+                    <!-- <tr app-canvas [name]="'monitoring_agent-mongo-1'" [image]="'mongooooooooooofgffffffffffffffff'" [port]="'N/A'"></tr> -->
+                </tbody>
+            </table>
+        </div>
+    </ng-container>
+</div>

@@ -5,7 +5,13 @@
 }
 
 #myCanvas{
-     margin-bottom: 20px; 
+    margin-bottom: 20px; 
+}
+
+.noDataWrapper{
+    width: 30px;
+    height: 30px;
+
 }
 
 .wrapper{

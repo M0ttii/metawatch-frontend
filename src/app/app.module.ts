@@ -27,6 +27,8 @@ import { SidebarNewComponent } from './sidebar/sidebar-new/sidebar-new.component
 import { CanvasComponent } from './containers/new/canvas/canvas.component';
 import { SocketService } from './services/socket.service';
 import { DateFnsModule } from 'ngx-date-fns';
+import { WidgetComponent } from './widgets/dashboard/widget/widget.component';
+import { BigwidgetComponent } from './widgets/dashboard/bigwidget/bigwidget.component';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -54,7 +56,9 @@ const appRoutes: Routes = [
     LoaderComponent,
     SmallwidgetComponent,
     SidebarNewComponent,
-    CanvasComponent
+    CanvasComponent,
+    WidgetComponent,
+    BigwidgetComponent
   ],
   imports: [
     FormsModule,
