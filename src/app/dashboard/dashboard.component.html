@@ -15,22 +15,22 @@
         </div>
         <div class="col-8">
             <div class="row">
-                <div class="col-11">
+                <div class="col-12">
                     <div class="row gx-0 custom-gutter">
                         <div class="col-4">
-                            <app-widget [type]="'resources'"></app-widget>
+                            <app-widget [type]="'resources'" [about]="this.about" [aboutFetched]="this.aboutFetched"></app-widget>
                         </div>
                         <div class="col-4">
-                            <app-widget [type]="'global'"></app-widget>
+                            <app-widget [type]="'global'" [about]="this.about" [aboutFetched]="this.aboutFetched"></app-widget>
                         </div>
                         <div class="col-4">
-                            <app-widget [type]="'docker'"></app-widget>
+                            <app-widget [type]="'docker'" [about]="this.about" [aboutFetched]="this.aboutFetched"></app-widget>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-11">
+                <div class="col-12">
                     <div class="row gx-0 custom-gutter">
                         <div class="col-6"> <!-- <div class="col-4 flex-column me-4"> -->
                             <app-bigwidget [type]="'images'" [images]="this.images" [imagesFetched]="this.imagesFetched"></app-bigwidget>

@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { About } from 'src/app/models/dashboard.models';
 
 @Component({
   selector: 'app-widget',
@@ -6,8 +8,10 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./widget.component.css']
 })
 export class WidgetComponent implements OnInit {
-  public dataFetched: Boolean = true;
+
+  @Input() public aboutFetched: BehaviorSubject<Boolean>;
   @Input() public type: string;
+  @Input() public about: About;
 
   constructor() { }
 

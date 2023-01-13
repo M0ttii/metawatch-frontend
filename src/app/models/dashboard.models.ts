@@ -2,6 +2,9 @@ export interface Volume {
     name: string;
     mountpoint: string;
     driver: string;
+    used_by: number;
+    size: number;
+    size_string: string;
     created: string;
 }
 
@@ -19,4 +22,7 @@ export interface About {
     os: string;
     image_n: number;
     container_n: number;
+    cups: number;
+    max_mem: number;
+    max_mem_string: string;
 }

@@ -1,10 +1,10 @@
-<ng-container *ngIf="this.dataFetched == true">
+<ng-container *ngIf="this.aboutFetched.getValue() == true">
     <ng-container *ngIf="this.type == 'resources'">
         <div class="wrapper text-start">
             <div class="container">
                 <div class="iconWrapper"></div>
                 <div class="textWrapper">
-                    <p class="headingText">State</p>
+                    <p class="headingText">Resources</p>
                     <div class="state d-flex justify-content-center align-middle">
                         <span class="stateText">Resources</span>
                     </div>
@@ -12,18 +12,18 @@
                 <table>
                     <tr>
                         <td>
-                            <span class="firstText">Since</span>
+                            <span class="firstText">CPU Cores</span>
                         </td>
                         <td class="second">
-                            <span class="secondText">Since</span>
+                            <span class="secondText">{{this.about.cups}}</span>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <span class="firstText">Restart Policy</span>
+                            <span class="firstText">Max. Memory</span>
                         </td>
                         <td class="second">
-                            <span class="secondText">Restart</span>
+                            <span class="secondText">{{this.about.max_mem_string}}</span>
                         </td>
                     </tr>
                 </table>
@@ -43,26 +43,26 @@
                 <table>
                     <tr>
                         <td>
-                            <span class="firstText">Name</span>
+                            <span class="firstText">Containers</span>
                         </td>
                         <td class="second">
-                            <span class="secondText">Name</span>
+                            <span class="secondText">{{this.about.container_n}}</span>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <span class="firstText">ID</span>
+                            <span class="firstText">Images</span>
                         </td>
                         <td class="second">
-                            <span class="secondText">ID</span>
+                            <span class="secondText">{{this.about.image_n}}</span>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <span class="firstText">IP</span>
+                            <span class="firstText">Volumes</span>
                         </td>
                         <td class="second">
-                            <span class="secondText">IP</span>
+                            <span class="secondText">{{this.about.volume_n}}</span>
                         </td>
                     </tr>
                 </table>
@@ -82,26 +82,26 @@
                 <table>
                     <tr>
                         <td> 
-                            <span class="firstText">Name</span>
+                            <span class="firstText">Version</span>
                         </td>
                         <td class="second">
-                            <span class="secondText">Name</span>
+                        <span class="secondText">{{this.about.version}}</span>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <span class="firstText">Size</span>
+                            <span class="firstText">API Version</span>
                         </td>
                         <td class="second">
-                            <span class="secondText">Size</span>
+                            <span class="secondText">{{this.about.api_version}}</span>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <span class="firstText">Created</span>
+                            <span class="firstText">OS</span>
                         </td>
                         <td class="second">
-                            <span class="secondText">Created</span>
+                            <span class="secondText">{{this.about.os}}</span>
                         </td>
                     </tr>
                 </table>

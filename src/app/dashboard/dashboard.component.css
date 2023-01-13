@@ -7,7 +7,7 @@
 }
   
 .custom-gutter > [class*="col-"]:last-child {
-  /* padding-right: 1rem; */
+  padding-right: 1.5rem; 
 }
 
 .custom-gutter2 > [class*='col-'] {

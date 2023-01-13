@@ -118,6 +118,38 @@ export class ChartComponent implements OnInit, AfterViewInit{
           this.dataLoading = false;
         })
       }
+      if(this.chartType == "NETWORK"){
+        this.chartData.datasets[0].data = [];
+        this.chartData.datasets[0].label = "IN";
+        this.chartData.datasets.push({
+          data: [],
+          fill: true,
+          label: "OUT",
+          borderColor: this.colors.blue.default,
+          tension: 0.2,
+          borderWidth: 2,
+          pointRadius: 0
+        })
+        this.chartSubj.subscribe(message => {
+          if (this.chartData.datasets[0].data.length >= 100){
+            this.chartData.datasets[0].data.shift();
+          }
+          if (this.chartData.datasets[1].data.length >= 100){
+            this.chartData.datasets[1].data.shift();
+          }
+          let dataIn = message.message.net.in;
+          let dataOut = message.message.net.out;
+          let dateString = message.message.when;
+          let date = new Date(dateString);
+          let dateFormat = format(date, 'HH:mm:ss')
+  
+  
+          this.chartData.datasets[0].data.push({x: dateFormat, y: dataIn});
+          this.chartData.datasets[1].data.push({x: dateFormat, y: dataOut});
+          this.chart.update()
+          this.dataLoading = false;
+        })
+      }
     }
   }
 

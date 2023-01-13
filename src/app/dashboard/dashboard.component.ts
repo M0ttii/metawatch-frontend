@@ -32,7 +32,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.titleService.set("Dashboard");
     this.getVolumesFromAPI().then(
       (data: Volume[]) => {
-        this.volumes = data;
+        let volumes = data;
+        volumes.forEach(
+          (volume: Volume, index) => {
+            let bytes = volume.size;
+            volumes[index].size_string = this.formatBytes(bytes);
+          }
+        )
+        this.volumes = volumes;
         this.volumesFetched.next(true);
       }
     )
@@ -56,7 +63,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     this.getAboutFromAPI().then(
       (data: About) => {
-        this.about = data;
+        let about = data;
+        let bytes = about.max_mem;
+        about.max_mem_string = this.formatBytes(bytes);
+        this.about = about;
         this.aboutFetched.next(true);
       }
     )

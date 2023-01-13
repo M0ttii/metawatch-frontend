@@ -94,6 +94,9 @@ tbody tr td {
     font-family: 'Rubik', sans-serif;
     font-weight: 300;
     font-size: 16px;
+    max-width: 200px;
+    word-wrap: break-word;         /* All browsers since IE 5.5+ */
+    overflow-wrap: break-word;
     color: rgba(255, 255, 255, 0.8);
     padding-top: 6px;
     padding-bottom: 6px;
