@@ -10,8 +10,8 @@
 <ng-template #elseBlock>
     <div class="row mh-100 gx-0 custom-gutter">
         <div class="col-4 flex-column">
-            <app-chart [chartType]="'CPU'" [chartSubj]="chartSubj" [width]="'100%'"></app-chart>
-            <app-chart [chartType]="'MEMORY'" [chartSubj]="chartSubj" [width]="'100%'"></app-chart>
+            <app-chart [chartType]="'CPU'" [chartSubj]="chartSubj" [width]="'100%'" [dataFetched]="this.dataFetched"></app-chart>
+            <app-chart [chartType]="'MEMORY'" [chartSubj]="chartSubj" [width]="'100%'" [dataFetched]="this.dataFetched"></app-chart>
         </div>
         <div class="col-8">
             <div class="row">
@@ -43,12 +43,12 @@
             </div>
         </div>
     </div>
-    <div class="row gx-0 custom-gutter">
-        <div class="col-7">
-            <app-chart [chartType]="'NETWORK'" [chartSubj]="chartSubj"></app-chart>
-        </div>
+    <div class="row gx-0 custom-gutter2">
         <div class="col-4">
-            <app-chart [chartType]="'DISK'" [chartSubj]="chartSubj" [width]="'100%'"></app-chart>
+            <app-chart [chartType]="'DISK'" [chartSubj]="chartSubj" [dataFetched]="this.dataFetched"></app-chart>
+        </div>
+        <div class="col-8">
+            <app-chart [chartType]="'NETWORK'" [chartSubj]="chartSubj" [dataFetched]="this.dataFetched"></app-chart>
         </div>
     </div>
 </ng-template>

@@ -29,6 +29,7 @@ import { SocketService } from './services/socket.service';
 import { DateFnsModule } from 'ngx-date-fns';
 import { WidgetComponent } from './widgets/dashboard/widget/widget.component';
 import { BigwidgetComponent } from './widgets/dashboard/bigwidget/bigwidget.component';
+import { AlertComponent } from './alert/alert.component';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -58,7 +59,8 @@ const appRoutes: Routes = [
     SidebarNewComponent,
     CanvasComponent,
     WidgetComponent,
-    BigwidgetComponent
+    BigwidgetComponent,
+    AlertComponent
   ],
   imports: [
     FormsModule,

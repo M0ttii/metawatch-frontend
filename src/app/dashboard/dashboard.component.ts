@@ -1,10 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { format } from 'date-fns';
-import { BehaviorSubject, take } from 'rxjs';
+import { BehaviorSubject, Subject, Subscription, take } from 'rxjs';
 import { About, Image, Volume } from '../models/dashboard.models';
+import { Message } from '../models/message.model';
+import { SocketMessage } from '../models/socketmessage.model';
 import { HttpserviceService } from '../services/httpservice.service';
 import { LoadingService } from '../services/loading.service';
 import { NavtitleService } from '../services/navtitle.service';
+import { SocketService } from '../services/socket.service';
 
 
 @Component({
@@ -17,15 +20,21 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public images: Image[];
   public about: About;
 
+  protected chartSubj: Subject<SocketMessage<Message>>;
+  public metricsSub: Subscription;
+
+  public dataFetched: BehaviorSubject<Boolean> = new BehaviorSubject(false);
+
   public volumesFetched: BehaviorSubject<Boolean> = new BehaviorSubject(false);
   public imagesFetched: BehaviorSubject<Boolean> = new BehaviorSubject(false);
   public aboutFetched: BehaviorSubject<Boolean> = new BehaviorSubject(false);
 
-  constructor(private titleService: NavtitleService, protected loadingService: LoadingService, private httpservice: HttpserviceService) {
+  constructor(private titleService: NavtitleService, protected loadingService: LoadingService, private httpservice: HttpserviceService, private socketService: SocketService) {
 
-   }
+  }
   ngOnDestroy(): void {
-    
+    this.chartSubj.unsubscribe();
+    this.metricsSub.unsubscribe();
   }
 
   ngOnInit(): void {
@@ -51,7 +60,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           (image: Image, index) => {
             let imageCreated = new Date(image.created);
             images[index].created = format(imageCreated, 'dd.MM.yyyy');
-    
+
             let bytes = image.size;
             images[index].size_string = this.formatBytes(bytes);
           }
@@ -70,9 +79,19 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.aboutFetched.next(true);
       }
     )
+    this.chartSubj = new Subject<SocketMessage<Message>>();
+    this.metricsSub = this.socketService.createCombinedStream().subscribe({
+      next: (message: SocketMessage<Message>) => {
+          console.log(message)
+          if(this.dataFetched.getValue() == false) this.dataFetched.next(true);
+          this.chartSubj.next(message);
+      },
+      error: error => console.log('WS Error: ', error),
+      complete: () => console.log("WS complete")
+  })
   }
 
-  getVolumesFromAPI(){
+  getVolumesFromAPI() {
     return new Promise(resolve => {
       this.httpservice.getVolumes().pipe(
         take(1)
@@ -84,7 +103,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     })
   }
 
-  getImagesFromAPI(){
+  getImagesFromAPI() {
     return new Promise(resolve => {
       this.httpservice.getImages().pipe(
         take(1)
@@ -96,7 +115,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     })
   }
 
-  getAboutFromAPI(){
+  getAboutFromAPI() {
     return new Promise(resolve => {
       this.httpservice.getDockerStats().pipe(
         take(1)
@@ -118,5 +137,5 @@ export class DashboardComponent implements OnInit, OnDestroy {
     const i = Math.floor(Math.log(bytes) / Math.log(k))
 
     return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`
-}
+  }
 }

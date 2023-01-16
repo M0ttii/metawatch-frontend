@@ -22,6 +22,14 @@
     padding-right: 2.2rem;
 }
 
+.custom-gutter2 > [class*='col-'] {
+    padding-right: 2.2rem;
+}
+
+.custom-gutter2 > [class*="col-"]:last-child {
+    padding-right: 4.3rem;
+  }
+
 .custom-gutter > [class*="col-"]:first-child {
   /* padding-left: 1rem; */
 }
@@ -30,10 +38,6 @@
   /* padding-right: 1rem; */
 }
 
-.custom-gutter2 > [class*='col-'] {
-    padding-right: 1rem;
-    padding-left: 1rem;
-}
 
 .wrapper{
     padding: 0px !important;

@@ -8,14 +8,16 @@ body {
         radial-gradient(at 80% 65%, hsl(263.01, 100%, 10%) 0, transparent 55%),
         radial-gradient(at 20% 65%, hsl(263.01, 100%, 10%) 0, transparent 55%); */
     height: 100%;
+    overflow-x: hidden;
 }
 
 :root {
     --background-color-backup: #1c1e2c;
     --background-color: #171825 !important;
+
+    --widget-color: ;
     --unitheight: 20vh !important;
     --unitmargin: 2.2rem !important;
     --textheight: 30px;
-    --widgetColor: rgb(39, 41, 54);
     --widgetHeight: 180px !important;
 }

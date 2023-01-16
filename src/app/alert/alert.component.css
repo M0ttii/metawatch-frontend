@@ -1,0 +1,139 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.success {
+    background: #051b11;
+}
+
+.message .text.success-text{
+    color: #75b798;
+}
+
+.calert.danger{
+    border-color: #842029;
+    background: #2c0b0e;
+}
+
+.message .text.danger-text{
+    color: #ea868f;
+    font-weight: 600;
+}
+
+.calert {
+    border: 1px solid;
+    border-color: #0f5132;
+    z-index: 600;
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    border-radius: 12px;
+    padding: 20px 35px 20px 25px;
+    box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transform: translateX(calc(100% + 30px));
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+}
+
+.calert.active {
+    transform: translateX(0%);
+}
+
+.calert .calert-content {
+    display: flex;
+    align-items: center;
+}
+
+.calert-content .check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    min-width: 35px;
+    background-color: #4070f4;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 50%;
+}
+
+.calert-content .message {
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px;
+}
+
+.message .text {
+    font-size: 16px;
+    font-weight: 400;
+    color: #ffffffb0;
+}
+
+.message .text.text-1 {
+    font-weight: 600;
+
+}
+
+.calert .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    padding: 5px;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.calert .close:hover {
+    opacity: 1;
+}
+
+.calert .progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+
+}
+
+.calert .progress:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #4070f4;
+}
+
+.progress.active:before {
+    animation: progress 5s linear forwards;
+}
+
+@keyframes progress {
+    100% {
+        right: 100%;
+    }
+}
+
+button {
+    padding: 12px 20px;
+    font-size: 20px;
+    outline: none;
+    border: none;
+    background-color: #4070f4;
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #0e4bf1;
+}
+
+.calert.active~button {
+    pointer-events: none;
+}

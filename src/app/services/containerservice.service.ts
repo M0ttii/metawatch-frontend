@@ -33,6 +33,7 @@ export class ContainerserviceService{
       ).subscribe(
         (data: Container[]) => {
           resolve(data)
+          this.containerList = data;
         }
       )
     })
@@ -56,8 +57,8 @@ export class ContainerserviceService{
 
 
   public getContainerById(id: string): Container{
-    let containers = this.getContainers();
-    let container = containers.find(i => i.id.substring(0,12) === id.substring(0, 12))
+    console.log(this.containerList)
+    let container = this.containerList.find(i => i.id === id)
     return container;
   }
 

@@ -6,11 +6,14 @@
   /* padding-left: 1rem; */
 }
   
-.custom-gutter > [class*="col-"]:last-child {
+/* .custom-gutter > [class*="col-"]:last-child {
   padding-right: 1.5rem; 
-}
+} */
 
 .custom-gutter2 > [class*='col-'] {
-    padding-right: 1rem;
-    padding-left: 1rem;
+  padding-right: 2.2rem;
+}
+
+.custom-gutter2 > [class*="col-"]:last-child {
+  padding-right: 4.3rem;
 }

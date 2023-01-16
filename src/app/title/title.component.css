@@ -13,6 +13,10 @@
     display: inline-block;
 }
 
+.sticky-top{
+    z-index: 500 !important;
+}
+
 .sub{
     font-family: 'Rubik', sans-serif;
     font-size: 20px;

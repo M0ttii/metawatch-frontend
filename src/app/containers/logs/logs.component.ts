@@ -19,7 +19,7 @@ export class LogsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.logList = this.logService.getLogs();
+    /* this.logList = this.logService.getLogs();
 
     this.logSubj.subscribe(message => {
       let logObject = {} as Log;
@@ -29,7 +29,7 @@ export class LogsComponent implements OnInit {
       this.logList.push(logObject);
 
 
-    })
+    }) */
   }
 
   public expandLogBlock(){

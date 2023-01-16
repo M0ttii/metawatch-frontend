@@ -34,15 +34,17 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="row gx-0 custom-gutter">
-                            <div class="col-4"> <!-- <div class="col-4 flex-column me-4"> -->
+                            <div class="col-4 flex-column"> <!-- <div class="col-4 flex-column me-4"> -->
                                 <app-smallwidget [type]="'network'" [container]="this.container" [dataFetched]="this.dataFetched"></app-smallwidget>
+                                <app-smallwidget [type]="'images'" [container]="this.container" [dataFetched]="this.dataFetched"></app-smallwidget>
                             </div>
-                            <div class="col-6">
+                            <div class="col-8">
+                                <app-logs></app-logs>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-12">
                         <div class="row gx-0 custom-gutter">
                             <div class="col-4">
@@ -50,17 +52,16 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
-        <div class="row gx-0 custom-gutter">
-            <div class="col-7">
+        <div class="row gx-0 custom-gutter2">
+            <div class="col-4">
+                <app-chart [chartType]="'DISK'" [chartSubj]="chartSubj"></app-chart>
+            </div>
+            <div class="col-8">
                 <app-chart [chartType]="'NETWORK'" [chartSubj]="chartSubj"></app-chart>
             </div>
-            <div class="col-4">
-                <app-chart [chartType]="'DISK'" [chartSubj]="chartSubj" [width]="'100%'"></app-chart>
-            </div>
-            .
         </div>
     </ng-container>
     <ng-template #elseOffline>

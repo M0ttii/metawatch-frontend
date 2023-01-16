@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Container } from '../models/container.model';
 import { Containers } from '../models/containers.model';
 import { Volume, Image, About } from '../models/dashboard.models';
@@ -11,7 +12,7 @@ import { SingleContainer } from '../models/singlecontainer.model';
   providedIn: 'root'
 })
 export class HttpserviceService {
-  private url: string = "http://localhost:8080/";
+  private url: string = 'http://' + environment.apiURL + '/';
   private localFile: string = "assets/testlog.json";
 
   constructor(private http: HttpClient) {

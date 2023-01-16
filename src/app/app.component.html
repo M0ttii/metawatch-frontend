@@ -2,6 +2,7 @@
   <div class="header" *ngIf="authGuard.isAuthenticated()">
   </div>
   <ng-container *ngIf="authGuard.isAuthenticated(); else elseBlock">
+    <app-alert></app-alert>
     <div class="row h-100">
       <div class="col-1">
         <app-sidebar-new></app-sidebar-new>

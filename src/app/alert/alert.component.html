@@ -1,0 +1,23 @@
+<!-- Remove 'active' class, this is just to show in Codepen thumbnail -->
+<div class="calert success" [ngClass]="active ? 'active' : ''">
+    <div class="calert-content">
+        <!-- <i class="fas fa-solid fa-check check"></i> -->
+        <div class="message text-start">
+            <span class="text text-1 success-text">{{this.title}}</span>
+            <span class="text ">{{this.message}}</span>
+        </div>
+    </div>
+    <!-- <i class="fa-solid fa-xmark close"></i> -->
+    <!-- Remove 'active' class, this is just to show in Codepen thumbnail -->
+    <!-- <div class="progress" [ngClass]="active ? 'active' : ''"></div> -->
+</div>
+
+<!-- <div class="calert danger" [ngClass]="active ? 'active' : ''" *ngIf="this.type == 'danger'">
+    <div class="calert-content">
+        <div class="message text-start">
+            <span class="text text-1 danger-text">{{this.title}}</span>
+            <span class="text text-2">{{this.message}}</span>
+        </div>
+    </div>
+
+</div> -->
