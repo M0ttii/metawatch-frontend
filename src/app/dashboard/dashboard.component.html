@@ -9,21 +9,22 @@
 </ng-container>
 <ng-template #elseBlock>
     <div class="row mh-100 gx-0 custom-gutter">
-        <div class="col-4 flex-column">
+        <div class="col-xxl-4 col-xl-7 flex-xxl-column">
             <app-chart [chartType]="'CPU'" [chartSubj]="chartSubj" [width]="'100%'" [dataFetched]="this.dataFetched"></app-chart>
             <app-chart [chartType]="'MEMORY'" [chartSubj]="chartSubj" [width]="'100%'" [dataFetched]="this.dataFetched"></app-chart>
+            <app-chart [chartType]="'DISK'" [chartSubj]="chartSubj" [dataFetched]="this.dataFetched"></app-chart>
         </div>
-        <div class="col-8">
+        <div class="col-xxl-8 col-xl-5">
             <div class="row">
                 <div class="col-12">
                     <div class="row gx-0 custom-gutter">
-                        <div class="col-4">
+                        <div class="col-xxl-4 col-xl-11">
                             <app-widget [type]="'resources'" [about]="this.about" [aboutFetched]="this.aboutFetched"></app-widget>
                         </div>
-                        <div class="col-4">
+                        <div class="col-xxl-4 col-xl-11">
                             <app-widget [type]="'global'" [about]="this.about" [aboutFetched]="this.aboutFetched"></app-widget>
                         </div>
-                        <div class="col-4">
+                        <div class="col-xxl-4 col-xl-11">
                             <app-widget [type]="'docker'" [about]="this.about" [aboutFetched]="this.aboutFetched"></app-widget>
                         </div>
                     </div>
@@ -32,23 +33,28 @@
             <div class="row">
                 <div class="col-12">
                     <div class="row gx-0 custom-gutter">
-                        <div class="col-6"> <!-- <div class="col-4 flex-column me-4"> -->
+                        <div class="col-xxl-6 col-xl-11"> <!-- <div class="col-4 flex-column me-4"> -->
                             <app-bigwidget [type]="'images'" [images]="this.images" [imagesFetched]="this.imagesFetched"></app-bigwidget>
                         </div>
                         <div class="col-6">
                             <app-bigwidget [type]="'volumes'" [volumes]="this.volumes" [volumesFetched]="this.volumesFetched"></app-bigwidget>
                         </div>
                     </div>
+                    <div class="row gx-0 custom-gutter">
+                        <div class="col-12">
+                            <app-chart [chartType]="'NETWORK'" [chartSubj]="chartSubj" [dataFetched]="this.dataFetched"></app-chart>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row gx-0 custom-gutter2">
+    <!-- <div class="row gx-0 custom-gutter2">
         <div class="col-4">
             <app-chart [chartType]="'DISK'" [chartSubj]="chartSubj" [dataFetched]="this.dataFetched"></app-chart>
         </div>
         <div class="col-8">
             <app-chart [chartType]="'NETWORK'" [chartSubj]="chartSubj" [dataFetched]="this.dataFetched"></app-chart>
         </div>
-    </div>
+    </div> -->
 </ng-template>

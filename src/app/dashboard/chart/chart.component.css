@@ -25,7 +25,8 @@
 
 .globalWrapper{
     /* height: calc(var(--unitheight) + 10px) !important; */
-    height: calc((var(--widgetHeight) * 1.5) + calc(var(--unitmargin) / 2));
+    min-height: calc((var(--widgetHeight) * 1.5) + calc(var(--unitmargin) / 2));
+    height: calc((var(--widgetHeightR) * 1.5) + calc(var(--unitmargin) / 2));
     width: 100% !important;
     margin-bottom: var(--unitmargin);
     transition: all .2s ease-in-out;

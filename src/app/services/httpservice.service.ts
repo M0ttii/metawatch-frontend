@@ -23,6 +23,10 @@ export class HttpserviceService {
     return this.http.get<Container[]>(this.url + 'containers/all');
   }
 
+  /* public getContainerMetrics(cid: string, from: Date, to: Date): Observable{
+
+  } */
+
   public getLogs(): Observable<Log[]>{
     return this.http.get<Log[]>(this.localFile);
   }

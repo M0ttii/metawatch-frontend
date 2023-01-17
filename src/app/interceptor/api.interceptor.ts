@@ -3,9 +3,10 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpErrorResponse
 } from '@angular/common/http';
-import { finalize, Observable } from 'rxjs';
+import { catchError, finalize, Observable, retry, tap, timer } from 'rxjs';
 import { LoadingService } from '../services/loading.service';
 
 @Injectable()
@@ -14,13 +15,29 @@ export class ApiInterceptor implements HttpInterceptor {
   constructor(private loader: LoadingService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log('intercept')
-    this.loader.show();
-    return next.handle(request).pipe(
-      finalize(() => {
-        console.log('interception finished')
-        this.loader.hide();
-      })
-    );
+    if (!request.headers.has("Upgrade")){
+      console.log('intercept')
+      this.loader.show();
+      return next.handle(request).pipe(
+        retry({count: 2, delay: this.shouldRetry}),
+        catchError((error: HttpErrorResponse) => {
+          console.log("Error while intercepting")
+          this.loader.error.next(true);
+          throw error;
+        }),
+        finalize(() => {
+          console.log('interception finished')
+          this.loader.hide();
+        })
+      );
+    }
+  }
+
+  shouldRetry(error: HttpErrorResponse){
+    if(error.status >= 500){
+      console.log("retry");
+      return timer(1000);
+    }
+    throw error;
   }
 }

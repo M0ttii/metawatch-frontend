@@ -20,4 +20,5 @@ body {
     --unitmargin: 2.2rem !important;
     --textheight: 30px;
     --widgetHeight: 180px !important;
+    --widgetHeightR: 15.5vh;
 }
