@@ -1,13 +1,20 @@
-<nav class="navbar sidebar fixed-left justify-content-center">
-    <ul class="navbar-nav d-flex w-100">
-        <li class="nav-item h-100 w-100" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-            <img src="../../../assets/homeicon.svg" alt="">
-        </li>
-        <li class="nav-item h-100 w-100" routerLink="./containers" routerLinkActive="active">
-            <img src="../../../assets/containericon.svg" alt="">
-        </li>
-        <li class="nav-item h-100 w-100">
-            <img src="../../../assets/alerticon.svg" alt="">
-        </li>
-    </ul>
+<nav class="navbar sidebar fixed-left">
+    <div class="d-flex justify-content-center w-100">
+        <ul class="navbar-nav d-flex w-100">
+            <li class="nav-item h-100 w-100" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <img id="nav" src="../../../assets/homeicon.svg" alt="">
+            </li>
+            <li class="nav-item h-100 w-100" routerLink="./containers" routerLinkActive="active">
+                <img id="nav" src="../../../assets/containericon.svg" alt="">
+            </li>
+            <li class="nav-item h-100 w-100">
+                <img id="nav" src="../../../assets/alerticon.svg" alt="">
+            </li>
+        </ul>
+        <ul class="navbar-nav d-flex w-100" id="group">
+            <li class="nav-item w-100">
+                <img id="color" src="../../../assets/colors/red.svg" alt="">
+            </li>
+        </ul>
+    </div>
 </nav>

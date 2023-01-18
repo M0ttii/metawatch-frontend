@@ -1,9 +1,15 @@
 .sidebar{
     position: relative;
-    background: #1E202D;
+    background: var(--sidebarColor);
     left: 0;
     width: 90px;
     height: 100vh;
+}
+
+#group{
+    position: absolute;
+    display: inline-block;
+    bottom: 15px;
 }
 
 .sidebar.fixed-left{
@@ -32,8 +38,13 @@ ul{
     padding-left: 10px
 }
 
-img{
-    height: 35px;
+
+#nav{
+    height: 35px !important;
+}
+
+#color{
+    height: 15px !important;
 }
 
 /* li:hover{

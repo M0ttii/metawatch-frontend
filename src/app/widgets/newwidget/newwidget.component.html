@@ -1,0 +1,171 @@
+<ng-container *ngIf="this.dataFetched.getValue() == true">
+    <ng-container *ngIf="this.type == 'state'">
+        <div class="wrapper text-start">
+            <div class="contentContainer">
+                <div class="textWrapper">
+                    <p class="headingText">STATE</p>
+                    <span class="stateText">{{this.container.state.status}}</span>
+                </div>
+            </div>
+            <div class="tableWrapper">
+                <table>
+                    <tr>
+                        <td>
+                            <span class="firstText">SINCE</span>
+                        </td>
+                        <td class="stateSecond">
+                            <span class="secondText">{{this.container.state.date_distance}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="firstText">RESTART POLICY</span>
+                        </td>
+                        <td class="second">
+                            <span class="secondText">{{this.container.state.restart_policy}}</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="this.type == 'network'">
+        <div class="wrapper text-start">
+            <div class="contentContainer">
+                <div class="textWrapper">
+                    <p class="headingText">NETWORKS</p>
+                    <span class="stateText">{{this.container.networks.lenght}} NETWORKS</span>
+                </div>
+            </div>
+            <div class="tableWrapper">
+                <table>
+                    <tr>
+                        <td>
+                            <span class="firstText">NAME</span>
+                        </td>
+                        <td class="second">
+                            <span class="secondText">{{this.container.networks[0].name}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="firstText">DOCKER ID</span>
+                        </td>
+                        <td class="second">
+                            <span class="secondText">{{this.container.networks[0].id.substring(0, 12)}}...</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="firstText">IP ADRESS</span>
+                        </td>
+                        <td class="second">
+                            <span class="secondText">{{this.container.networks[0].ip}}</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="this.type == 'images'">
+        <div class="wrapper text-start">
+            <div class="contentContainer">
+                <div class="textWrapper">
+                    <p class="headingText">IMAGE</p>
+                    <span class="stateText">3 IMAGES</span>
+                </div>
+            </div>
+            <div class="tableWrapper">
+                <table>
+                    <tr>
+                        <td> 
+                            <span class="firstText">NAME</span>
+                        </td>
+                        <td class="second">
+                            <span class="secondText">{{this.container.image.tag}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="firstText">SIZE</span>
+                        </td>
+                        <td class="second">
+                            <span class="secondText">{{this.container.image.size_string}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="firstText">CREATED</span>
+                        </td>
+                        <td class="second">
+                            <span class="secondText">{{this.container.image.created}}</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="this.type == 'exposure'">
+        <div class="wrapper text-start">
+            <div class="contentContainer">
+                <div class="textWrapper">
+                    <p class="headingText">EXPOSURE</p>
+                    <span class="stateText">3 Ports</span>
+                </div>
+            </div>
+            <div class="tableWrapper">
+                <table *ngFor="let port of this.container.ports">
+                    <tr>
+                        <td>
+                            <span class="firstText">{{port.host_ip}}</span>
+                        </td>
+                        <td class="expSecond">
+                            <span class="secondText">{{port.host_port}}:{{port.port}}</span>
+                        </td>
+                        <td class="expThird">
+                            <span class="firstText">{{port.proto.toUpperCase()}}</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="this.type == 'volumes'">
+        <div class="wrapper text-start">
+            <div class="contentContainer">
+                <div class="textWrapper">
+                    <p class="headingText">VOLUMES</p>
+                    <span class="stateText">3 VOLUMES</span>
+                </div>
+            </div>
+            <div class="tableWrapper">
+                <table>
+                    <tr>
+                        <td>
+                            <span class="firstText">NAME</span>
+                        </td>
+                        <td class="second">
+                            <span class="secondText">N/A</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="firstText">PATH</span>
+                        </td>
+                        <td class="second">
+                            <span class="secondText">N/A</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="firstText">DRIVER</span>
+                        </td>
+                        <td class="second">
+                            <span class="secondText">N/A</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </ng-container>
+</ng-container>

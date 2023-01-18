@@ -77,7 +77,7 @@ export class ContainerComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        console.log("Container leave")
+        console.log("Unsubscribe Container Metrics")
         this.containerService.isContainerSite = false;
         this.chartSubj.unsubscribe();
         this.metricsSub.unsubscribe();

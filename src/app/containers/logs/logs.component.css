@@ -21,7 +21,7 @@
   color: white !important;
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
-  font-size: 22px;
+  font-size: 30px;
   margin-top: 10px;
   line-height: 25px;
 }
@@ -79,13 +79,27 @@
   height: calc(var(--widgetHeight) * 2 + var(--unitmargin));
   width: 100%;
   position: relative;
-  background: #191b29; /* #24263a; */
+  background: #161823; /* #24263a; */
   /* background: linear-gradient(90deg, rgba(39,41,54,1) 0%, rgb(30, 31, 41) 100%); */
   -webkit-box-shadow: 0 .125rem .875rem 0 rgba(0,0,0,.16); 
   box-shadow: 0 .125rem .875rem 0 rgba(0,0,0,.16);
   border-radius: 20px;
   transition: transform .2s;
   overflow-y: auto;
+}
+
+.logBlock::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px; 
+  padding: 2px; 
+  background:linear-gradient(90deg,#4757E3,#5A2BDF); 
+  -webkit-mask: 
+     linear-gradient(#fff 0 0) content-box, 
+     linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude; 
 }
 
 

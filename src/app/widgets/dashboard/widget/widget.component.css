@@ -1,7 +1,7 @@
 .wrapper{
     position: relative;
     width: 100% !important;
-    background-color: #191b29;
+    background-color: var(--widgetBgColor);
     height: var(--widgetHeight);
     border-radius: 20px;
     margin-bottom: var(--unitmargin);
@@ -10,7 +10,7 @@
 }
 
 .iconWrapper{
-    background: rgb(109, 34, 248);
+    background: var(--widgetIconColor);
     position: relative;
     width: 50px;
     height: 50px;

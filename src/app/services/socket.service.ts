@@ -24,7 +24,7 @@ export class SocketService{
 
   public connectToSocketServer(uri: string){
     this.socket = webSocket<SocketMessage<any>>(uri);
-    console.log('Connected to SocketServer')
+    console.log('Build SocketObject')
   }
 
   createEventStream(): Observable<EventMessage>{
@@ -44,7 +44,7 @@ export class SocketService{
 
   public createCombinedStream(): Observable<SocketMessage<Message>>{
     if (this.socket == null) return;
-    console.log("Metrics subscribed")
+    console.log("Metrics subscribed, connected to server")
     if(this.combObs == undefined){
       this.combObs = this.socket.multiplex(
         () => ({ container_id: "_all", event: 'subscribe', type: "combined_metrics" }),

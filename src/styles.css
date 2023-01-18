@@ -13,12 +13,23 @@ body {
 
 :root {
     --background-color-backup: #1c1e2c;
-    --background-color: #171825 !important;
 
-    --widget-color: ;
     --unitheight: 20vh !important;
     --unitmargin: 2.2rem !important;
     --textheight: 30px;
-    --widgetHeight: 180px !important;
+    --widgetHeight: 190px !important;
     --widgetHeightR: 15.5vh;
+
+    /*Colors*/
+    --background-color: #171825 !important;
+    --sidebarColor: #1D1E2E;
+    --sidebarIconColor: ;
+    --graphBgColor: #161823;
+    --graphHeadingColor: ;
+    --widgetBgColor: #191b29;
+    --widgetIconColor: rgb(109, 34, 248);
+    --widgetIconBackgroundColor: ;
+    --widgetStateColor: ;
+    --titleColor: ;
+
 }

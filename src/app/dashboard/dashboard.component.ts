@@ -33,6 +33,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   }
   ngOnDestroy(): void {
+    console.log("Unsubscribe Global Metrics")
     this.chartSubj.unsubscribe();
     this.metricsSub.unsubscribe();
   }

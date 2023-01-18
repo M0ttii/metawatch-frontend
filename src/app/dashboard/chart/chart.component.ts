@@ -27,9 +27,15 @@ export class ChartComponent implements OnInit, AfterViewInit{
 
   colors = {
     purple: {
+      default: "rgba(71, 87, 227, 1)",
+      half: "rgba(71, 87, 227, 0.2)",
+      quarter: "rgba(71, 87, 227, 0.1)",
+      zero: "rgba(71, 87, 227, 0)"
+    },
+    purple_backup: {
       default: "rgba(149, 76, 233, 1)",
-      half: "rgba(149, 76, 233, 0.5)",
-      quarter: "rgba(149, 76, 233, 0.25)",
+      half: "rgba(149, 76, 233, 0.2)",
+      quarter: "rgba(149, 76, 233, 0.1)",
       zero: "rgba(149, 76, 233, 0)"
     },
     blue: {
@@ -227,8 +233,8 @@ export class ChartComponent implements OnInit, AfterViewInit{
   private getGradient(){ 
     let gradient = this.context.createLinearGradient(0, 25, 0, 300);
     gradient.addColorStop(0, this.colors.purple.half);
-    gradient.addColorStop(0.35, this.colors.purple.quarter);
-    gradient.addColorStop(1, this.colors.purple.zero);
+    gradient.addColorStop(0.2, this.colors.purple.quarter);
+    gradient.addColorStop(0.8, this.colors.purple.zero);
 
     return gradient;
   }

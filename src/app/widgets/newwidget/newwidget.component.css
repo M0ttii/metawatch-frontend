@@ -1,0 +1,125 @@
+.wrapper{
+    position: relative;
+    width: 100% !important;
+    background-color: #161823;
+    min-height: var(--widgetHeight);
+    height: var(--widgetHeightR);
+    /* border-radius: 20px;
+    border-width: 2px;
+    border-style: solid; */
+    /* border-image: linear-gradient(to right, darkblue, darkorchid) 1;; */
+    margin-bottom: var(--unitmargin);
+    box-shadow: 0px 7px 10px 0px rgba(0,0,0,0.2)
+}
+
+.wrapper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 20px; 
+    padding: 2px; 
+    background:linear-gradient(90deg,#4757e370,#5b2bdf70); 
+    -webkit-mask: 
+       linear-gradient(#fff 0 0) content-box, 
+       linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude; 
+  }
+
+
+.textWrapper{
+    position: relative;
+    display: inline-block;
+}
+
+.headingText{
+    color: white !important;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    margin-bottom: 1px;
+    line-height: 20px;
+}
+
+.contentContainer{
+    position: relative;
+    top: 20px;
+    margin-left: 15px;
+}
+
+.tableWrapper{
+    margin-top: 20px;
+    margin-left: 15px;
+    width: 300px;
+    bottom: 0px !important;
+    position: absolute;
+    overflow: hidden;
+}
+
+
+table {
+    left: 0;
+    border-spacing: 0 8px;
+    border-collapse: separate;
+}
+
+table td{
+    word-wrap: break-word;         /* All browsers since IE 5.5+ */
+    overflow-wrap: break-word;
+    width: 1500px;
+}
+
+tr {
+    padding-top: 10px;
+}
+
+
+.expSecond{
+    padding-left: 40px;
+}
+
+.expThird{
+    padding-left: 40px;
+}
+
+.stateSecond{
+    padding-left: 0px;
+    line-height: 15px;
+}
+
+.second{
+    padding-left: 40px;
+    line-height: 15px;
+}
+
+.firstText{
+    color: white;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.secondText{
+    color: white;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 300;
+    font-size: 16 px;
+}
+
+.stateText{
+    color: #2FDBA7;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    line-height: 10px;
+    font-size: 13px;
+}
+
+.state{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    background-color: rgb(20, 136, 107);
+    width: 100px;
+    height: 20px;
+    border-radius: 5px;
+}
