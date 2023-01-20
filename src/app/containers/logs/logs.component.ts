@@ -19,8 +19,6 @@ export class LogsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.logList = this.logService.getLogs();
-
     this.logSubj.subscribe(message => {
       let logObject = {} as Log;
       logObject.when = message.message.when;

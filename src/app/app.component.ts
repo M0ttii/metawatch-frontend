@@ -35,4 +35,8 @@ export class AppComponent implements OnInit, OnDestroy{
   })
     console.log("AppComponent init")
   }
+
+  setStyle(){
+    return {'--sidebarColor': '#1D1E2E'}
+  }
 }

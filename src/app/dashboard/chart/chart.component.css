@@ -30,10 +30,15 @@
     height: calc((var(--widgetHeightR) * 1.5) + calc(var(--unitmargin) / 2));
     width: 100% !important;
     margin-bottom: var(--unitmargin);
-    transition: all .2s ease-in-out;
+    transition: all .2s;
+    transition-timing-function: cubic-bezier(.17,.67,.59,1.02);
     background: var(--graphBgColor);
     box-shadow: 0px 7px 10px 0px rgba(0,0,0,0.2);
     border-radius: 20px;
+}
+
+.globalWrapper:hover::before{
+    background: linear-gradient(90deg,#4757e3,#5b2bdf); 
 }
 
 .globalWrapper::before {
@@ -61,7 +66,7 @@
 }
 
 .globalWrapper:hover{
-    transform: scale(1.01);
+    transform: scale(1.05);
 }
 
 /* .chart-heading{

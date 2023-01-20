@@ -9,7 +9,19 @@
     border-style: solid; */
     /* border-image: linear-gradient(to right, darkblue, darkorchid) 1;; */
     margin-bottom: var(--unitmargin);
-    box-shadow: 0px 7px 10px 0px rgba(0,0,0,0.2)
+    box-shadow: 0px 7px 10px 0px rgba(0,0,0,0.2);
+    transition: transform .2s;
+    transition-timing-function: cubic-bezier(.17,.67,.59,1.02);
+}
+
+.wrapper:hover{
+    transform: scale(1.05);
+}
+
+
+
+.wrapper:hover::before{
+    background: linear-gradient(90deg,#4757e3,#5b2bdf); 
 }
 
 .wrapper::before {

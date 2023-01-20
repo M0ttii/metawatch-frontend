@@ -73,11 +73,11 @@ const appRoutes: Routes = [
     DateFnsModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [/* {
+  providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: ApiInterceptor,
     multi: true,
-  } */, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}, SocketService],
+  }, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}, SocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
