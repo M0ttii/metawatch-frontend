@@ -17,9 +17,7 @@ export class AppComponent implements OnInit, OnDestroy{
   public eventSub: Subscription;
 
   constructor(protected authGuard: AuthGuardService, private loadingService: LoadingService, private socketService: SocketService, private alertService: AlertService){
-    if(!localStorage.getItem('currentUser')){
-      authGuard.redirect('/login')
-    }
+  
 
   }
   ngOnDestroy(): void {

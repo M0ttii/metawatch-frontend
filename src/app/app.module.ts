@@ -31,6 +31,7 @@ import { WidgetComponent } from './widgets/dashboard/widget/widget.component';
 import { BigwidgetComponent } from './widgets/dashboard/bigwidget/bigwidget.component';
 import { AlertComponent } from './alert/alert.component';
 import { NewwidgetComponent } from './widgets/newwidget/newwidget.component';
+import { AuthInterceptor } from './interceptor/auth.interceptor';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -72,11 +73,11 @@ const appRoutes: Routes = [
     DateFnsModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [{
+  providers: [/* {
     provide: HTTP_INTERCEPTORS,
     useClass: ApiInterceptor,
     multi: true,
-  }, SocketService],
+  } */, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}, SocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

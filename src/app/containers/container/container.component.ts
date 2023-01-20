@@ -25,6 +25,7 @@ export class ContainerComponent implements OnInit, OnDestroy {
     protected logsObs: Observable<SocketMessage<Log>>;
     protected chartSubj: Subject<SocketMessage<Message>>;
     protected logSubj: Subject<SocketMessage<Log>>;
+    protected logSub: Subscription;
     private metricsSub: Subscription;
 
     public dataFetched: BehaviorSubject<Boolean> = new BehaviorSubject(false);
@@ -50,6 +51,14 @@ export class ContainerComponent implements OnInit, OnDestroy {
                 this.titleService.set(this.container.name.substring(1), this.container.id.substring(0, 30))
             }
         );
+        this.logSubj = new Subject<SocketMessage<Log>>();
+        this.logSub = this.socketService.createLogStream(CID, "logs").subscribe({
+            next: (message: SocketMessage<Log>) => {
+                console.log("Log:", message)
+                this.logSubj.next(message)
+
+            }
+        })
         this.chartSubj = new Subject<SocketMessage<Message>>();
         this.metricsSub = this.socketService.createStream(CID, "metrics").subscribe({
             next: (message: SocketMessage<Message>) => {
@@ -81,6 +90,7 @@ export class ContainerComponent implements OnInit, OnDestroy {
         this.containerService.isContainerSite = false;
         this.chartSubj.unsubscribe();
         this.metricsSub.unsubscribe();
+        this.logSub.unsubscribe();
         /* this.metricsSub.unsubscribe();
         this.logsSub.unsubscribe(); */
     }

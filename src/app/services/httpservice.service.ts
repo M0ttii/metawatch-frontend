@@ -12,7 +12,7 @@ import { SingleContainer } from '../models/singlecontainer.model';
   providedIn: 'root'
 })
 export class HttpserviceService {
-  private url: string = 'http://' + environment.apiURL + '/';
+  private url: string = 'http://' + environment.apiURL + '/api/';
   private localFile: string = "assets/testlog.json";
 
   constructor(private http: HttpClient) {

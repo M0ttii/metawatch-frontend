@@ -70,7 +70,7 @@ export class SocketService{
 
   public createLogStream(container_ID: string, type: string): Observable<SocketMessage<Log>> {
     if (this.socket == null) return;
-    console.log("Metrics subscribed")
+    console.log("Logssubscribed")
     if(this.logsObs == undefined){
       this.logsObs = this.socket.multiplex(
         () => ({ container_id: container_ID, event: 'subscribe', type: type }),

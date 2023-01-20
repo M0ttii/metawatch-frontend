@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,8 +12,8 @@ export class LoginComponent implements OnInit {
   private mail: string;
   private wrongDetails: boolean = false;
 
-  constructor(private router: Router) {
-    if(localStorage.getItem('currentUser')){
+  constructor(private router: Router, private authService: AuthService) {
+    if (localStorage.getItem('currentUser')) {
       console.log("Already authenticated")
       this.router.navigate([''])
     }
@@ -21,28 +22,23 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  switchToRegister(){
+  switchToRegister() {
     this.register = true;
   }
 
-  switchToLogin(){
+  switchToLogin() {
     this.register = false;
   }
 
-  login(value){
-    if(!(value.mail == "admin")){
-      this.wrongDetails = true;
-      return;
-    } 
-    if(!(value.mail == "admin")){
-      this.wrongDetails = true;
-      return;
-    }
-    this.wrongDetails = false;
-    this.redirect()
+  login(value) {
+    console.log(value.user, value.pass)
+    this.authService.login(value.user, value.pass).subscribe({
+      next: (data: any) => console.log(data),
+      error: err => console.log(err)}
+    )
   }
 
-  redirect(){
+  redirect() {
     localStorage.setItem('currentUser', 'admin');
     this.router.navigate([''])
   }

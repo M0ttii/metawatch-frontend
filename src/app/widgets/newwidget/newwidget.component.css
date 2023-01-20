@@ -50,7 +50,8 @@
 .tableWrapper{
     margin-top: 20px;
     margin-left: 15px;
-    width: 300px;
+    padding-right: 20px;
+    width: 100%;
     bottom: 0px !important;
     position: absolute;
     overflow: hidden;
@@ -61,6 +62,7 @@ table {
     left: 0;
     border-spacing: 0 8px;
     border-collapse: separate;
+    display: block;
 }
 
 table td{

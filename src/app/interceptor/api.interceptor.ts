@@ -14,8 +14,7 @@ export class ApiInterceptor implements HttpInterceptor {
 
   constructor(private loader: LoadingService) {}
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    if (!request.headers.has("Upgrade")){
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
       console.log('intercept')
       this.loader.show();
       return next.handle(request).pipe(
@@ -30,7 +29,6 @@ export class ApiInterceptor implements HttpInterceptor {
           this.loader.hide();
         })
       );
-    }
   }
 
   shouldRetry(error: HttpErrorResponse){

@@ -18,8 +18,8 @@ export class ContainerserviceService{
   public activeContainerID: string;
   public isContainerSite: boolean = false;
 
-  public containers: Subject<Container[]> = new Subject<Container[]>;
-  public containerList: Container[] = new Array<Container>;
+  public containers: Subject<Container[]> = new Subject<Container[]>();
+  public containerList: Container[] = new Array<Container>();
   public isFetched: Boolean = false;
 
   constructor(private httpservice: HttpserviceService) {
@@ -28,9 +28,7 @@ export class ContainerserviceService{
 
   getContainersFromAPI(){
     return new Promise(resolve => {
-      this.httpservice.getAllContainers().pipe(
-        take(1)
-      ).subscribe(
+      this.httpservice.getAllContainers().subscribe(
         (data: Container[]) => {
           resolve(data)
           this.containerList = data;
