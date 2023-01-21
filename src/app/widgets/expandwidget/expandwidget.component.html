@@ -1,0 +1,77 @@
+<ng-container *ngIf="this.type == 'networks'">
+    <div class="expandBlock" [ngClass]="expandNetworks ? 'expand' : 'noExpand'">
+        <div class="contentContainer">
+            <div class="textWrapper">
+                <p class="headingText">NETWORKS</p>
+            </div>
+        </div>
+        <div class="tableWrapper">
+            <table *ngFor="let network of this.container.networks; let i = index">
+                <span class="stateText">Network {{i+1}}</span>
+                <tr>
+                    <td>
+                        <span class="firstText">NAME</span>
+                    </td>
+                    <td class="second">
+                        <span class="secondText">{{network.name}}</span>
+                    </td>
+                </tr>
+                <tr class="p">
+                    <td>
+                        <span class="firstText">DOCKER ID</span>
+                    </td>
+                    <td class="second">
+                        <span class="secondText">{{network.id.substring(0, 12)}}.</span>
+                    </td>
+                </tr>
+                <tr class="p">
+                    <td>
+                        <span class="firstText">IP ADRESS</span>
+                    </td>
+                    <td class="second">
+                        <span class="secondText">{{network.ip}}</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="this.type == 'volumes'">
+    <div class="expandBlock" [ngClass]="expandVolumes ? 'expand' : 'noExpand'">
+        <div class="contentContainer">
+            <div class="textWrapper">
+                <p class="headingText">VOLUMES</p>
+            </div>
+        </div>
+        <div class="tableWrapper">
+            <table *ngFor="let volume of this.container.volumes; let i = index">
+                <span class="stateText">Volume {{i+1}}</span>
+                <tr>
+                    <td>
+                        <span class="firstText">NAME</span>
+                    </td>
+                    <td class="second">
+                        <span class="secondText">{{volume.name}}</span>
+                    </td>
+                </tr>
+                <tr class="p">
+                    <td>
+                        <span class="firstText">PATH</span>
+                    </td>
+                    <td class="second">
+                        <span class="secondText">{{volume.mountpoint}}.</span>
+                    </td>
+                </tr>
+                <tr class="p">
+                    <td>
+                        <span class="firstText">SIZE</span>
+                    </td>
+                    <td class="second">
+                        <span class="secondText">{{volume.size}}</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</ng-container>

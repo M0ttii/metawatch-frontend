@@ -54,7 +54,7 @@ export class ContainerComponent implements OnInit, OnDestroy {
         this.logSubj = new Subject<SocketMessage<Log>>();
         this.logSub = this.socketService.createLogStream(CID, "logs").subscribe({
             next: (message: SocketMessage<Log>) => {
-                console.log("Log:", message)
+                console.log("LogID:", CID)
                 this.logSubj.next(message)
 
             }

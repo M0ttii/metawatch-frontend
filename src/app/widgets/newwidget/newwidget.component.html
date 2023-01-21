@@ -1,6 +1,7 @@
 <ng-container *ngIf="this.dataFetched.getValue() == true">
     <ng-container *ngIf="this.type == 'state'">
         <div class="wrapper text-start">
+            <!-- <button class="btn btn-primary" (click)="expandBlock()">Expand</button> -->
             <div class="contentContainer">
                 <div class="textWrapper">
                     <p class="headingText">STATE</p>
@@ -31,6 +32,10 @@
     </ng-container>
     <ng-container *ngIf="this.type == 'network'">
         <div class="wrapper text-start">
+            <app-expandwidget [expandNetworks]="expandNetworksV" [container]="this.container" [type]="'networks'"></app-expandwidget>
+            <div class="click" (click)="expandNetworks()">
+                <span class="clickSpan">»</span>
+            </div>
             <div class="contentContainer">
                 <div class="textWrapper">
                     <p class="headingText">NETWORKS</p>
@@ -132,39 +137,73 @@
     </ng-container>
     <ng-container *ngIf="this.type == 'volumes'">
         <div class="wrapper text-start">
+            <app-expandwidget [expandVolumes]="expandVolumesV" [container]="this.container" [type]="'volumes'"></app-expandwidget>
+            <div class="click" (click)="expandVolumes()">
+                <span class="clickSpan">»</span>
+            </div>
             <div class="contentContainer">
                 <div class="textWrapper">
                     <p class="headingText">VOLUMES</p>
-                    <span class="stateText">3 VOLUMES</span>
+                    <span class="stateText">2 VOLUMES</span>
                 </div>
             </div>
             <div class="tableWrapper">
-                <table>
-                    <tr>
-                        <td>
-                            <span class="firstText">NAME</span>
-                        </td>
-                        <td class="second">
-                            <span class="secondText">N/A</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="firstText">PATH</span>
-                        </td>
-                        <td class="second">
-                            <span class="secondText">N/A</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="firstText">DRIVER</span>
-                        </td>
-                        <td class="second">
-                            <span class="secondText">N/A</span>
-                        </td>
-                    </tr>
-                </table>
+                <ng-container *ngIf="container.volumes.length != 0; else elseBlock">
+                    <table>
+                        <tr>
+                            <td>
+                                <span class="firstText">NAME</span>
+                            </td>
+                            <td class="second">
+                                <span class="secondText">{{container.volumes[0].name}}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="firstText">PATH</span>
+                            </td>
+                            <td class="second">
+                                <span class="secondText">{{container.volumes[0].mountpoint}}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="firstText">SIZE</span>
+                            </td>
+                            <td class="second">
+                                <span class="secondText">{{container.volumes[0].size}}</span>
+                            </td>
+                        </tr>
+                    </table>
+                </ng-container>
+                <ng-template #elseBlock>
+                    <table [hidden]="container.volumes.length != 0">
+                        <tr>
+                            <td>
+                                <span class="firstText">NAME</span>
+                            </td>
+                            <td class="second">
+                                <span class="secondText">N/A</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="firstText">PATH</span>
+                            </td>
+                            <td class="second">
+                                <span class="secondText">N/A</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="firstText">SIZE</span>
+                            </td>
+                            <td class="second">
+                                <span class="secondText">N/A</span>
+                            </td>
+                        </tr>
+                    </table>
+                </ng-template>
             </div>
         </div>
     </ng-container>

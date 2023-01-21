@@ -7,6 +7,7 @@ export interface SingleContainer {
     state: State;
     ports: Port[];
     networks: Network[];
+    volumes: Volume[];
 }
 
 export interface State {
@@ -14,6 +15,13 @@ export interface State {
     since: string;
     restart_policy: string;
     date_distance: string;
+}
+
+export interface Volume {
+    name: string;
+    mountpoint: string;
+    size: number;
+    used_by: string;
 }
 
 export interface Network{

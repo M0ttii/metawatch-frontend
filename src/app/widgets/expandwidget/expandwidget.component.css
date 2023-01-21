@@ -1,48 +1,16 @@
-.wrapper{
-    position: relative;
-    width: 100% !important;
-    background-color: #161823;
-    min-height: var(--widgetHeight);
-    height: var(--widgetHeightR);
-    /* border-radius: 20px;
-    border-width: 2px;
-    border-style: solid; */
-    /* border-image: linear-gradient(to right, darkblue, darkorchid) 1;; */
-    margin-bottom: var(--unitmargin);
-    box-shadow: 0px 7px 10px 0px rgba(0,0,0,0.2);
-    transition: transform .2s;
-    transition-timing-function: cubic-bezier(.17,.67,.59,1.02);
-}
-
-.wrapper:hover{
-    transform: scale(1.05);
-    z-index: 5000;
-}
-
-.click{
-    cursor: pointer;
-    appearance: none;
-    z-index: 7000;
-    width: auto;
+.expandBlock {
+    z-index: 9000 !important;
+    right: 0;
+    width: 300px;
     height: auto;
-    color: white;
+    border-radius: 20px;
+    background-color: #161823;
     position: absolute;
-    top: 15px;
-    right: 10px;
+    display: none;
+    transform: translate(310px);
 }
 
-.clickSpan{
-    font-size: 60px;
-    line-height: 15px;
-}
-
-
-
-.wrapper:hover::before{
-    background: linear-gradient(90deg,#4757e3,#5b2bdf); 
-}
-
-.wrapper::before {
+.expandBlock::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -56,10 +24,14 @@
             mask-composite: exclude; 
   }
 
+.expand {
+    display:block !important;
+}
 
-.textWrapper{
+.contentContainer{
     position: relative;
-    display: inline-block;
+    top: 20px;
+    margin-left: 15px;
 }
 
 .headingText{
@@ -71,20 +43,21 @@
     line-height: 20px;
 }
 
-.contentContainer{
-    position: relative;
-    top: 20px;
-    margin-left: 15px;
-}
-
 .tableWrapper{
     margin-top: 20px;
     margin-left: 15px;
     padding-right: 20px;
     width: 100%;
-    bottom: 0px !important;
-    position: absolute;
+    position: relative;
     overflow: hidden;
+}
+
+.stateText{
+    color: #2FDBA7;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    line-height: 10px;
+    font-size: 13px;
 }
 
 
@@ -93,6 +66,7 @@ table {
     border-spacing: 0 8px;
     border-collapse: separate;
     display: block;
+    margin-top: 30px;
 }
 
 table td{
@@ -101,7 +75,8 @@ table td{
     width: 1500px;
 }
 
-tr {
+
+.p{
     padding-top: 10px;
 }
 
@@ -136,22 +111,4 @@ tr {
     font-family: 'Rubik', sans-serif;
     font-weight: 300;
     font-size: 16 px;
-}
-
-.stateText{
-    color: #2FDBA7;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    line-height: 10px;
-    font-size: 13px;
-}
-
-.state{
-    display: flex;
-    align-items: center;
-    text-align: center;
-    background-color: rgb(20, 136, 107);
-    width: 100px;
-    height: 20px;
-    border-radius: 5px;
 }

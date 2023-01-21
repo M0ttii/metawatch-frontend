@@ -32,6 +32,7 @@ import { BigwidgetComponent } from './widgets/dashboard/bigwidget/bigwidget.comp
 import { AlertComponent } from './alert/alert.component';
 import { NewwidgetComponent } from './widgets/newwidget/newwidget.component';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { ExpandwidgetComponent } from './widgets/expandwidget/expandwidget.component';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -63,7 +64,8 @@ const appRoutes: Routes = [
     WidgetComponent,
     BigwidgetComponent,
     AlertComponent,
-    NewwidgetComponent
+    NewwidgetComponent,
+    ExpandwidgetComponent
   ],
   imports: [
     FormsModule,

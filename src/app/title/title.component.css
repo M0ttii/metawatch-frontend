@@ -2,8 +2,9 @@
     font-family: 'Quicksand', sans-serif;
     font-size: 30px;
     font-weight: 600;
+    letter-spacing: 0.5px;
     line-height: 0px;
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.9);
     margin-bottom: 5px;
 }
 

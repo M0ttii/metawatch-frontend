@@ -94,12 +94,9 @@
   border-radius: 20px;
   transition: transform .2s;
   transition-timing-function: cubic-bezier(.17,.67,.59,1.02);
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 
-.logBlock:hover {
-  transform: scale(1.05);
-}
 
 .logBlock::before {
   content: "";
