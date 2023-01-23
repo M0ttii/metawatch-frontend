@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -6,6 +6,7 @@ import { Container } from '../models/container.model';
 import { Containers } from '../models/containers.model';
 import { Volume, Image, About } from '../models/dashboard.models';
 import { Log } from '../models/log.model';
+import { Metric } from '../models/metrics.model';
 import { SingleContainer } from '../models/singlecontainer.model';
 
 @Injectable({
@@ -23,9 +24,11 @@ export class HttpserviceService {
     return this.http.get<Container[]>(this.url + 'containers/all');
   }
 
-  /* public getContainerMetrics(cid: string, from: Date, to: Date): Observable{
-
-  } */
+  public getMetricsHistory(id: string, from: string, to: string): Observable<Metric[]>{
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("from", from).append("to", to)
+    return this.http.get<Metric[]>(this.url + 'containers/' + id + '/metrics', {params: queryParams});
+  }
 
   public getLogs(): Observable<Log[]>{
     return this.http.get<Log[]>(this.localFile);

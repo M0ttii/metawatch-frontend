@@ -9,9 +9,10 @@ import { Log } from 'src/app/models/log.model';
 import { Container } from 'src/app/models/container.model';
 import { NavtitleService } from 'src/app/services/navtitle.service';
 import { SingleContainer } from 'src/app/models/singlecontainer.model';
-import { formatDistance } from 'date-fns';
+import { formatDistance, formatISO, getMinutes, parseISO, subMinutes } from 'date-fns';
 import format from 'date-fns/format';
 import { LoadingService } from 'src/app/services/loading.service';
+import { Metric } from 'src/app/models/metrics.model';
 
 @Component({
     selector: 'app-container',
@@ -29,6 +30,9 @@ export class ContainerComponent implements OnInit, OnDestroy {
     private metricsSub: Subscription;
 
     public dataFetched: BehaviorSubject<Boolean> = new BehaviorSubject(false);
+    public metricsFetched: BehaviorSubject<Boolean> = new BehaviorSubject(false);
+
+    public cpuHistory = [];
     
 
 
@@ -51,6 +55,32 @@ export class ContainerComponent implements OnInit, OnDestroy {
                 this.titleService.set(this.container.name.substring(1), this.container.id.substring(0, 30))
             }
         );
+        
+        let toDate = new Date()
+        let fromDate = subMinutes(toDate, 30);
+
+        this.containerService.getMetricsFromAPI(CID, formatISO(fromDate), formatISO(toDate)).then(
+            (data: Metric[]) => {
+                let metricsHistory = data;
+                let filtered: Metric[] = []
+                metricsHistory.forEach(e => {
+                    const minute = getMinutes(parseISO(e.when))
+                    if (filtered.find(ee => getMinutes(parseISO(ee.when)) === minute) == undefined){
+                        filtered.push(e)
+                    }
+                })
+                filtered.map(entry => {
+                    entry.when = format(parseISO(entry.when), "HH:mm:ss")
+                })
+                filtered.forEach(entry => {
+                    this.cpuHistory.push({x: entry.when, y: entry.cpu.perc})
+                })
+                console.log("MetricUnfiltered: ", metricsHistory)
+                console.log("MetricFiltered: ", filtered)
+                this.metricsFetched.next(true);
+            }
+        )
+
         this.logSubj = new Subject<SocketMessage<Log>>();
         this.logSub = this.socketService.createLogStream(CID, "logs").subscribe({
             next: (message: SocketMessage<Log>) => {

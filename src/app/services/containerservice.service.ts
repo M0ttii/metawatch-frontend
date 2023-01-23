@@ -4,6 +4,7 @@ import { resolve } from 'path';
 import { Observable, Subject, Subscription, take } from 'rxjs';
 import { Container } from '../models/container.model';
 import { Containers } from '../models/containers.model';
+import { Metric } from '../models/metrics.model';
 import { SingleContainer } from '../models/singlecontainer.model';
 import { ContainerState } from './containerstate.enum';
 import { HttpserviceService } from './httpservice.service';
@@ -37,6 +38,18 @@ export class ContainerserviceService{
     })
   }
 
+  getMetricsFromAPI(id: string, from: string, to: string){
+    return new Promise(resolve => {
+      this.httpservice.getMetricsHistory(id, from, to).pipe(
+        take(1)
+      ).subscribe(
+        (data: Metric[]) => {
+          resolve(data)
+        }
+      )
+    })
+  }
+
   getContainerFromAPI(id: string){
     return new Promise(resolve => {
       this.httpservice.getContainer(id).pipe(
@@ -52,7 +65,6 @@ export class ContainerserviceService{
   public getContainer(): Container{
     return this.getContainers().find(i => i.id === this.activeContainerID);
   }
-
 
   public getContainerById(id: string): Container{
     console.log(this.containerList)

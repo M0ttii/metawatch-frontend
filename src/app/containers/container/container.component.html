@@ -12,7 +12,7 @@
     <ng-container *ngIf="this.container.state.status == 'RUNNING'; else elseOffline">
         <div class="row mh-100 gx-0 custom-gutter">
             <div class="col-4 flex-column">
-                <app-chart [chartType]="'CPU'" [chartSubj]="chartSubj" [width]="'100%'"></app-chart>
+                <app-chart [chartType]="'CPU'" [chartSubj]="chartSubj" [width]="'100%'" [cpu]="this.cpuHistory" [hidden]="this.metricsFetched.getValue() == false"></app-chart>
                 <app-chart [chartType]="'MEMORY'" [chartSubj]="chartSubj" [width]="'100%'"></app-chart>
             </div>
             <div class="col-8">

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { isBefore, parseISO } from 'date-fns';
 import { environment } from 'src/environments/environment';
 import { Observable, tap, shareReplay, catchError } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -10,7 +11,7 @@ import { Observable, tap, shareReplay, catchError } from 'rxjs';
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
 
    }
 
@@ -19,7 +20,12 @@ export class AuthService {
     return this.http.post<any>(url, {username, password})
       .pipe(
         catchError((err: HttpErrorResponse) => {throw err}),
-        tap(res => this.setSession(res)),
+        tap(res => {
+          this.setSession(res)
+          this.router.navigate(['']).then(() => {
+            window.location.reload()
+          })
+        }),
         shareReplay()
       )
   }
@@ -34,6 +40,9 @@ export class AuthService {
   logout(){
     localStorage.removeItem("token");
     localStorage.removeItem("expire");
+    this.router.navigate(['login']).then(() => {
+      window.location.reload()
+    })
   }
 
   public isLoggedIn(){

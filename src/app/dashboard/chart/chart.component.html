@@ -1,7 +1,8 @@
 <div class="globalWrapper" [ngStyle]="{'width': width}">
   <div class="header">
     <p class="headerText">{{chartType}}</p>
-    <img class="settings" src="../../../assets/gear.svg" alt="">
+    <div class="timeSwitch">Live</div>
+    <!-- <img class="settings" src="../../../assets/gear.svg" alt=""> -->
   </div>
   <div class="wrapper">
     <div class="row" *ngIf="this.dataLoading && this.offline == false">

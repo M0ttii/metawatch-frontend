@@ -19,11 +19,13 @@ export class ChartComponent implements OnInit, AfterViewInit{
   @Input() chartSubj: Subject<SocketMessage<Message>>;
   @Input() width: string;
   @Input() offline: Boolean = false;
+  @Input() cpu;
 
   private context: CanvasRenderingContext2D;
   private endGradient: CanvasGradient = null;
 
   public dataLoading: Boolean = true;
+
 
   colors = {
     purple: {
@@ -61,7 +63,7 @@ export class ChartComponent implements OnInit, AfterViewInit{
       this.chart.update();
   
       if(this.chartType == "CPU"){
-        this.chartData.datasets[0].data = [];
+        this.chartData.datasets[0].data = this.cpu;
         this.chartSubj.subscribe(message => {
           if (this.chartData.datasets[0].data.length >= 100){
             this.chartData.datasets[0].data.shift();

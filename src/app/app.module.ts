@@ -37,7 +37,8 @@ import { ExpandwidgetComponent } from './widgets/expandwidget/expandwidget.compo
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'containers', component: ContainersComponent, canActivate: [AuthGuardService]},
-  {path: '', component: DashboardComponent, canActivate: [AuthGuardService]},
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService]},
+  {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
   {path: 'container/:id', component: ContainerComponent, canActivate: [AuthGuardService]}
 ]
 

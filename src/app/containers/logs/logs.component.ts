@@ -24,6 +24,9 @@ export class LogsComponent implements OnInit {
       logObject.when = message.message.when;
       logObject.type = message.message.type;
       logObject.data = message.message.data;
+      if(this.logList.length > 20){
+        this.logList.shift();
+      }
       this.logList.push(logObject);
 
 
