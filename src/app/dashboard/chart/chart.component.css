@@ -99,6 +99,7 @@
 }
 
 .timeSwitch{
+    cursor: pointer;
     color: #2FDBA7;
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
@@ -115,6 +116,96 @@
 }
 
 .timeSwitch::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 20px; 
+    padding: 2px; 
+    background:linear-gradient(90deg,#4757e370,#5b2bdf70); 
+    -webkit-mask: 
+       linear-gradient(#fff 0 0) content-box, 
+       linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude; 
+  }
+
+.expand {
+    display: block !important;
+}
+
+.timeSwitchExpand {
+    display: none;
+    color: #2FDBA7;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    line-height: 30px;
+    z-index: 1000;
+    background-color: #161823;
+    border-radius: 20px;
+    width: 80px !important;
+    height: 30px;
+    position: absolute;
+    margin-right: 0;
+    right: 0;
+    top: 40px;
+
+    transform-origin: top center;
+    animation: scaleZ 300ms (1 * 60ms) ease-in-out forwards
+    /* transform: translate(0, 20px); */
+}
+
+.timeSwitchExpand::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 20px; 
+    padding: 2px; 
+    background:linear-gradient(90deg,#4757e370,#5b2bdf70); 
+    -webkit-mask: 
+       linear-gradient(#fff 0 0) content-box, 
+       linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude; 
+  }
+
+  .timeSwitchExpand2 {
+    display: none;
+    color: #2FDBA7;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    line-height: 30px;
+    z-index: 1000;
+    background-color: #161823;
+    border-radius: 20px;
+    width: 80px !important;
+    height: 30px;
+    position: absolute;
+    margin-right: 0;
+    right: 0;
+    top: 74px;
+
+    transform-origin: top center;
+    transform: scaleZ 300ms (2 * 60ms) ease-in-out forwards
+    /* transform: translate(0, 20px); */
+}
+
+@keyframes scaleZ {
+    0% {
+      opacity: 0;
+      transform: scale(0);
+    }
+    
+    80% {
+      transform: scale(1.07);
+    }
+  
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+.timeSwitchExpand2::before {
     content: "";
     position: absolute;
     inset: 0;

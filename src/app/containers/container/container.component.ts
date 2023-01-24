@@ -13,6 +13,7 @@ import { formatDistance, formatISO, getMinutes, parseISO, subMinutes } from 'dat
 import format from 'date-fns/format';
 import { LoadingService } from 'src/app/services/loading.service';
 import { Metric } from 'src/app/models/metrics.model';
+import { StringMappingType } from 'typescript';
 
 @Component({
     selector: 'app-container',
@@ -32,22 +33,27 @@ export class ContainerComponent implements OnInit, OnDestroy {
     public dataFetched: BehaviorSubject<Boolean> = new BehaviorSubject(false);
     public metricsFetched: BehaviorSubject<Boolean> = new BehaviorSubject(false);
 
+    public CID: string;
+
+
     public cpuHistory = [];
+    public memoryHistory = [];
     
 
 
-    constructor(private route: ActivatedRoute, private containerService: ContainerserviceService, private socketService: SocketService, private titleService: NavtitleService, public loadingService: LoadingService) {
+    constructor(private route: ActivatedRoute, public containerService: ContainerserviceService, private socketService: SocketService, private titleService: NavtitleService, public loadingService: LoadingService) {
     }
 
     ngOnInit(): void {
+        this.containerService.inMetricLoading = false;
         this.titleService.set("");
         console.log(this.containerService.activeContainerID)
         this.containerService.isContainerSite = true;
-        let CID = this.containerService.activeContainerID;
-        if(CID == undefined){
-            CID = localStorage.getItem("currentID");
+        this.CID = this.containerService.activeContainerID;
+        if(this.CID == undefined){
+            this.CID = localStorage.getItem("currentID");
         }
-        this.containerService.getContainerFromAPI(CID).then(
+        this.containerService.getContainerFromAPI(this.CID).then(
             (data: SingleContainer) => {
                 this.container = this.makeFormatWork(data);
                 console.log("Container fetched")
@@ -57,9 +63,9 @@ export class ContainerComponent implements OnInit, OnDestroy {
         );
         
         let toDate = new Date()
-        let fromDate = subMinutes(toDate, 30);
+        let fromDate = subMinutes(toDate, 5);
 
-        this.containerService.getMetricsFromAPI(CID, formatISO(fromDate), formatISO(toDate)).then(
+        /* this.containerService.getMetricsFromAPI(CID, formatISO(fromDate), formatISO(toDate)).then(
             (data: Metric[]) => {
                 let metricsHistory = data;
                 let filtered: Metric[] = []
@@ -79,18 +85,30 @@ export class ContainerComponent implements OnInit, OnDestroy {
                 console.log("MetricFiltered: ", filtered)
                 this.metricsFetched.next(true);
             }
+        ) */
+
+        this.containerService.getMetricsFromAPI(this.CID, formatISO(fromDate), formatISO(toDate), 20, false).then(
+            (data: Metric[]) => {
+                let metricsHistory = data;
+                metricsHistory.forEach(entry => {
+                    entry.when = format(parseISO(entry.when), "HH:mm:ss")
+                    this.cpuHistory.push({x: entry.when, y: entry.cpu.perc})
+                    this.memoryHistory.push({x: entry.when, y: entry.memory.perc})
+                })
+                console.log("MetricUnfiltered: ", metricsHistory)
+                this.metricsFetched.next(true);
+            }
         )
 
         this.logSubj = new Subject<SocketMessage<Log>>();
-        this.logSub = this.socketService.createLogStream(CID, "logs").subscribe({
+        this.logSub = this.socketService.createLogStream(this.CID, "logs").subscribe({
             next: (message: SocketMessage<Log>) => {
-                console.log("LogID:", CID)
                 this.logSubj.next(message)
 
             }
         })
         this.chartSubj = new Subject<SocketMessage<Message>>();
-        this.metricsSub = this.socketService.createStream(CID, "metrics").subscribe({
+        this.metricsSub = this.socketService.createStream(this.CID, "metrics").subscribe({
             next: (message: SocketMessage<Message>) => {
                 console.log("RECSV")
                 this.chartSubj.next(message);

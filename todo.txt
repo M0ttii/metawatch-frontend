@@ -1,0 +1,6 @@
+1. Metric-Switcher (Time)
+2. Navbar
+3. Images/Volumes schöner machen
+4. Logs fixen
+5. Container-List anpassen
+6. 

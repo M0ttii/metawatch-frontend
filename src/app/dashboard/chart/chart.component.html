@@ -1,17 +1,19 @@
 <div class="globalWrapper" [ngStyle]="{'width': width}">
   <div class="header">
     <p class="headerText">{{chartType}}</p>
-    <div class="timeSwitch">Live</div>
+    <div class="timeSwitch" (click)="expand()">{{this.timeSpans[0]}}</div>
+    <div class="timeSwitchExpand" [ngClass]="expandSpans ? 'expand' : 'noExpand'" (click)="changeTimeSpan(this.timeSpans[1])">{{this.timeSpans[1]}}</div>
+    <div class="timeSwitchExpand2" [ngClass]="expandSpans ? 'expand' : 'noExpand'" (click)="changeTimeSpan(this.timeSpans[2])">{{this.timeSpans[2]}}</div>
     <!-- <img class="settings" src="../../../assets/gear.svg" alt=""> -->
   </div>
   <div class="wrapper">
-    <div class="row" *ngIf="this.dataLoading && this.offline == false">
+    <div class="row" *ngIf="this.dataLoading.getValue() && this.offline == false">
       <div class="col-12">
         <app-loader></app-loader>
       </div>
     </div>
     <canvas baseChart #myChart width="100%" height="180px" [type]="'line'" [data]="chartData"
-      [hidden]="this.dataLoading" [options]="chartOptions" *ngIf="this.offline == false">
+      [hidden]="this.dataLoading.getValue()" [options]="chartOptions" *ngIf="this.offline == false">
     </canvas>
     <div class="noDataWrapper" *ngIf="this.offline == true">
       <img src="../../../assets/triangle.svg" alt="">

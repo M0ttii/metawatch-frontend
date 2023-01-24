@@ -24,9 +24,9 @@ export class HttpserviceService {
     return this.http.get<Container[]>(this.url + 'containers/all');
   }
 
-  public getMetricsHistory(id: string, from: string, to: string): Observable<Metric[]>{
+  public getMetricsHistory(id: string, from: string, to: string, amount: number): Observable<Metric[]>{
     let queryParams = new HttpParams();
-    queryParams = queryParams.append("from", from).append("to", to)
+    queryParams = queryParams.append("from", from).append("to", to).append("amount", amount)
     return this.http.get<Metric[]>(this.url + 'containers/' + id + '/metrics', {params: queryParams});
   }
 

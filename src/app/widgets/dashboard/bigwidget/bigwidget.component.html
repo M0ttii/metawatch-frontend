@@ -1,13 +1,10 @@
 <div class="globalWrapper" *ngIf="this.type == 'images'">
     <ng-container *ngIf="this.imagesFetched.getValue() == true">
         <div class="wrapper text-start">
-            <div class="container">
-                <div class="iconWrapper"></div>
+            <div class="contentContainer">
                 <div class="textWrapper">
                     <p class="headingText">Images</p>
-                    <div class="state d-flex justify-content-center align-middle">
                         <span class="stateText">{{images.length}} IMAGES</span>
-                    </div>
                 </div>
             </div>
         </div>
@@ -45,13 +42,10 @@
 <div class="globalWrapper" *ngIf="this.type == 'volumes'">
     <ng-container *ngIf="this.volumesFetched.getValue() == true">
         <div class="wrapper text-start">
-            <div class="container">
-                <div class="iconWrapper"></div>
+            <div class="contentContainer">
                 <div class="textWrapper">
                     <p class="headingText">Volumes</p>
-                    <div class="state d-flex justify-content-center align-middle">
-                        <span class="stateText">Status</span>
-                    </div>
+                        <span class="stateText">2 Volumes</span>
                 </div>
             </div>
         </div>

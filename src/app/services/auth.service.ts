@@ -46,7 +46,7 @@ export class AuthService {
   }
 
   public isLoggedIn(){
-    console.log(isBefore(new Date(), this.getExp()))
+    /* console.log(isBefore(new Date(), this.getExp())) */
     return isBefore(new Date(), this.getExp())
   }
 

@@ -1,11 +1,13 @@
 import { Component, OnInit, ElementRef, ViewChild, AfterViewInit, Input} from '@angular/core';
 import { ChartConfiguration, ChartOptions, } from 'chart.js';
 import 'chartjs-adapter-date-fns';
-import { format } from 'date-fns';
+import { format, formatISO, parseISO, subMinutes } from 'date-fns';
 import { BaseChartDirective } from 'ng2-charts';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Message } from 'src/app/models/message.model';
+import { Metric } from 'src/app/models/metrics.model';
 import { SocketMessage } from 'src/app/models/socketmessage.model';
+import { ContainerserviceService } from 'src/app/services/containerservice.service';
 
 @Component({
   selector: 'app-chart',
@@ -20,11 +22,16 @@ export class ChartComponent implements OnInit, AfterViewInit{
   @Input() width: string;
   @Input() offline: Boolean = false;
   @Input() cpu;
+  @Input() memory;
+  @Input() CID: string;
+
+  public timeSpans: string[] = ["30 m", "1 h", "Live"];
+  public expandSpans: boolean = false;
 
   private context: CanvasRenderingContext2D;
   private endGradient: CanvasGradient = null;
 
-  public dataLoading: Boolean = true;
+  public dataLoading: BehaviorSubject<Boolean> = new BehaviorSubject(true);
 
 
   colors = {
@@ -52,7 +59,7 @@ export class ChartComponent implements OnInit, AfterViewInit{
     }
   };
 
-  constructor() {
+  constructor(private containerService: ContainerserviceService) {
   }
 
   ngAfterViewInit(): void {
@@ -63,38 +70,47 @@ export class ChartComponent implements OnInit, AfterViewInit{
       this.chart.update();
   
       if(this.chartType == "CPU"){
+        /* this.chartData.datasets[0].data = []; */
         this.chartData.datasets[0].data = this.cpu;
+        this.chart.update()
+        this.dataLoading.next(false);
         this.chartSubj.subscribe(message => {
-          if (this.chartData.datasets[0].data.length >= 100){
-            this.chartData.datasets[0].data.shift();
+          if(this.timeSpans[0] == "Live"){
+            if (this.chartData.datasets[0].data.length >= 100){
+              this.chartData.datasets[0].data.shift();
+            }
+            let data = message.message.cpu.perc;
+            let dateString = message.message.when;
+            let date = new Date(dateString);
+            let dateFormat = format(date, 'HH:mm:ss')
+    
+    
+            this.chartData.datasets[0].data.push({x: dateFormat, y: data});
+            this.chart.update()
+            this.dataLoading.next(false);
           }
-          let data = message.message.cpu.perc;
-          let dateString = message.message.when;
-          let date = new Date(dateString);
-          let dateFormat = format(date, 'HH:mm:ss')
-  
-  
-          this.chartData.datasets[0].data.push({x: dateFormat, y: data});
-          this.chart.update()
-          this.dataLoading = false;
         })
       }
       if(this.chartType == "MEMORY"){
-        this.chartData.datasets[0].data = [];
+        this.chartData.datasets[0].data = this.memory;
+        this.chart.update()
+        this.dataLoading.next(false);
         this.chartData.datasets[0].label = "MEMORY";
         this.chartSubj.subscribe(message => {
-          if (this.chartData.datasets[0].data.length >= 100){
-            this.chartData.datasets[0].data.shift();
+          if(this.timeSpans[0] == "Live"){
+            if (this.chartData.datasets[0].data.length >= 100){
+              this.chartData.datasets[0].data.shift();
+            }
+            let data = message.message.memory.perc;
+            let dateString = message.message.when;
+            let date = new Date(dateString);
+            let dateFormat = format(date, 'HH:mm:ss')
+    
+    
+            this.chartData.datasets[0].data.push({x: dateFormat, y: data});
+            this.chart.update()
+            this.dataLoading.next(false);
           }
-          let data = message.message.memory.perc;
-          let dateString = message.message.when;
-          let date = new Date(dateString);
-          let dateFormat = format(date, 'HH:mm:ss')
-  
-  
-          this.chartData.datasets[0].data.push({x: dateFormat, y: data});
-          this.chart.update()
-          this.dataLoading = false;
         })
       }
       if(this.chartType == "DISK"){
@@ -123,7 +139,7 @@ export class ChartComponent implements OnInit, AfterViewInit{
           this.chartData.datasets[0].data.push({x: dateFormat, y: dataRead});
           this.chartData.datasets[1].data.push({x: dateFormat, y: dataWrite});
           this.chart.update()
-          this.dataLoading = false;
+          this.dataLoading.next(false);
         })
       }
       if(this.chartType == "NETWORK"){
@@ -155,9 +171,89 @@ export class ChartComponent implements OnInit, AfterViewInit{
           this.chartData.datasets[0].data.push({x: dateFormat, y: dataIn});
           this.chartData.datasets[1].data.push({x: dateFormat, y: dataOut});
           this.chart.update()
-          this.dataLoading = false;
+          this.dataLoading.next(false);
         })
       }
+    }
+  }
+
+  expand(){
+    this.expandSpans = !this.expandSpans;
+    console.log("expand")
+  }
+
+  changeTimeSpan(time: string){
+    if (time == "1 h") {
+      this.timeSpans = ["1 h", "30 m", "Live"]
+      this.expandSpans = !this.expandSpans;
+      let toDate = new Date()
+      let fromDate = subMinutes(toDate, 60);
+      console.log("CID: ", this.CID)
+      this.containerService.getMetricsFromAPI(this.CID, formatISO(fromDate), formatISO(toDate), 40, true).then(
+        (data: Metric[]) => {
+          let metricsHistory = data;
+          if (this.chartType == "CPU") {
+            let cpu = [];
+            metricsHistory.forEach(entry => {
+              entry.when = format(parseISO(entry.when), "HH:mm:ss")
+              cpu.push({ x: entry.when, y: entry.cpu.perc })
+            })
+            this.chartData.datasets[0].data = cpu;
+            console.log(cpu)
+            this.chart.update()
+          }
+          if (this.chartType == "MEMORY") {
+            let memory = [];
+            metricsHistory.forEach(entry => {
+              entry.when = format(parseISO(entry.when), "HH:mm:ss")
+              memory.push({ x: entry.when, y: entry.memory.perc })
+            })
+            this.chartData.datasets[0].data = memory;
+            console.log(memory)
+            this.chart.update()
+          }
+        }
+      )
+      return;
+    }
+    if(time == "30 m"){
+      this.timeSpans = ["30 m", "1 h", "Live"]
+      this.expandSpans = !this.expandSpans;
+      let toDate = new Date()
+      let fromDate = subMinutes(toDate, 30);
+      this.containerService.getMetricsFromAPI(this.CID, formatISO(fromDate), formatISO(toDate), 20, true).then(
+        (data: Metric[]) => {
+          let metricsHistory = data;
+          if(this.chartType == "CPU"){
+            let cpu = [];
+            metricsHistory.forEach(entry => {
+                entry.when = format(parseISO(entry.when), "HH:mm:ss")
+                cpu.push({x: entry.when, y: entry.cpu.perc})
+            })
+            this.chartData.datasets[0].data = cpu;
+            console.log(cpu)
+            this.chart.update()
+          }
+          if(this.chartType == "MEMORY"){
+            let memory = [];
+            metricsHistory.forEach(entry => {
+                entry.when = format(parseISO(entry.when), "HH:mm:ss")
+                memory.push({x: entry.when, y: entry.memory.perc})
+            })
+            this.chartData.datasets[0].data = memory;
+            console.log(memory)
+            this.chart.update()
+          }
+      }
+      )
+      return;
+    }
+    if(time == "Live"){
+      this.timeSpans = ["Live", "30 m", "1 h"]
+      this.expandSpans = !this.expandSpans;
+      this.chartData.datasets[0].data = [];
+      this.chart.update()
+      return;
     }
   }
 
@@ -205,7 +301,7 @@ export class ChartComponent implements OnInit, AfterViewInit{
         time: {
           unit: 'minute',
           parser: 'HH:mm:ss',
-          stepSize: 1,
+          stepSize: 5,
           displayFormats: {
             minute: 'HH:mm:ss'
           }

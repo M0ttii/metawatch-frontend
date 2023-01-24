@@ -23,6 +23,8 @@ export class ContainerserviceService{
   public containerList: Container[] = new Array<Container>();
   public isFetched: Boolean = false;
 
+  public inMetricLoading: Boolean = false;
+
   constructor(private httpservice: HttpserviceService) {
     console.log("CS const")
   }
@@ -38,9 +40,12 @@ export class ContainerserviceService{
     })
   }
 
-  getMetricsFromAPI(id: string, from: string, to: string){
+  getMetricsFromAPI(id: string, from: string, to: string, amount: number, inMetrics: boolean){
+    if(inMetrics == true){
+      this.inMetricLoading = true;
+    }
     return new Promise(resolve => {
-      this.httpservice.getMetricsHistory(id, from, to).pipe(
+      this.httpservice.getMetricsHistory(id, from, to, amount).pipe(
         take(1)
       ).subscribe(
         (data: Metric[]) => {
