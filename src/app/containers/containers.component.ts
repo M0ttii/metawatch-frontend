@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Container } from '../models/container.model';
 import { Containers } from '../models/containers.model';
@@ -15,7 +16,7 @@ import { NavtitleService } from '../services/navtitle.service';
 export class ContainersComponent implements OnInit, OnDestroy {
   public containers: Container[];
 
-  constructor(private router: Router, public containerService: ContainerserviceService, public loadingService: LoadingService, private titleService: NavtitleService ) {
+  constructor(private router: Router, public containerService: ContainerserviceService, public loadingService: LoadingService, private titleService: NavtitleService, private title: Title ) {
 
    }
   ngOnDestroy(): void {
@@ -23,6 +24,7 @@ export class ContainersComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.titleService.set("Containers");
+    this.title.setTitle("Containers")
     this.containerService.getContainersFromAPI().then(
     (data: Container[]) => {
       this.containers = data;
@@ -37,7 +39,7 @@ export class ContainersComponent implements OnInit, OnDestroy {
   navigateToContainer(containerID: string){
     this.containerService.activeContainerID = containerID;
     localStorage.setItem("currentID", containerID);
-    this.router.navigate(['/container/' + containerID], {state: {data: {id: containerID}}})
+    this.router.navigate(['/containers/' + containerID], {state: {data: {id: containerID}}})
   }
 
 }

@@ -39,7 +39,7 @@ const appRoutes: Routes = [
   {path: 'containers', component: ContainersComponent, canActivate: [AuthGuardService]},
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService]},
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
-  {path: 'container/:id', component: ContainerComponent, canActivate: [AuthGuardService]}
+  {path: 'containers/:id', component: ContainerComponent, canActivate: [AuthGuardService]}
 ]
 
 @NgModule({

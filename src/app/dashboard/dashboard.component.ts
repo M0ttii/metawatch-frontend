@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { format } from 'date-fns';
 import { BehaviorSubject, Subject, Subscription, take } from 'rxjs';
 import { About, Image, Volume } from '../models/dashboard.models';
@@ -29,7 +30,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public imagesFetched: BehaviorSubject<Boolean> = new BehaviorSubject(false);
   public aboutFetched: BehaviorSubject<Boolean> = new BehaviorSubject(false);
 
-  constructor(private titleService: NavtitleService, protected loadingService: LoadingService, private httpservice: HttpserviceService, private socketService: SocketService) {
+  constructor(private titleService: NavtitleService, protected loadingService: LoadingService, private httpservice: HttpserviceService, private socketService: SocketService, private title: Title ) {
 
   }
   ngOnDestroy(): void {
@@ -40,6 +41,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.titleService.set("Dashboard");
+    this.title.setTitle("Dashboard")
     this.getVolumesFromAPI().then(
       (data: Volume[]) => {
         let volumes = data;

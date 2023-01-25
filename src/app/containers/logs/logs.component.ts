@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Log } from 'src/app/models/log.model';
 import { SocketMessage } from 'src/app/models/socketmessage.model';
@@ -10,12 +10,15 @@ import { LogService } from 'src/app/services/log.service';
   templateUrl: './logs.component.html',
   styleUrls: ['./logs.component.css']
 })
-export class LogsComponent implements OnInit {
+export class LogsComponent implements OnInit, OnDestroy {
   public logList: Log[] = [];
   public expand = false;
   @Input() logSubj: Subject<SocketMessage<Log>>;
 
   constructor(public logService: LogService) {
+  }
+  ngOnDestroy(): void {
+    this.logSubj.unsubscribe();
   }
 
   ngOnInit(): void {

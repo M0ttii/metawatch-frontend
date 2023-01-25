@@ -10,8 +10,8 @@
 <ng-template #elseBlock>
     <div class="row mh-100 gx-0 custom-gutter">
         <div class="col-xxl-4 col-xl-7 flex-xxl-column">
-            <app-chart [chartType]="'CPU'" [chartSubj]="chartSubj" [width]="'100%'" [dataFetched]="this.dataFetched"></app-chart>
-            <app-chart [chartType]="'MEMORY'" [chartSubj]="chartSubj" [width]="'100%'" [dataFetched]="this.dataFetched"></app-chart>
+            <app-chart [chartType]="'CPU'" [chartSubj]="chartSubj" [width]="'100%'" [dataFetched]="this.dataFetched" [chartOrigin]="'dashboard'"></app-chart>
+            <app-chart [chartType]="'MEMORY'" [chartSubj]="chartSubj" [width]="'100%'" [dataFetched]="this.dataFetched" [chartOrigin]="'dashboard'"></app-chart>
             <app-chart [chartType]="'DISK'" [chartSubj]="chartSubj" [dataFetched]="this.dataFetched"></app-chart>
         </div>
         <div class="col-xxl-8 col-xl-5">

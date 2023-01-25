@@ -24,6 +24,7 @@ export class ChartComponent implements OnInit, AfterViewInit{
   @Input() cpu;
   @Input() memory;
   @Input() CID: string;
+  @Input() chartOrigin: string;
 
   public timeSpans: string[] = ["30 m", "1 h", "Live"];
   public expandSpans: boolean = false;
@@ -64,6 +65,9 @@ export class ChartComponent implements OnInit, AfterViewInit{
 
   ngAfterViewInit(): void {
     if(this.offline == false){
+      if(this.chartOrigin == "dashboard"){
+        this.timeSpans = ["Live", "30 m", "1 h"]
+      }
       this.context = this.myChart.nativeElement.getContext('2d'); 
       this.endGradient = this.getGradient();
       this.chartData.datasets[0]['backgroundColor'] = this.endGradient;
@@ -178,8 +182,9 @@ export class ChartComponent implements OnInit, AfterViewInit{
   }
 
   expand(){
-    this.expandSpans = !this.expandSpans;
-    console.log("expand")
+    if(this.chartOrigin != "dashboard"){
+      this.expandSpans = !this.expandSpans;
+    }
   }
 
   changeTimeSpan(time: string){
@@ -188,7 +193,6 @@ export class ChartComponent implements OnInit, AfterViewInit{
       this.expandSpans = !this.expandSpans;
       let toDate = new Date()
       let fromDate = subMinutes(toDate, 60);
-      console.log("CID: ", this.CID)
       this.containerService.getMetricsFromAPI(this.CID, formatISO(fromDate), formatISO(toDate), 40, true).then(
         (data: Metric[]) => {
           let metricsHistory = data;
@@ -199,7 +203,6 @@ export class ChartComponent implements OnInit, AfterViewInit{
               cpu.push({ x: entry.when, y: entry.cpu.perc })
             })
             this.chartData.datasets[0].data = cpu;
-            console.log(cpu)
             this.chart.update()
           }
           if (this.chartType == "MEMORY") {
@@ -209,7 +212,6 @@ export class ChartComponent implements OnInit, AfterViewInit{
               memory.push({ x: entry.when, y: entry.memory.perc })
             })
             this.chartData.datasets[0].data = memory;
-            console.log(memory)
             this.chart.update()
           }
         }

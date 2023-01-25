@@ -26,7 +26,30 @@
 }
 
 li img{
-    margin-left: -10px
+    margin-left: -10px;
+    transition: transform .2s;
+    transition-timing-function: ease-in-out;
+    cursor: pointer;
+    color: #D7D7D7;
+}
+
+.activeSvg{
+    stroke: rgb(80, 106, 221) !important;
+    stroke-opacity: 2;
+    stroke-width: 2;
+}
+
+
+svg{
+    margin-left: -10px;
+    transition: transform .1s;
+    transition-timing-function: ease-in-out;
+    cursor: pointer;
+    stroke: #C3C3C3;
+}
+
+svg:hover{
+    transform: scale(1.05);
 }
 
 li {

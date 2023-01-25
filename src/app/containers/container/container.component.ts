@@ -14,6 +14,7 @@ import format from 'date-fns/format';
 import { LoadingService } from 'src/app/services/loading.service';
 import { Metric } from 'src/app/models/metrics.model';
 import { StringMappingType } from 'typescript';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-container',
@@ -41,7 +42,7 @@ export class ContainerComponent implements OnInit, OnDestroy {
     
 
 
-    constructor(private route: ActivatedRoute, public containerService: ContainerserviceService, private socketService: SocketService, private titleService: NavtitleService, public loadingService: LoadingService) {
+    constructor(private route: ActivatedRoute, public containerService: ContainerserviceService, private socketService: SocketService, private titleService: NavtitleService, public loadingService: LoadingService, private title: Title) {
     }
 
     ngOnInit(): void {
@@ -58,6 +59,7 @@ export class ContainerComponent implements OnInit, OnDestroy {
                 this.container = this.makeFormatWork(data);
                 console.log("Container fetched")
                 this.dataFetched.next(true)
+                this.title.setTitle("> " + this.container.name.substring(1))
                 this.titleService.set(this.container.name.substring(1), this.container.id.substring(0, 30))
             }
         );
