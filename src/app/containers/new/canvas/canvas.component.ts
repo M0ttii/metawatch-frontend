@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Port } from 'src/app/models/singlecontainer.model';
 
 @Component({
   selector: '[app-canvas]',
@@ -11,6 +12,7 @@ export class CanvasComponent implements OnInit {
   @Input() public state: String;
   @Input() public image: String;
   @Input() public ports: [];
+  @Input() public port: Port;
 
   constructor() { }
 

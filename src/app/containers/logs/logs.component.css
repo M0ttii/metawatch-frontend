@@ -82,7 +82,7 @@
 
 .logBlock{
   /* margin-bottom: 30px; */
-  z-index: 1001;
+  z-index: 95;
   margin-bottom: 0%;
   height: calc(var(--widgetHeight) * 2 + var(--unitmargin));
   width: 100%;
@@ -173,6 +173,7 @@
   position: absolute;
   resize: both;
   overflow: hidden;
+  z-index: 1000;
 }
 
 .expandBackground{

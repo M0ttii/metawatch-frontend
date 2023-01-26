@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild, AfterViewInit, Input} from '@
 import { ChartConfiguration, ChartOptions, } from 'chart.js';
 import 'chartjs-adapter-date-fns';
 import { format, formatISO, parseISO, subMinutes } from 'date-fns';
+import { de } from 'date-fns/locale';
 import { BaseChartDirective } from 'ng2-charts';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Message } from 'src/app/models/message.model';
@@ -50,8 +51,8 @@ export class ChartComponent implements OnInit, AfterViewInit{
     },
     blue: {
       default: "rgba(47, 40, 173, 1)",
-      half: "rgba(47, 40, 173, 0.5)",
-      quarter: "rgba(47, 40, 173, 0.25)",
+      half: "rgba(47, 40, 173, 0.2)",
+      quarter: "rgba(47, 40, 173, 0.1)",
       zero: "rgba(47, 40, 173, 0)"
     },
     indigo: {
@@ -118,6 +119,7 @@ export class ChartComponent implements OnInit, AfterViewInit{
         })
       }
       if(this.chartType == "DISK"){
+        this.timeSpans = ["Live", "30 m", "1 h"]
         this.chartData.datasets[0].data = [];
         this.chartData.datasets[0].label = "READ";
         this.chartData.datasets.push({
@@ -125,6 +127,7 @@ export class ChartComponent implements OnInit, AfterViewInit{
           fill: true,
           label: "WRITE",
           borderColor: this.colors.blue.default,
+          backgroundColor: this.getGradientBlue(),
           tension: 0.2,
           borderWidth: 2,
           pointRadius: 0
@@ -147,6 +150,7 @@ export class ChartComponent implements OnInit, AfterViewInit{
         })
       }
       if(this.chartType == "NETWORK"){
+        this.timeSpans = ["Live", "30 m", "1 h"]
         this.chartData.datasets[0].data = [];
         this.chartData.datasets[0].label = "IN";
         this.chartData.datasets.push({
@@ -154,6 +158,7 @@ export class ChartComponent implements OnInit, AfterViewInit{
           fill: true,
           label: "OUT",
           borderColor: this.colors.blue.default,
+          backgroundColor: this.getGradientBlue(),
           tension: 0.2,
           borderWidth: 2,
           pointRadius: 0
@@ -202,7 +207,9 @@ export class ChartComponent implements OnInit, AfterViewInit{
               entry.when = format(parseISO(entry.when), "HH:mm:ss")
               cpu.push({ x: entry.when, y: entry.cpu.perc })
             })
+            console.log("cpuyalla")
             this.chartData.datasets[0].data = cpu;
+            console.log("Dataset: ", this.chartData.datasets[0].data)
             this.chart.update()
           }
           if (this.chartType == "MEMORY") {
@@ -335,6 +342,15 @@ export class ChartComponent implements OnInit, AfterViewInit{
     gradient.addColorStop(0, this.colors.purple.half);
     gradient.addColorStop(0.2, this.colors.purple.quarter);
     gradient.addColorStop(0.8, this.colors.purple.zero);
+
+    return gradient;
+  }
+
+  private getGradientBlue(){ 
+    let gradient = this.context.createLinearGradient(0, 25, 0, 300);
+    gradient.addColorStop(0, this.colors.blue.half);
+    gradient.addColorStop(0.2, this.colors.blue.quarter);
+    gradient.addColorStop(0.8, this.colors.blue.zero);
 
     return gradient;
   }

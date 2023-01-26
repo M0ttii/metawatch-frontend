@@ -1,5 +1,5 @@
 .title{
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 30px;
     font-weight: 600;
     letter-spacing: 0.5px;
@@ -32,6 +32,6 @@
     height: auto;
     background-color: #171825;
     margin-top: 70px;
-    margin-bottom: 80px;
+    margin-bottom: 50px;
     margin-left: 1rem;
 }

@@ -67,12 +67,28 @@ table {
     border-collapse: separate;
     display: block;
     margin-top: 30px;
+    margin-left: 15px;
+    table-layout: fixed;
+}
+
+.break{
+    overflow-wrap: break-word;
+    max-width: 230px;
+}
+
+.firstTd{
+    width: 100px;
+}
+
+table tr td{
+    overflow-wrap: break-word;
+    max-width: 230px;
+    
 }
 
 table td{
     word-wrap: break-word;         /* All browsers since IE 5.5+ */
     overflow-wrap: break-word;
-    width: 1500px;
 }
 
 

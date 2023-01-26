@@ -5,11 +5,10 @@
                 <p class="headingText">NETWORKS</p>
             </div>
         </div>
-        <div class="tableWrapper">
             <table *ngFor="let network of this.container.networks; let i = index">
                 <span class="stateText">Network {{i+1}}</span>
                 <tr>
-                    <td>
+                    <td class="firstTd">
                         <span class="firstText">NAME</span>
                     </td>
                     <td class="second">
@@ -33,7 +32,6 @@
                     </td>
                 </tr>
             </table>
-        </div>
     </div>
 </ng-container>
 
@@ -44,7 +42,6 @@
                 <p class="headingText">VOLUMES</p>
             </div>
         </div>
-        <div class="tableWrapper">
             <table *ngFor="let volume of this.container.volumes; let i = index">
                 <span class="stateText">Volume {{i+1}}</span>
                 <tr>
@@ -72,6 +69,5 @@
                     </td>
                 </tr>
             </table>
-        </div>
     </div>
 </ng-container>

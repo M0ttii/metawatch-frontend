@@ -24,10 +24,13 @@ import { Title } from '@angular/platform-browser';
 export class ContainerComponent implements OnInit, OnDestroy {
     public containerID: any;
     protected container: SingleContainer;
+
     protected metricsObs: Observable<SocketMessage<Message>>;
     protected logsObs: Observable<SocketMessage<Log>>;
+
     protected chartSubj: Subject<SocketMessage<Message>>;
     protected logSubj: Subject<SocketMessage<Log>>;
+
     protected logSub: Subscription;
     private metricsSub: Subscription;
 
@@ -40,55 +43,39 @@ export class ContainerComponent implements OnInit, OnDestroy {
     public cpuHistory = [];
     public memoryHistory = [];
     
+    constructor(private route: ActivatedRoute, 
+                public containerService: ContainerserviceService, 
+                private socketService: SocketService, 
+                private titleService: NavtitleService, 
+                public loadingService: LoadingService, 
+                private title: Title) {
+                }
 
-
-    constructor(private route: ActivatedRoute, public containerService: ContainerserviceService, private socketService: SocketService, private titleService: NavtitleService, public loadingService: LoadingService, private title: Title) {
-    }
-
+    //Called when component gets created
     ngOnInit(): void {
-        this.containerService.inMetricLoading = false;
         this.titleService.set("");
-        console.log(this.containerService.activeContainerID)
+
+        this.containerService.inMetricLoading = false;
         this.containerService.isContainerSite = true;
+
         this.CID = this.containerService.activeContainerID;
         if(this.CID == undefined){
             this.CID = localStorage.getItem("currentID");
         }
+
+        //Fetching Container from API
         this.containerService.getContainerFromAPI(this.CID).then(
             (data: SingleContainer) => {
                 this.container = this.makeFormatWork(data);
-                console.log("Container fetched")
                 this.dataFetched.next(true)
                 this.title.setTitle("> " + this.container.name.substring(1))
                 this.titleService.set(this.container.name.substring(1), this.container.id.substring(0, 30))
             }
         );
         
+        //Fetching Metrics from API
         let toDate = new Date()
-        let fromDate = subMinutes(toDate, 5);
-
-        /* this.containerService.getMetricsFromAPI(CID, formatISO(fromDate), formatISO(toDate)).then(
-            (data: Metric[]) => {
-                let metricsHistory = data;
-                let filtered: Metric[] = []
-                metricsHistory.forEach(e => {
-                    const minute = getMinutes(parseISO(e.when))
-                    if (filtered.find(ee => getMinutes(parseISO(ee.when)) === minute) == undefined){
-                        filtered.push(e)
-                    }
-                })
-                filtered.map(entry => {
-                    entry.when = format(parseISO(entry.when), "HH:mm:ss")
-                })
-                filtered.forEach(entry => {
-                    this.cpuHistory.push({x: entry.when, y: entry.cpu.perc})
-                })
-                console.log("MetricUnfiltered: ", metricsHistory)
-                console.log("MetricFiltered: ", filtered)
-                this.metricsFetched.next(true);
-            }
-        ) */
-
+        let fromDate = subMinutes(toDate, 30);
         this.containerService.getMetricsFromAPI(this.CID, formatISO(fromDate), formatISO(toDate), 20, false).then(
             (data: Metric[]) => {
                 let metricsHistory = data;
@@ -97,11 +84,11 @@ export class ContainerComponent implements OnInit, OnDestroy {
                     this.cpuHistory.push({x: entry.when, y: entry.cpu.perc})
                     this.memoryHistory.push({x: entry.when, y: entry.memory.perc})
                 })
-                console.log("MetricUnfiltered: ", metricsHistory)
                 this.metricsFetched.next(true);
             }
         )
 
+        //Creating LogSubject for receiving log stream
         this.logSubj = new Subject<SocketMessage<Log>>();
         this.logSub = this.socketService.createLogStream(this.CID, "logs").subscribe({
             next: (message: SocketMessage<Log>) => {
@@ -109,10 +96,11 @@ export class ContainerComponent implements OnInit, OnDestroy {
 
             }
         })
+
+        //Creating MetricsSubject for receiving metric stream
         this.chartSubj = new Subject<SocketMessage<Message>>();
         this.metricsSub = this.socketService.createStream(this.CID, "metrics").subscribe({
             next: (message: SocketMessage<Message>) => {
-                console.log("RECSV")
                 this.chartSubj.next(message);
             },
             error: error => console.log('WS Error: ', error),
@@ -120,6 +108,7 @@ export class ContainerComponent implements OnInit, OnDestroy {
         })
     }
 
+    //Format container data
     makeFormatWork(container: SingleContainer): SingleContainer{
         container.state.status = container.state.status.toUpperCase();
         container.state.restart_policy = container.state.restart_policy.charAt(0).toUpperCase() + container.state.restart_policy.slice(1);
@@ -132,19 +121,48 @@ export class ContainerComponent implements OnInit, OnDestroy {
 
         let bytes = container.image.size;
         container.image.size_string = this.formatBytes(bytes);
+
+        if(container.state.restart_policy == ""){
+            container.state.restart_policy = "No"
+        }
+
+        container.volumes.forEach(volume => {
+            if(volume.name.length > 20 ){
+                volume.name = volume.name.substring(0, 20) + "..."
+            }
+            let path = volume.mountpoint
+            let splitted = path.split("/")
+            if (splitted[splitted.length -1] == "_data"){
+                let secondlast = splitted[splitted.length - 2]
+                if (secondlast.length > 20){
+                    secondlast = secondlast.substring(0, 20) + "..."
+                    splitted[splitted.length - 2] = secondlast
+    
+                    let endPath = splitted.join("/")
+                    volume.mountpoint = endPath;
+                }
+            }else{
+                let last = splitted[splitted.length - 1]
+                if (last.length > 20){
+                    last = last.substring(0, 20) + "..."
+                    splitted[splitted.length - 1] = last
+    
+                    let endPath = splitted.join("/")
+                    volume.mountpoint = endPath;
+                }
+            }
+
+        })
+        container.ports.forEach((port, index, object) => {
+            if (port.host_ip == "::"){
+                object.splice(index, 1)
+            }
+
+        })
         return container;
     }
 
-    ngOnDestroy(): void {
-        console.log("Unsubscribe Container Metrics")
-        this.containerService.isContainerSite = false;
-        this.chartSubj.unsubscribe();
-        this.metricsSub.unsubscribe();
-        this.logSub.unsubscribe();
-        /* this.metricsSub.unsubscribe();
-        this.logsSub.unsubscribe(); */
-    }
-
+    //Adding suffix to data size
     formatBytes(bytes, decimals = 2) {
         if (!+bytes) return '0 Bytes'
     
@@ -156,5 +174,14 @@ export class ContainerComponent implements OnInit, OnDestroy {
     
         return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`
     }
+    
+    //Called when component gets destroyed
+    ngOnDestroy(): void {
+        this.containerService.isContainerSite = false;
+        this.chartSubj.unsubscribe();
+        this.metricsSub.unsubscribe();
+        this.logSub.unsubscribe();
+    }
+
 
 }

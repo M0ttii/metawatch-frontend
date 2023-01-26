@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { format } from 'date-fns';
 import { Subject } from 'rxjs';
 import { Log } from 'src/app/models/log.model';
 import { SocketMessage } from 'src/app/models/socketmessage.model';
@@ -24,7 +25,10 @@ export class LogsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.logSubj.subscribe(message => {
       let logObject = {} as Log;
-      logObject.when = message.message.when;
+      let date = new Date(message.message.when);
+      let dateFormat = format(date, 'yyyy-MM-dd HH:mm:ss')
+
+      logObject.when = dateFormat;
       logObject.type = message.message.type;
       logObject.data = message.message.data;
       if(this.logList.length > 20){

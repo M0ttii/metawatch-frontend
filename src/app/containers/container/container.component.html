@@ -65,7 +65,14 @@
         </div>
     </ng-container>
     <ng-template #elseOffline>
-        <div class="row mh-100 gx-0 custom-gutter">
+        <div class="container-fluid h-100">
+            <div class="row h-75 align-items-center">
+                <div class="col-12 d-flex justify-content-center">
+                    <app-loader></app-loader>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="row mh-100 gx-0 custom-gutter">
             <div class="col-4 flex-column">
                 <app-chart [chartType]="'CPU'" [chartSubj]="chartSubj" [width]="'100%'" [offline]="true"></app-chart>
                 <app-chart [chartType]="'MEMORY'" [chartSubj]="chartSubj" [width]="'100%'" [offline]="true"></app-chart>
@@ -89,7 +96,7 @@
                 <div class="row">
                     <div class="col-11">
                         <div class="row gx-0 custom-gutter">
-                            <div class="col-4"> <!-- <div class="col-4 flex-column me-4"> -->
+                            <div class="col-4">
                                 <app-smallwidget [type]="'network'" [container]="this.container" [dataFetched]="this.dataFetched"></app-smallwidget>
                             </div>
                             <div class="col-6">
@@ -116,6 +123,6 @@
                 <app-chart [chartType]="'DISK'" [chartSubj]="chartSubj" [width]="'100%'" [offline]="true"></app-chart>
             </div>
             .
-        </div>
+        </div> -->
     </ng-template>
 </ng-template>

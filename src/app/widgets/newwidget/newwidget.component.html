@@ -14,7 +14,7 @@
                         <td>
                             <span class="firstText">SINCE</span>
                         </td>
-                        <td class="stateSecond">
+                        <td class="second">
                             <span class="secondText">{{this.container.state.date_distance}}</span>
                         </td>
                     </tr>
@@ -33,13 +33,13 @@
     <ng-container *ngIf="this.type == 'network'">
         <div class="wrapper text-start">
             <app-expandwidget [expandNetworks]="expandNetworksV" [container]="this.container" [type]="'networks'"></app-expandwidget>
-            <div class="click" (click)="expandNetworks()">
+            <div class="click" (click)="expandNetworks()" *ngIf="this.container.networks.length > 1">
                 <span class="clickSpan">»</span>
             </div>
             <div class="contentContainer">
                 <div class="textWrapper">
                     <p class="headingText">NETWORKS</p>
-                    <span class="stateText">{{this.container.networks.lenght}} NETWORKS</span>
+                    <span class="stateText">{{this.container.networks.length}} NETWORKS</span>
                 </div>
             </div>
             <div class="tableWrapper">
@@ -77,7 +77,7 @@
             <div class="contentContainer">
                 <div class="textWrapper">
                     <p class="headingText">IMAGE</p>
-                    <span class="stateText">3 IMAGES</span>
+                    <span class="stateText">{{this.container.image.containers}} CONTAINERS USING</span>
                 </div>
             </div>
             <div class="tableWrapper">
@@ -115,7 +115,7 @@
             <div class="contentContainer">
                 <div class="textWrapper">
                     <p class="headingText">EXPOSURE</p>
-                    <span class="stateText">3 Ports</span>
+                    <span class="stateText">{{this.container.ports.length.toString()}} PORTS</span>
                 </div>
             </div>
             <div class="tableWrapper">
@@ -138,18 +138,18 @@
     <ng-container *ngIf="this.type == 'volumes'">
         <div class="wrapper text-start">
             <app-expandwidget [expandVolumes]="expandVolumesV" [container]="this.container" [type]="'volumes'"></app-expandwidget>
-            <div class="click" (click)="expandVolumes()">
+            <div class="click" (click)="expandVolumes()" *ngIf="this.container.volumes.length > 1">
                 <span class="clickSpan">»</span>
             </div>
             <div class="contentContainer">
                 <div class="textWrapper">
                     <p class="headingText">VOLUMES</p>
-                    <span class="stateText">2 VOLUMES</span>
+                    <span class="stateText">{{this.container.volumes.length.toString()}} VOLUMES</span>
                 </div>
             </div>
             <div class="tableWrapper">
                 <ng-container *ngIf="container.volumes.length != 0; else elseBlock">
-                    <table>
+                    <table class="fixedLayout">
                         <tr>
                             <td>
                                 <span class="firstText">NAME</span>

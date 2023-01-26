@@ -30,15 +30,20 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public imagesFetched: BehaviorSubject<Boolean> = new BehaviorSubject(false);
   public aboutFetched: BehaviorSubject<Boolean> = new BehaviorSubject(false);
 
-  constructor(private titleService: NavtitleService, protected loadingService: LoadingService, private httpservice: HttpserviceService, private socketService: SocketService, private title: Title ) {
+  constructor(private titleService: NavtitleService, 
+              protected loadingService: LoadingService, 
+              private httpservice: HttpserviceService, 
+              private socketService: SocketService, 
+              private title: Title ) {
+              }
 
-  }
+  //called when component gets destroyed
   ngOnDestroy(): void {
-    console.log("Unsubscribe Global Metrics")
     this.chartSubj.unsubscribe();
     this.metricsSub.unsubscribe();
   }
 
+  //Called when component gets created
   ngOnInit(): void {
     this.titleService.set("Dashboard");
     this.title.setTitle("Dashboard")
@@ -73,6 +78,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       }
     )
 
+    //Getting information from about endpoint
     this.getAboutFromAPI().then(
       (data: About) => {
         let about = data;
@@ -82,6 +88,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.aboutFetched.next(true);
       }
     )
+
     this.chartSubj = new Subject<SocketMessage<Message>>();
     this.metricsSub = this.socketService.createCombinedStream().subscribe({
       next: (message: SocketMessage<Message>) => {

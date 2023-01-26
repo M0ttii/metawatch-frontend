@@ -27,9 +27,9 @@
     <td class="heading">{{name}}<br><span class="label" style="background: #b45050;">{{state}}</span></td>
 </ng-template>
 <td class="right font">{{image}}</td>
-<ng-container *ngIf="this.ports == undefined; else elseBlock">
+<ng-container *ngIf="this.port == undefined; else elseBlock">
     <td class="font">N/A</td>
 </ng-container>
 <ng-template #elseBlock>
-    <td class="font">{{ports}}</td>
+    <td class="font">{{this.port.host_port}}:{{this.port.port}}</td>
 </ng-template>

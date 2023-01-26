@@ -12,7 +12,7 @@ import { SocketMessage } from '../models/socketmessage.model';
 })
 
 export class SocketService{
-  public socket: WebSocketSubject<SocketMessage<any>>;/* webSocket<{type: string, message: string}>('ws://localhost:8001') */
+  public socket: WebSocketSubject<SocketMessage<any>>;
   public metricsObs: Observable<SocketMessage<any>>;
   public combObs: Observable<SocketMessage<any>>
   public logsObs: Observable<SocketMessage<any>>;
@@ -24,7 +24,6 @@ export class SocketService{
 
   public connectToSocketServer(uri: string){
     this.socket = webSocket<SocketMessage<any>>(uri);
-    console.log('Build SocketObject')
   }
 
   createEventStream(): Observable<EventMessage>{
@@ -44,7 +43,6 @@ export class SocketService{
 
   public createCombinedStream(): Observable<SocketMessage<Message>>{
     if (this.socket == null) return;
-    console.log("Metrics subscribed, connected to server")
     if(this.combObs == undefined){
       this.combObs = this.socket.multiplex(
         () => ({ container_id: "_all", event: 'subscribe', type: "combined_metrics" }),
@@ -57,7 +55,6 @@ export class SocketService{
 
   public createStream(container_ID: string, type: string): Observable<SocketMessage<Message>> {
     if (this.socket == null) return;
-    console.log("Metrics subscribed")
     if(this.metricsObs == undefined){
       this.metricsObs = this.socket.multiplex(
         () => ({ container_id: container_ID, event: 'subscribe', type: type }),
@@ -70,7 +67,6 @@ export class SocketService{
 
   public createLogStream(container_ID: string, type: string): Observable<SocketMessage<Log>> {
     if (this.socket == null) return;
-    console.log("Logssubscribed")
     if(this.logsObs == undefined){
       this.logsObs = this.socket.multiplex(
         () => ({ container_id: container_ID, event: 'subscribe', type: type }),
@@ -80,15 +76,6 @@ export class SocketService{
     }
     return this.logsObs;
   }
-
-  /* public createLogStream(container_ID: string, type: string): Observable<SocketMessage<Log>>{
-    if (this.socket == null) return;
-    this.logsObs = this.socket.multiplex(
-      () => ({ container_id: container_ID, event: 'subscribe', type: type }),
-      () => ({ container_id: container_ID, event: 'unsubscribe', type: type }),
-      message => message.type === type);
-    return this.logsObs;
-  } */
 
   public getSocket(): WebSocketSubject<SocketMessage<any>>{
     return this.socket;
