@@ -50,3 +50,31 @@
     padding: 0 !important;
     margin: 0 !important;
 }
+
+.col-1{
+    width: 130px;
+}
+
+
+
+.heading{
+    left: 70px;
+    position: absolute;
+    color: rgba(255, 255, 255, 0.719);
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 55px;
+    letter-spacing: 1px;
+}
+
+.topBar{
+    z-index: 1000;
+    position: absolute;
+    width: 100%;
+    left: 80px;
+    height: 60px;
+    background: #1D1E2E;
+    /* background: #13131d; */
+}

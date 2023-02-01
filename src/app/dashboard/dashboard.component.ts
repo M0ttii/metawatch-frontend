@@ -5,6 +5,7 @@ import { BehaviorSubject, Subject, Subscription, take } from 'rxjs';
 import { About, Image, Volume } from '../models/dashboard.models';
 import { Message } from '../models/message.model';
 import { SocketMessage } from '../models/socketmessage.model';
+import { AuthService } from '../services/auth.service';
 import { HttpserviceService } from '../services/httpservice.service';
 import { LoadingService } from '../services/loading.service';
 import { NavtitleService } from '../services/navtitle.service';
@@ -34,7 +35,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
               protected loadingService: LoadingService, 
               private httpservice: HttpserviceService, 
               private socketService: SocketService, 
-              private title: Title ) {
+              private title: Title,
+              private authService: AuthService ) {
               }
 
   //called when component gets destroyed
@@ -45,7 +47,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   //Called when component gets created
   ngOnInit(): void {
-    this.titleService.set("Dashboard");
+    this.titleService.set("Dashboard", "", "Hallo, " + localStorage.getItem("username"));
     this.title.setTitle("Dashboard")
     this.getVolumesFromAPI().then(
       (data: Volume[]) => {

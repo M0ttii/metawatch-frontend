@@ -9,15 +9,19 @@ import { NavtitleService } from '../services/navtitle.service';
 export class TitleComponent implements OnInit {
     public title: String = "Dashboard";
     public sub: String;
+    public sub2: String;
+    public sub3: String;
 
     constructor(private titleService: NavtitleService) {
     }
 
     ngOnInit(): void {
         this.titleService.title.subscribe(title => {
+            this.sub3 = null;
             this.title = title[0];
             this.sub = title[1]
-            console.log(this.sub)
+            this.sub2 = title[2]
+            console.log(title)
 
         })
     }

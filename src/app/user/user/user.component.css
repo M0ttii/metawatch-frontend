@@ -1,0 +1,398 @@
+
+
+.top{
+    margin-top: 30px;
+}
+
+.top2{
+    margin-top: 50px;
+}
+
+.header{
+    position: relative;
+    width: 100% !important;
+    background-color: #161823;
+    height: 40px;
+    /* border-radius: 20px;
+    border-width: 2px;
+    border-style: solid; */
+    /* border-image: linear-gradient(to right, darkblue, darkorchid) 1;; */
+    margin-bottom: var(--unitmargin);
+    box-shadow: 0px 7px 10px 0px rgba(0,0,0,0.2);
+    transition: transform .2s;
+    transition-timing-function: cubic-bezier(.17,.67,.59,1.02);
+    overflow-wrap: break-word;
+}
+
+.header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 15px; 
+    padding: 2px; 
+    background:linear-gradient(90deg,#4757e3,#5b2bdf); 
+    -webkit-mask: 
+       linear-gradient(#fff 0 0) content-box, 
+       linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude; 
+  }
+
+.colMargin{
+    margin-left: 8px !important;
+}
+
+.addUser{
+    position: absolute;
+    right: 13px;
+    transition: transform .1s;
+    transition-timing-function: ease-in-out;
+}
+
+/* .header::after{
+    position: absolute;
+    content: url(../../../assets/userplus.svg);
+    right: 14px;
+    margin-top: 5px;
+    transition: transform .1s;
+    transition-timing-function: ease-in-out;
+} */
+
+.addUser:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.headingText{
+    color: white !important;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px;
+}
+
+.itemText{
+    color: white !important;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 22px;
+}
+
+.offset{
+    margin-left: 30px;
+}
+
+.offset-item{
+    margin-left: 24px;
+}
+
+.offset-item-second{
+    margin-left: 25px;
+}
+
+.offset-item-third{
+    margin-left: 30px;
+}
+
+.gutter > [class*='col-'] {
+    padding-left: 1.2rem;
+  }
+  
+.gutter > [class*="col-"]:last-child {
+    padding-right: 1.2rem;
+  }
+
+
+.item{
+    position: relative;
+    width: 100% !important;
+    background-color: #161823;
+    height: 50px;
+    /* border-radius: 20px;
+    border-width: 2px;
+    border-style: solid; */
+    /* border-image: linear-gradient(to right, darkblue, darkorchid) 1;; */
+    margin-bottom: 12px;
+    box-shadow: 0px 7px 10px 0px rgba(0,0,0,0.2);
+    transition: transform .2s;
+    transition-timing-function: ease-in-out;
+    overflow-wrap: break-word;
+}
+
+.svgContainer{
+    margin-right: 10px;
+    z-index: 1000;
+}
+
+svg{
+    margin-right: 2px;
+}
+
+.backgroundDiv{
+    backdrop-filter: blur(5px);
+    display: none;
+    z-index: 1001;
+    background: rgba(0, 0, 0, 0.349);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.bg{
+    display: block !important;
+}
+
+.item::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 15px; 
+    padding: 2px; 
+    background:linear-gradient(90deg,#4757e370,#5b2bdf70); 
+    -webkit-mask: 
+       linear-gradient(#fff 0 0) content-box, 
+       linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude; 
+}
+
+.item:hover::before{
+    background:linear-gradient(90deg,#4757e3,#5b2bdf); 
+}
+
+.item:hover{
+    transform: scale(1.02);
+}
+
+.expand{
+    display: block !important;
+}
+
+.expandCreate{
+    display: block !important;
+}
+
+svg{
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.editUserBox{
+    z-index: 1002;
+    display: none;
+    position: absolute;
+    width: auto !important;
+    background-color: #161823;
+    height: auto;
+    box-shadow: 0px 7px 10px 0px rgba(0,0,0,0.2);
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    top: 50%;
+    left: 50%;
+    transition: transform 0.5s ease;
+}
+
+.editUserBox::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 20px; 
+    padding: 2px; 
+    background:linear-gradient(90deg,#4757e370,#5b2bdf70); 
+    -webkit-mask: 
+       linear-gradient(#fff 0 0) content-box, 
+       linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude; 
+  }
+
+.editUserBox .heading{
+    color: white !important;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 22px;
+    margin-bottom: 5px;
+    z-index: 1000;
+}
+
+.contentContainer{
+    width: 100%;
+    height: 100%;
+    margin-top: 30px;
+    margin-right: 30px;
+    margin-left: 30px;
+    margin-bottom: 30px;
+}
+
+.contentContainer2{
+    height: 100%;
+    margin-top: 30px;
+    margin-right: 30px;
+    margin-left: 30px;
+    margin-bottom: 30px;
+}
+
+.stateText{
+    color: #2FDBA7;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    line-height: 10px;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.deleteBox{
+    z-index: 1002;
+    display: none;
+    position: absolute;
+    width: auto !important;
+    background-color: #161823;
+    height: auto;
+    box-shadow: 0px 7px 10px 0px rgba(0,0,0,0.2);
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    top: 50%;
+    left: 50%;
+    transition: transform 0.5s ease;
+}
+
+.deleteBox::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 20px; 
+    padding: 2px; 
+    background:linear-gradient(90deg,#4757e370,#5b2bdf70); 
+    -webkit-mask: 
+       linear-gradient(#fff 0 0) content-box, 
+       linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude; 
+  }
+
+.deleteBox .heading{
+    color: white !important;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 22px;
+    margin-bottom: 5px;
+    z-index: 1000;
+}
+
+form{
+    z-index: 1000;
+}
+
+input[type="text"]{
+    display: block;
+    width: 100%;
+    color: #9696b1;
+    border-radius: 10px;
+    padding: 8px;
+    background: #121220;
+    border: none;
+    margin-bottom: 5px;
+}
+
+.btnSubmit{
+    margin-top: 15px;
+    background-color: rgb(81, 48, 226);
+    width: 70%;
+    --bs-btn-color: white !important;
+}
+
+.btnYes{
+    z-index: 1000;
+    margin-top: 15px;
+    margin-right: 20px;
+    background-color: transparent;
+    border: 2px solid;
+    border-color: #19c26d;
+    width: 70%;
+    --bs-btn-color: #19c26d !important;
+}
+
+.btnNo{
+    z-index: 1000;
+    margin-top: 15px;
+    background-color: transparent;
+    border: 2px solid;
+    border-color: rgb(165, 62, 62);
+    width: 70%;
+    --bs-btn-color: rgb(190, 73, 73) !important;
+}
+
+input[type="password"]:focus{
+    outline: 2px solid rgb(81, 48, 226);
+
+}
+
+input[type="text"]:focus{
+    outline: 2px solid rgb(81, 48, 226);
+
+}
+
+.wrong{
+    outline: 2px solid rgb(214, 72, 72) !important;
+}
+
+input[type="password"]{
+    display: block;
+    width: 100%;
+    color: #9696b1;
+    border-radius: 10px;
+    padding: 8px;
+    background: #121220;
+    border: none;
+
+}
+
+label{
+    font-size: 15px;
+    margin-bottom: 3px;
+    margin-left: 5px;
+    display: block;
+    color: #8686aa;
+}
+
+.subWrapper{
+    height: auto;
+    background-color: #171825;
+    margin-top: 120px;
+    margin-left: 8px;
+}
+
+.spanText{
+    z-index: 1000;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    margin-top: 7px;
+    font-size: 15px;
+    margin-left: 2px;
+    margin-bottom: 15px;
+}
+
+.subText{
+    color: #2FDBA7;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    margin-top: 7px;
+    font-size: 18px;
+    margin-left: 2px;
+}
+
+.title{
+    font-family: 'Inter', sans-serif;
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 20px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2px;
+}

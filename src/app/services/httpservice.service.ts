@@ -8,6 +8,7 @@ import { Volume, Image, About } from '../models/dashboard.models';
 import { Log } from '../models/log.model';
 import { Metric } from '../models/metrics.model';
 import { SingleContainer } from '../models/singlecontainer.model';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +49,24 @@ export class HttpserviceService {
 
   public getDockerStats(): Observable<About>{
     return this.http.get<About>(this.url + 'about');
+  }
+
+  //User Management
+
+  public addUser(name: string, password: string): Observable<User>{
+    return this.http.post<User>(this.url + 'users', {name, password});
+  }
+
+  public getUsers(): Observable<User[]>{
+    return this.http.get<User[]>(this.url + 'users');
+  }
+
+  public updateUser(id: string, name: string, password: string){
+    return this.http.patch<any>(this.url + 'users/' + id, {name,password});
+  }
+
+  public deleteUser(id: string){
+    return this.http.delete(this.url + 'users/' + id)
   }
 
 }

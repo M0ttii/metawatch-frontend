@@ -8,6 +8,7 @@
     </div>
 </ng-container>
 <ng-template #elseBlock>
+    <div class="top"></div>
     <div class="row mh-100 gx-0 custom-gutter">
         <div class="col-xxl-4 col-xl-7 flex-xxl-column">
             <app-chart [chartType]="'CPU'" [chartSubj]="chartSubj" [width]="'100%'" [dataFetched]="this.dataFetched" [chartOrigin]="'dashboard'"></app-chart>

@@ -17,3 +17,7 @@
 .custom-gutter2 > [class*="col-"]:last-child {
   padding-right: 4.3rem;
 }
+
+.top{
+  margin-top: 40px;
+}

@@ -33,11 +33,13 @@ import { AlertComponent } from './alert/alert.component';
 import { NewwidgetComponent } from './widgets/newwidget/newwidget.component';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { ExpandwidgetComponent } from './widgets/expandwidget/expandwidget.component';
+import { UserComponent } from './user/user/user.component';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'containers', component: ContainersComponent, canActivate: [AuthGuardService]},
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService]},
+  {path: 'users', component: UserComponent, canActivate: [AuthGuardService]},
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
   {path: 'containers/:id', component: ContainerComponent, canActivate: [AuthGuardService]}
 ]
@@ -66,7 +68,8 @@ const appRoutes: Routes = [
     BigwidgetComponent,
     AlertComponent,
     NewwidgetComponent,
-    ExpandwidgetComponent
+    ExpandwidgetComponent,
+    UserComponent
   ],
   imports: [
     FormsModule,

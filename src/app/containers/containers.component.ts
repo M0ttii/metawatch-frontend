@@ -23,11 +23,12 @@ export class ContainersComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.titleService.set("Containers");
+    this.titleService.set("");
     this.title.setTitle("Containers")
     this.containerService.getContainersFromAPI().then(
     (data: Container[]) => {
       this.containers = data;
+      this.titleService.set("Containers", "", this.containers.length + " CONTAINERS");
       this.containers.sort((a, b) => a.state.status.localeCompare(b.state.status)).reverse()
       console.log(data)
     }

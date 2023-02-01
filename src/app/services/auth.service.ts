@@ -4,14 +4,16 @@ import { isBefore, parseISO } from 'date-fns';
 import { environment } from 'src/environments/environment';
 import { Observable, tap, shareReplay, catchError } from 'rxjs';
 import { Router } from '@angular/router';
+import { NavtitleService } from './navtitle.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  public name: string;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private titleService: NavtitleService) {
 
    }
 
@@ -21,7 +23,8 @@ export class AuthService {
       .pipe(
         catchError((err: HttpErrorResponse) => {throw err}),
         tap(res => {
-          this.setSession(res)
+          this.setSession(res, username)
+          localStorage.setItem("username", username);
           this.router.navigate(['']).then(() => {
             window.location.reload()
           })
@@ -30,7 +33,8 @@ export class AuthService {
       )
   }
 
-  private setSession(authResult){
+  private setSession(authResult, name){
+    this.name = name;
     const expiresAt = authResult.expire
 
     localStorage.setItem('token', authResult.token)

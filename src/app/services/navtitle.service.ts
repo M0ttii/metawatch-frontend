@@ -19,9 +19,17 @@ export class NavtitleService implements OnInit{
 
   }
 
-  set(title: string, sub?: string){
+  set(title: string, sub?: string, sub2?: string){
+    console.log(title, sub, sub2);
     let titleA = [];
-    if(sub == undefined){
+    if(sub2 != undefined){
+      titleA.push(title)
+      titleA.push("")
+      titleA.push(sub2)
+      this.title.next(titleA)
+      return;
+    }
+    if(sub == "" || sub == undefined){
       titleA.push(title)
       this.title.next(titleA)
       return;
@@ -30,5 +38,6 @@ export class NavtitleService implements OnInit{
     titleA.push(sub);
     this.title.next(titleA)
   }
+
 
 }

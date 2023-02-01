@@ -1,4 +1,5 @@
 <div class="wrapper sticky-top">
-    <p class="title text-start">{{title.toUpperCase()}}</p><br>
-    <p class="sub text-start" *ngIf="this.sub != undefined">ID » {{this.sub}}...</p>
+    <p class="title text-start">{{title}}</p>
+    <p class="sub text-start" *ngIf="this.sub != undefined" [hidden]="this.sub == ''">ID » {{this.sub}}...</p>
+    <p class="stateText text-start" *ngIf="this.sub2 != undefined">{{this.sub2}}</p>
 </div>

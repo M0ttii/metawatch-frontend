@@ -1,0 +1,227 @@
+<ng-container *ngIf="this.loadingService.loading.getValue(); else elseBlock">
+    <div class="container-fluid h-100">
+        <div class="row h-75 align-items-center">
+            <div class="col-12 d-flex justify-content-center">
+                <app-loader></app-loader>
+            </div>
+        </div>
+    </div>
+</ng-container>
+<ng-template #elseBlock>
+    <div class="deleteBox" [ngClass]="showDelete ? 'expand' : 'noExpand'">
+        <div class="contentContainer2">
+            <div class="row">
+                <div class="col-12 d-flex">
+                    <div class="heading">DELETE USER</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 d-flex">
+                    <div class="stateText" *ngIf="this.user">{{this.user.name}}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 d-flex">
+                    <span class="spanText">Are you sure you want to delete this user?</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                    <button class="btn btnYes" type="submit" (click)="this.delete(user.id)">Yes</button>
+                    <button class="btn btnNo" type="submit">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="editUserBox" [ngClass]="showEdit ? 'expand' : 'noExpand'">
+        <div class="contentContainer">
+            <div class="row">
+                <div class="col-12 d-flex">
+                    <div class="heading">EDIT USER</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 d-flex">
+                    <div class="stateText" *ngIf="this.user">{{this.user.name}}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 d-flex">
+                    <form class="box" #userEdit = "ngForm" (submit)="this.update(userEdit.value)">
+                        <label for="user" class="text-start mtop">Username</label>
+                        <input type="text" name="user" id="user" ngModel>
+                        <label for="pass" class="text-start topSecond">Password</label>
+                        <input type="password" name="pass" id="pass" ngModel>
+                        <button class="btn btnSubmit" type="submit">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="editUserBox" [ngClass]="showCreate ? 'expandCreate' : 'noExpand'">
+        <div class="contentContainer">
+            <div class="row">
+                <div class="col-12 d-flex">
+                    <div class="heading">ADD USER</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 d-flex">
+                    <div class="stateText"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 d-flex">
+                    <form class="box" #userAdd = "ngForm" (submit)="submitAdd(userAdd.value)" >
+                        <label for="user" class="text-start mtop">Username</label>
+                        <input type="text" name="user" id="user" ngModel>
+                        <label for="pass" class="text-start topSecond">Password</label>
+                        <input type="password" name="pass" id="pass" ngModel>
+                        <button class="btn btnSubmit" type="submit">Create</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="backgroundDiv" [ngClass]="showEdit || showCreate || showDelete ? 'bg' : 'noBg'" (click)="hideIf()"></div>
+    <div class="top"></div>
+    <div class="row">
+        <div class="row">
+            <div class="col-5 d-flex colMargin">
+                <div class="header d-flex align-items-center">
+                    <div class="col-4 d-flex offset">
+                        <span class="headingText">Username</span>
+                    </div>
+                    <div class="col-3 d-flex">
+                        <span class="headingText">Role</span>
+                    </div>
+                    <div class="col-4 d-flex">
+                        <span class="headingText">Created</span>
+                    </div>
+                    
+                    <svg class="addUser" (click)="showAdd()" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 10V4M16 7H22M16 21V19.8C16 18.1198 16 17.2798 15.673 16.638C15.3854 16.0735 14.9265 15.6146 14.362 15.327C13.7202 15 12.8802 15 11.2 15H6.8C5.11984 15 4.27976 15 3.63803 15.327C3.07354 15.6146 2.6146 16.0735 2.32698 16.638C2 17.2798 2 18.1198 2 19.8V21M12.5 7.5C12.5 9.433 10.933 11 9 11C7.067 11 5.5 9.433 5.5 7.5C5.5 5.567 7.067 4 9 4C10.933 4 12.5 5.567 12.5 7.5Z" 
+                        stroke="#C4C4C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+        
+                </div>
+            </div>
+        </div>
+        <div class="row gutter">
+            <div class="col-5 colMargin">
+                <ng-container *ngIf="this.users != undefined">
+                    <div class="item d-flex align-items-center" *ngFor="let user of this.users">
+                        <div class="col-4 d-flex">
+                            <span class="itemText offset-item">{{user.name}}</span>
+                        </div>
+                        <div class="col-3 d-flex">
+                            <span class="itemText offset-item-second">admin</span>
+                        </div>
+                        <div class="col-3 d-flex">
+                            <span class="itemText offset-item-third">{{user.created}}</span>
+                        </div>
+                        <div class="col-2 d-flex justify-content-end">
+                            <div class="svgContainer">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" (click)="show(user)">
+                                    <path
+                                        d="M9 15.5H7.5C6.10444 15.5 5.40665 15.5 4.83886 15.6722C3.56045 16.06 2.56004 17.0605 2.17224 18.3389C2 18.9067 2 19.6044 2 21M14.5 7.5C14.5 9.98528 12.4853 12 10 12C7.51472 12 5.5 9.98528 5.5 7.5C5.5 5.01472 7.51472 3 10 3C12.4853 3 14.5 5.01472 14.5 7.5ZM11 21L14.1014 20.1139C14.2499 20.0715 14.3241 20.0502 14.3934 20.0184C14.4549 19.9902 14.5134 19.9558 14.5679 19.9158C14.6293 19.8707 14.6839 19.8161 14.7932 19.7068L21.25 13.25C21.9404 12.5597 21.9404 11.4403 21.25 10.75C20.5597 10.0596 19.4404 10.0596 18.75 10.75L12.2932 17.2068C12.1839 17.3161 12.1293 17.3707 12.0842 17.4321C12.0442 17.4866 12.0098 17.5451 11.9816 17.6066C11.9497 17.6759 11.9285 17.7501 11.8861 17.8987L11 21Z"
+                                        stroke="#C4C4C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" (click)="showdelete(user)">
+                                    <path
+                                        d="M9 9L15 15M15 9L9 15M7.8 21H16.2C17.8802 21 18.7202 21 19.362 20.673C19.9265 20.3854 20.3854 19.9265 20.673 19.362C21 18.7202 21 17.8802 21 16.2V7.8C21 6.11984 21 5.27976 20.673 4.63803C20.3854 4.07354 19.9265 3.6146 19.362 3.32698C18.7202 3 17.8802 3 16.2 3H7.8C6.11984 3 5.27976 3 4.63803 3.32698C4.07354 3.6146 3.6146 4.07354 3.32698 4.63803C3 5.27976 3 6.11984 3 7.8V16.2C3 17.8802 3 18.7202 3.32698 19.362C3.6146 19.9265 4.07354 20.3854 4.63803 20.673C5.27976 21 6.11984 21 7.8 21Z"
+                                        stroke="#C4C4C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+            
+        </div>
+    </div>
+    <div class="top2"></div>
+    <div class="subWrapper">
+        <p class="title text-start">Role Management</p>
+        <p class="subText text-start">2 ROLES</p>
+    </div>
+    <div class="row">
+        <div class="row">
+            <div class="col-5 d-flex colMargin">
+                <div class="header d-flex align-items-center">
+                    <div class="col-4 d-flex offset">
+                        <span class="headingText">Name</span>
+                    </div>
+                    <div class="col-3 d-flex">
+                        <span class="headingText">Permission ID</span>
+                    </div>
+                    <div class="col-4 d-flex">
+                        <span class="headingText">Created</span>
+                    </div>
+                    
+                    <svg class="addUser" (click)="showAdd()" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 10V4M16 7H22M16 21V19.8C16 18.1198 16 17.2798 15.673 16.638C15.3854 16.0735 14.9265 15.6146 14.362 15.327C13.7202 15 12.8802 15 11.2 15H6.8C5.11984 15 4.27976 15 3.63803 15.327C3.07354 15.6146 2.6146 16.0735 2.32698 16.638C2 17.2798 2 18.1198 2 19.8V21M12.5 7.5C12.5 9.433 10.933 11 9 11C7.067 11 5.5 9.433 5.5 7.5C5.5 5.567 7.067 4 9 4C10.933 4 12.5 5.567 12.5 7.5Z" 
+                        stroke="#C4C4C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+        
+                </div>
+            </div>
+        </div>
+        <div class="row gutter">
+            <div class="col-5 colMargin">
+                <ng-container *ngIf="this.users != undefined">
+                    <div class="item d-flex align-items-center">
+                        <div class="col-4 d-flex">
+                            <span class="itemText offset-item">admin</span>
+                        </div>
+                        <div class="col-3 d-flex">
+                            <span class="itemText offset-item-second">all</span>
+                        </div>
+                        <div class="col-3 d-flex">
+                            <span class="itemText offset-item-third">21.09.2002</span>
+                        </div>
+                        <div class="col-2 d-flex justify-content-end">
+                            <div class="svgContainer" (click)="show()">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M9 15.5H7.5C6.10444 15.5 5.40665 15.5 4.83886 15.6722C3.56045 16.06 2.56004 17.0605 2.17224 18.3389C2 18.9067 2 19.6044 2 21M14.5 7.5C14.5 9.98528 12.4853 12 10 12C7.51472 12 5.5 9.98528 5.5 7.5C5.5 5.01472 7.51472 3 10 3C12.4853 3 14.5 5.01472 14.5 7.5ZM11 21L14.1014 20.1139C14.2499 20.0715 14.3241 20.0502 14.3934 20.0184C14.4549 19.9902 14.5134 19.9558 14.5679 19.9158C14.6293 19.8707 14.6839 19.8161 14.7932 19.7068L21.25 13.25C21.9404 12.5597 21.9404 11.4403 21.25 10.75C20.5597 10.0596 19.4404 10.0596 18.75 10.75L12.2932 17.2068C12.1839 17.3161 12.1293 17.3707 12.0842 17.4321C12.0442 17.4866 12.0098 17.5451 11.9816 17.6066C11.9497 17.6759 11.9285 17.7501 11.8861 17.8987L11 21Z"
+                                        stroke="#C4C4C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M9 9L15 15M15 9L9 15M7.8 21H16.2C17.8802 21 18.7202 21 19.362 20.673C19.9265 20.3854 20.3854 19.9265 20.673 19.362C21 18.7202 21 17.8802 21 16.2V7.8C21 6.11984 21 5.27976 20.673 4.63803C20.3854 4.07354 19.9265 3.6146 19.362 3.32698C18.7202 3 17.8802 3 16.2 3H7.8C6.11984 3 5.27976 3 4.63803 3.32698C4.07354 3.6146 3.6146 4.07354 3.32698 4.63803C3 5.27976 3 6.11984 3 7.8V16.2C3 17.8802 3 18.7202 3.32698 19.362C3.6146 19.9265 4.07354 20.3854 4.63803 20.673C5.27976 21 6.11984 21 7.8 21Z"
+                                        stroke="#C4C4C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item d-flex align-items-center">
+                        <div class="col-4 d-flex">
+                            <span class="itemText offset-item">user</span>
+                        </div>
+                        <div class="col-3 d-flex">
+                            <span class="itemText offset-item-second">2415</span>
+                        </div>
+                        <div class="col-3 d-flex">
+                            <span class="itemText offset-item-third">21.09.2002</span>
+                        </div>
+                        <div class="col-2 d-flex justify-content-end">
+                            <div class="svgContainer" (click)="show()">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M9 15.5H7.5C6.10444 15.5 5.40665 15.5 4.83886 15.6722C3.56045 16.06 2.56004 17.0605 2.17224 18.3389C2 18.9067 2 19.6044 2 21M14.5 7.5C14.5 9.98528 12.4853 12 10 12C7.51472 12 5.5 9.98528 5.5 7.5C5.5 5.01472 7.51472 3 10 3C12.4853 3 14.5 5.01472 14.5 7.5ZM11 21L14.1014 20.1139C14.2499 20.0715 14.3241 20.0502 14.3934 20.0184C14.4549 19.9902 14.5134 19.9558 14.5679 19.9158C14.6293 19.8707 14.6839 19.8161 14.7932 19.7068L21.25 13.25C21.9404 12.5597 21.9404 11.4403 21.25 10.75C20.5597 10.0596 19.4404 10.0596 18.75 10.75L12.2932 17.2068C12.1839 17.3161 12.1293 17.3707 12.0842 17.4321C12.0442 17.4866 12.0098 17.5451 11.9816 17.6066C11.9497 17.6759 11.9285 17.7501 11.8861 17.8987L11 21Z"
+                                        stroke="#C4C4C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M9 9L15 15M15 9L9 15M7.8 21H16.2C17.8802 21 18.7202 21 19.362 20.673C19.9265 20.3854 20.3854 19.9265 20.673 19.362C21 18.7202 21 17.8802 21 16.2V7.8C21 6.11984 21 5.27976 20.673 4.63803C20.3854 4.07354 19.9265 3.6146 19.362 3.32698C18.7202 3 17.8802 3 16.2 3H7.8C6.11984 3 5.27976 3 4.63803 3.32698C4.07354 3.6146 3.6146 4.07354 3.32698 4.63803C3 5.27976 3 6.11984 3 7.8V16.2C3 17.8802 3 18.7202 3.32698 19.362C3.6146 19.9265 4.07354 20.3854 4.63803 20.673C5.27976 21 6.11984 21 7.8 21Z"
+                                        stroke="#C4C4C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</ng-template>
