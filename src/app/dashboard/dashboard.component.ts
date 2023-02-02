@@ -31,6 +31,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public imagesFetched: BehaviorSubject<Boolean> = new BehaviorSubject(false);
   public aboutFetched: BehaviorSubject<Boolean> = new BehaviorSubject(false);
 
+
   constructor(private titleService: NavtitleService, 
               protected loadingService: LoadingService, 
               private httpservice: HttpserviceService, 
@@ -47,7 +48,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   //Called when component gets created
   ngOnInit(): void {
-    this.titleService.set("Dashboard", "", "Hallo, " + localStorage.getItem("username"));
+    let username = localStorage.getItem("username");
+    this.titleService.set("Dashboard", "", "HALLO, " + username.toUpperCase());
     this.title.setTitle("Dashboard")
     this.getVolumesFromAPI().then(
       (data: Volume[]) => {

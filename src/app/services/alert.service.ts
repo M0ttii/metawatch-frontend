@@ -31,4 +31,13 @@ export class AlertService {
         break;
     }
   }
+
+  customalert(title: string, message: string) {
+    let alert = new Alert()
+    alert.title = title
+    alert.message = message;
+    alert.type = "success"
+    this.subject.next(alert);
+
+  }
 }

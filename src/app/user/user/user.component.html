@@ -1,4 +1,4 @@
-<ng-container *ngIf="this.loadingService.loading.getValue(); else elseBlock">
+<ng-container *ngIf="this.loadingService.loading.getValue() && this.inSelect == false && this.loading; else elseBlock">
     <div class="container-fluid h-100">
         <div class="row h-75 align-items-center">
             <div class="col-12 d-flex justify-content-center">
@@ -51,7 +51,7 @@
                         <label for="user" class="text-start mtop">Username</label>
                         <input type="text" name="user" id="user" ngModel>
                         <label for="pass" class="text-start topSecond">Password</label>
-                        <input type="password" name="pass" id="pass" ngModel>
+                        <input type="password" name="pass" id="pass" autocomplete="off" ngModel>
                         <button class="btn btnSubmit" type="submit">Save</button>
                     </form>
                 </div>
@@ -72,8 +72,8 @@
             </div>
             <div class="row">
                 <div class="col-12 d-flex">
-                    <form class="box" #userAdd = "ngForm" (submit)="submitAdd(userAdd.value)" >
-                        <label for="user" class="text-start mtop">Username</label>
+                    <form class="box"  autocomplete="off" #userAdd = "ngForm" (submit)="submitAdd(userAdd.value)" >
+                        <label for="user" class="text-start mtop" autocomplete="off" >Username</label>
                         <input type="text" name="user" id="user" ngModel>
                         <label for="pass" class="text-start topSecond">Password</label>
                         <input type="password" name="pass" id="pass" ngModel>
@@ -87,7 +87,7 @@
     <div class="top"></div>
     <div class="row">
         <div class="row">
-            <div class="col-5 d-flex colMargin">
+            <div class="col-xxl-6 col-xl-8 d-flex colMargin">
                 <div class="header d-flex align-items-center">
                     <div class="col-4 d-flex offset">
                         <span class="headingText">Username</span>
@@ -108,7 +108,7 @@
             </div>
         </div>
         <div class="row gutter">
-            <div class="col-5 colMargin">
+            <div class="col-xxl-6 col-xl-8 colMargin">
                 <ng-container *ngIf="this.users != undefined">
                     <div class="item d-flex align-items-center" *ngFor="let user of this.users">
                         <div class="col-4 d-flex">
@@ -147,7 +147,7 @@
     </div>
     <div class="row">
         <div class="row">
-            <div class="col-5 d-flex colMargin">
+            <div class="col-xxl-6 col-xl-8 d-flex colMargin">
                 <div class="header d-flex align-items-center">
                     <div class="col-4 d-flex offset">
                         <span class="headingText">Name</span>
@@ -168,7 +168,7 @@
             </div>
         </div>
         <div class="row gutter">
-            <div class="col-5 colMargin">
+            <div class="col-xxl-6 col-xl-8 colMargin">
                 <ng-container *ngIf="this.users != undefined">
                     <div class="item d-flex align-items-center">
                         <div class="col-4 d-flex">

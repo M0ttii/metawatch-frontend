@@ -307,24 +307,42 @@ input[type="text"]{
 }
 
 .btnYes{
+    transition: .1s ease-in-out 0s;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
     z-index: 1000;
     margin-top: 15px;
     margin-right: 20px;
-    background-color: transparent;
-    border: 2px solid;
-    border-color: #19c26d;
+    background-color: #121220;
+    border: 1px solid;
+    border-color: #18e27d;
     width: 70%;
-    --bs-btn-color: #19c26d !important;
+    --bs-btn-color: #18e27d !important;
+}
+
+
+.btnNo:hover{
+    color: rgb(211, 97, 97);
+    transform: scale(1.1);
+}
+
+.btnYes:hover{
+    color: #18e27d;
+    transform: scale(1.1);
 }
 
 .btnNo{
+    transition: .1s ease-in-out 0s;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
     z-index: 1000;
     margin-top: 15px;
     background-color: transparent;
     border: 2px solid;
-    border-color: rgb(165, 62, 62);
+    border-color: rgb(211, 97, 97);
     width: 70%;
-    --bs-btn-color: rgb(190, 73, 73) !important;
+    color: rgb(211, 97, 97);
+    --bs-btn-color: rgb--bs-btn-color: rgb(211, 97, 97) !important;
 }
 
 input[type="password"]:focus{
